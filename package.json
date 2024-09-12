@@ -1,0 +1,28 @@
+{
+  "name": "testimonial",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:api && npm run build:web",
+    "build:api": "cd api && npm run build",
+    "build:web": "cd web && npm run build",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "cd api && npm run dev",
+    "dev:web": "cd web && npm run dev",
+    "lint": "npm run lint:api && npm run lint:web",
+    "lint:api": "cd api && npm run lint",
+    "lint:web": "cd web && npm run lint",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,html}\"",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,html}\"",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
