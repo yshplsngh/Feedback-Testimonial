@@ -1,36 +1,54 @@
 import type { NextFunction, Response, Request } from 'express';
-import type { HandleError, CreateErrorMessage } from './utilsType';
 import { ZodError } from 'zod';
 import { zodErrorToString } from './handleZodError';
+
+interface HandleError {
+  _error: unknown;
+  uncaught?: boolean;
+}
+
+interface CreateErrorMessage {
+  message: string;
+  code?: number;
+}
 
 export function createError({ message, code = 500 }: CreateErrorMessage) {
   return { message, code };
 }
 
-export function handleError({ _error, uncaught }: HandleError) {
-  const errorData =
-    typeof _error === 'string' ? createError({ message: _error }) : _error;
+export function handleError({ _error, uncaught }: HandleError): {
+  message: string;
+  code: number;
+  uncaught?: string;
+} {
+  //default error
+  let error: { message: string; code: number; uncaught?: string } = {
+    message: 'Unexpected error has occurred',
+    code: 500,
+  };
 
-  let error = errorData || new Error('Unexpected error has occurred');
-
-  if (error instanceof ZodError) {
-    error = { code: 400, message: zodErrorToString(error) };
-  }
-
-  if (error instanceof Error) {
-    console.log(error);
-    error = { code: 500, message: error.stack };
+  if (typeof _error === 'string') {
+    error = createError({ message: _error });
+  } else if (_error instanceof ZodError) {
+    error = { code: 400, message: zodErrorToString(_error) };
+  } else if (_error instanceof Error) {
+    error = { code: 500, message: _error.stack || 'Unknown error' };
   }
 
   if (uncaught) {
-    error.message = `uncaught exception or unhandled rejection, Node process finished !!\n ${error.message}`;
+    error = {
+      ...error,
+      uncaught:
+        'uncaught exception or unhandled rejection, Node process finished !!',
+    };
+    console.log(error);
   }
   return error;
 }
 
 export function errorHandlingMiddleware(
   error: Error,
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction,
 ) {

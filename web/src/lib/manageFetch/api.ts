@@ -1,11 +1,12 @@
 import { getResponseType } from './httpResponses';
+import { RequestData } from '../fetchAPI/authAPI.ts';
 
 const API_URL = 'http://localhost:4000';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
 
-interface ProcessedResponse<T = unknown> {
-  json: T;
+interface ProcessedResponse {
+  json: unknown;
   status: number;
   headers: Headers;
   endpoint: {
@@ -39,8 +40,8 @@ function toUrlParams(params: Record<string, unknown> | string): string {
   return `?${urlParams.toString()}`;
 }
 
-export class FetchResponseError<T = unknown> extends Error {
-  json: T;
+export class FetchResponseError extends Error {
+  json: unknown;
   status: number;
   headers: Headers;
   endpoint: {
@@ -49,7 +50,7 @@ export class FetchResponseError<T = unknown> extends Error {
   };
   additionalInfo: unknown;
 
-  constructor(message: string, details: ProcessedResponse<T>) {
+  constructor(message: string, details: ProcessedResponse) {
     super(message);
     const { json, status, headers, endpoint, ...rest } = details;
     const errorType = getResponseType(status);
@@ -62,15 +63,15 @@ export class FetchResponseError<T = unknown> extends Error {
   }
 }
 
-async function fetchData<T = unknown>({
+async function fetchData({
   url,
   data,
   method,
 }: {
   url: string;
-  data?: Record<string, unknown>;
+  data?: RequestData;
   method: HttpMethod;
-}): Promise<ProcessedResponse<T>> {
+}): Promise<ProcessedResponse> {
   const config: RequestInit = {
     method,
     headers: {
@@ -89,8 +90,8 @@ async function fetchData<T = unknown>({
   const response = await fetch(url, config);
   const json = await response.json().catch(() => ({}));
 
-  const processedResponse: ProcessedResponse<T> = {
-    json: json as T,
+  const processedResponse: ProcessedResponse = {
+    json: json,
     status: response.status,
     headers: response.headers,
     endpoint: { method, url },
@@ -104,13 +105,12 @@ async function fetchData<T = unknown>({
       processedResponse,
     );
   }
-
   return processedResponse;
 }
 
 function createApiMethod(method: HttpMethod) {
-  return <T = unknown>(url: string, data?: Record<string, unknown>) => {
-    return fetchData<T>({
+  return (url: string, data?: RequestData) => {
+    return fetchData({
       url: `${API_URL}${url}`,
       data,
       method,

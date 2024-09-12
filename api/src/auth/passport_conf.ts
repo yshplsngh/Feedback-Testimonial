@@ -14,7 +14,6 @@ passport.use(
     },
     async (_accessToken, _refreshToken, profile, done) => {
       try {
-        console.log(profile);
         const userExist: User | null = await findUserByGID({ gId: profile.id });
         if (profile.emails === undefined || profile.emails[0] === undefined) {
           return done(null, false);
