@@ -63,13 +63,13 @@ export class FetchResponseError<T = unknown> extends Error {
 }
 
 async function fetchData<T = unknown>({
-                                        url,
-                                        data,
-                                        method
-                                      }: {
+  url,
+  data,
+  method,
+}: {
   url: string;
   data?: Record<string, unknown>;
-  method: HttpMethod
+  method: HttpMethod;
 }): Promise<ProcessedResponse<T>> {
   const config: RequestInit = {
     method,

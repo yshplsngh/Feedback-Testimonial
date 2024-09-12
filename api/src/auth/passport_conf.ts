@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import config from '../utils/config.ts';
 import { createUser, findUserByGID } from './users.ts';
-import {User} from '@prisma/client'
+import { User } from '@prisma/client';
 
 passport.use(
   new GoogleStrategy(

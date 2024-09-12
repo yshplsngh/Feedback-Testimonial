@@ -9,8 +9,8 @@ export type RootState = {
 // Create the store with the appropriate type
 export const store: EnhancedStore<RootState> = configureStore({
   reducer: {
-    users: usersReducer
-  }
+    users: usersReducer,
+  },
 });
 
 // Export a typed hook for use throughout your application

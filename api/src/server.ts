@@ -1,4 +1,4 @@
-import express, { Express,Request,Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import authRoutes from './auth/index.ts';

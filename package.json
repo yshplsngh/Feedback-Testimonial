@@ -13,7 +13,10 @@
     "lint:web": "cd web && npm run lint",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,html}\"",
     "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,html}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "npm run install:api && npm run install:web",
+    "install:api": "cd api && npm install",
+    "install:web": "cd web && npm install"
   },
   "devDependencies": {
     "concurrently": "^8.0.0",

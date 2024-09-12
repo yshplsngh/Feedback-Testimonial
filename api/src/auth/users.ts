@@ -1,4 +1,4 @@
-import prisma from '../database/index.ts'
+import prisma from '../database/index.ts';
 import type { UserData } from './authTypes.ts';
 
 export function findUserByGID({ gId }: { gId: string }) {

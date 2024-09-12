@@ -19,27 +19,13 @@ export default function App() {
   //   dispatch(userAdd("yashpal"))
   // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   // const [data, setData] = useState(null);
-
 
   // };
   const huser = async () => {
     try {
-      getUser({ name: "Rashpal" }).then((data) => console.log(data));
-      getUser({ username: "Rashpal" }).then((data) => console.log(data));
+      getUser({ name: 'Rashpal' }).then((data) => console.log(data));
+      getUser({ username: 'Rashpal' }).then((data) => console.log(data));
       getUser().then((data) => console.log(data));
     } catch (error) {
       console.error('Failed to fetch user data:', error);
@@ -82,10 +68,9 @@ export default function App() {
   //   return response.json;
   // }
 
-
-// Usage
-//   const user = await authApi.function(123);
-//   console.log(user.username); // TypeScript now knows that 'user' is of type UserType
+  // Usage
+  //   const user = await authApi.function(123);
+  //   console.log(user.username); // TypeScript now knows that 'user' is of type UserType
 
   return (
     <main>

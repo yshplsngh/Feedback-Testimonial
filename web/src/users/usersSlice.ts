@@ -15,7 +15,6 @@ const initialState: UsersState = {
   error: null,
 };
 
-
 // const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 const usersSlice = createSlice({
@@ -26,11 +25,11 @@ const usersSlice = createSlice({
       reducer: (state, action: PayloadAction<string>) => {
         state.names.push(action.payload);
       },
-      prepare(name: string){
+      prepare(name: string) {
         return {
-          payload: name
+          payload: name,
         };
-      }
+      },
     },
   },
 });
