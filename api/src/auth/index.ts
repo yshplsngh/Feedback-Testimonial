@@ -3,6 +3,7 @@ import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config.ts';
 import './passport_conf.ts';
+import prisma from '../database';
 
 export default function authRoutes(app: Express): void {
   app.use(
@@ -40,9 +41,7 @@ export default function authRoutes(app: Express): void {
   );
 
   app.get('/api/user', (req: Request, res: Response) => {
-    // console.log(req);
     res.status(200).json(req.user || { message: 'yeah no login user' });
-    // res.status(409).json({ message: 'yeah no login user' });
   });
 
   app.post('/api/logout', (req: Request, res: Response) => {

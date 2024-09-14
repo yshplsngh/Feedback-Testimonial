@@ -1,20 +1,45 @@
-import authApi from './lib/fetchAPI/authAPI.ts';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import Home from './pages/Home';
 
 export default function App() {
   return (
-    <main>
-      <button onClick={() => authApi.getUser()}>user</button>
-      <br />
-      <button
-        onClick={() => {
-          window.open('http://localhost:4000/api/auth/google', '_self');
-        }}
-      >
-        login
-      </button>
-    </main>
+    <Routes>
+      <Route path={'/'} element={<Outlet />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
+
+// export default function App() {
+//   const [error,setError] = useState<string>('')
+//   const handleSubmit = async () => {
+//     const response = await getUser();
+//     if(response instanceof FetchResponseError){
+//       setError(response.message)
+//     }else{
+//       console.log(response);
+//     }
+//   };
+//
+//   return (
+//     <main>
+//       <button onClick={() => handleSubmit()}>fake</button>
+//       <br />
+//       <button
+//         onClick={() => {
+//           window.open('http://localhost:4000/api/auth/google', '_self');
+//         }}
+//       >
+//         login
+//       </button>
+//       <button>
+//
+//       </button>
+//     </main>
+//   )
+//
+// }
 
 // import { useState} from 'react';
 // import { createRequestParams, RequestParams } from './lib/manageFetch/requestParams';
@@ -22,12 +47,12 @@ export default function App() {
 //
 // import { useDispatch, useSelector } from 'react-redux';
 // import { selectAllNames, userAdd } from './users/usersSlice.ts';
-// import { AppDispatch } from './App/store.ts';
+// import { AppDispatch } from './app/store.ts';
 // import authApi from './lib/fetchAPI/authAPI.ts';
 
 // import { getUser } from './lib/fetchAPI/authAPI.ts';
 //
-// export default function App() {
+// export default function app() {
 // const dispatch = useDispatch<AppDispatch>();
 // const users = useSelector(selectAllNames);
 

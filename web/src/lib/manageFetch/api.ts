@@ -1,9 +1,9 @@
 import { getResponseType } from './httpResponses';
-import { RequestData } from '../fetchAPI/authAPI.ts';
 
-const API_URL = 'http://localhost:4000';
+export const API_URL = 'http://localhost:4000';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
+export type RequestData = Record<string, unknown>;
 
 interface ProcessedResponse {
   json: unknown;
@@ -96,12 +96,12 @@ async function fetchData({
     headers: response.headers,
     endpoint: { method, url },
     ok: response.ok,
-    message: response.ok ? undefined : json.message || response.statusText,
+    message: response.ok ? undefined : json.error || response.statusText,
   };
 
   if (!response.ok) {
     throw new FetchResponseError(
-      `Request failed with status code ${processedResponse.status}: ${processedResponse.message}`,
+      `${processedResponse.message}`,
       processedResponse,
     );
   }
@@ -118,7 +118,7 @@ function createApiMethod(method: HttpMethod) {
   };
 }
 
-export const apl = {
+export const api = {
   get: createApiMethod('get'),
   post: createApiMethod('post'),
   put: createApiMethod('put'),

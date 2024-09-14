@@ -1,27 +1,17 @@
-import { apl, FetchResponseError } from '../manageFetch/api';
-
-export type RequestData = Record<string, unknown>;
-
-export default {
-  async getUser(requestData?: RequestData) {
-    const url = '/api/user';
-    try {
-      const response = await apl.get(url, requestData);
-      console.log(response.json);
-    } catch (error) {
-      if (error instanceof FetchResponseError) {
-        console.log(error.message);
-        console.log(error.name);
-        console.log(error.status);
-        console.log(error.json);
-        console.log(error.headers);
-        console.log(error.endpoint);
-      }
-      throw error;
-    }
-  },
-};
-
+// import { api, RequestData } from '../manageFetch/api';
+//
+//
+// const getUser = async (requestData?: RequestData) => {
+//   const url = '/api/user';
+//   try {
+//     const response = await api.get(url, requestData);
+//     return response.json;
+//   } catch (error){
+//     return error;
+//   }
+// };
+//
+// export {getUser}
 // interface UserType {
 //   id: number;
 //   username: string;
