@@ -1,15 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { api } from '../lib/manageFetch/api';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { api, ProcessedResponse } from '../lib/manageFetch/api';
 
-// import { api } from '../lib/manageFetch/api';
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
+  pictureUrl: string;
+}
 
 interface UsersState {
-  userData: {
-    id: number;
-    name: string;
-    email: string;
-    pictureUrl: string;
-  };
+  userData: UserData;
 }
 
 const initialState: UsersState = {
@@ -21,63 +21,29 @@ const initialState: UsersState = {
   },
 };
 
-// const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-// export const fetchPosts = createAsyncThunk<Post[]>('posts/fetchPosts',async ()=>{
-//   const response = await axios.get<Post[]>(POSTS_URL)
-//   return response.data;
-//   }
-// )
-
-export const fetchUserInfo = async () => {
-  const url = '/api/users';
-  const response = await api.get(url);
-  return response.json;
-};
-
-// export const fetchUserInfo = createAsyncThunk('api/user', async (requestData?: RequestData) => {
-//   const url = '/api/user';
-//   try {
-//   const response = await axios.get(API_URL+url);
-//   return response.data;
-//   } catch (error) {
-//
-//   if (error instanceof FetchResponseError) {
-//     console.log(error.message);
-//     console.log(error.name);
-//     console.log(error.status);
-//     console.log(error.json);
-//     console.log(error.headers);
-//     console.log(error.endpoint);
-//   }
-//
-//   throw error;
-//   }
-// });
+export const fetchUserInfo = createAsyncThunk('api/user', async () => {
+  const url = '/api/user';
+  return await api.get<UserData>(url);
+});
 
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {
-    // setUserInfo(state,action) {
-    //   state.userData = action.payload
-    //   console.log(action)
-    // }
+  reducers: {},
+  extraReducers(builder) {
+    builder.addCase(
+      fetchUserInfo.fulfilled,
+      (state, action: PayloadAction<ProcessedResponse<UserData>>) => {
+        // when id is not present, user not exist in cookies , in response we are getting a empty object
+        if (!action.payload.json.id) {
+          state.userData = initialState.userData;
+        } else {
+          const { id, pictureUrl, name, email } = action.payload.json;
+          state.userData = { id, pictureUrl, name, email };
+        }
+      },
+    );
   },
-  // extraReducers(builder) {
-  // builder.addCase(fetchUserInfo, (state, action) => {
-  //   console.log(action.payload);
-  // });
-  // .addCase(fetchUserInfo.rejected, (state, action) => {
-  //   console.log(action);
-  // });
-  // builder.addCase(fetchPosts.fulfilled,(state, action:PayloadAction<Post[]>) => {
-  //   state.post = action.payload;
-  // })
-  // },
 });
 
-// export const selectAllPosts = (state:RootState) => state.users.post;
-
-export const { setUserInfo } = usersSlice.actions;
 export default usersSlice.reducer;

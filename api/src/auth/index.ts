@@ -3,7 +3,6 @@ import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config.ts';
 import './passport_conf.ts';
-import prisma from '../database';
 
 export default function authRoutes(app: Express): void {
   app.use(

@@ -1,14 +1,14 @@
-import { getResponseType } from './httpResponses';
+import { getResponseType, HTTPResponseType } from './httpResponses';
 
 export const API_URL = 'http://localhost:4000';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
+
 export type RequestData = Record<string, unknown>;
 
-interface ProcessedResponse {
-  json: unknown;
-  status: number;
-  headers: Headers;
+export interface ProcessedResponse<T = unknown> {
+  json: T;
+  code: number;
   endpoint: {
     method: HttpMethod;
     url: string;
@@ -42,8 +42,7 @@ function toUrlParams(params: Record<string, unknown> | string): string {
 
 export class FetchResponseError extends Error {
   json: unknown;
-  status: number;
-  headers: Headers;
+  code: string;
   endpoint: {
     method: HttpMethod;
     url: string;
@@ -52,18 +51,17 @@ export class FetchResponseError extends Error {
 
   constructor(message: string, details: ProcessedResponse) {
     super(message);
-    const { json, status, headers, endpoint, ...rest } = details;
-    const errorType = getResponseType(status);
+    const { json, code, endpoint, ...rest } = details;
+    const errorType: HTTPResponseType = getResponseType(code);
     this.name = errorType === 'ClientError' ? 'Client Error' : 'Server Error';
     this.json = json;
-    this.status = status;
-    this.headers = headers;
+    this.code = String(code);
     this.endpoint = endpoint;
     this.additionalInfo = rest;
   }
 }
 
-async function fetchData({
+async function fetchData<T = unknown>({
   url,
   data,
   method,
@@ -71,7 +69,7 @@ async function fetchData({
   url: string;
   data?: RequestData;
   method: HttpMethod;
-}): Promise<ProcessedResponse> {
+}): Promise<ProcessedResponse<T>> {
   const config: RequestInit = {
     method,
     headers: {
@@ -90,13 +88,12 @@ async function fetchData({
   const response = await fetch(url, config);
   const json = await response.json().catch(() => ({}));
 
-  const processedResponse: ProcessedResponse = {
-    json: json,
-    status: response.status,
-    headers: response.headers,
+  const processedResponse: ProcessedResponse<T> = {
+    json: json as T,
+    code: response.status,
     endpoint: { method, url },
     ok: response.ok,
-    message: response.ok ? undefined : json.error || response.statusText,
+    message: response.ok ? undefined : json.message || response.statusText,
   };
 
   if (!response.ok) {
@@ -105,12 +102,13 @@ async function fetchData({
       processedResponse,
     );
   }
+
   return processedResponse;
 }
 
-function createApiMethod(method: HttpMethod) {
+function createApiMethod<T = unknown>(method: HttpMethod) {
   return (url: string, data?: RequestData) => {
-    return fetchData({
+    return fetchData<T>({
       url: `${API_URL}${url}`,
       data,
       method,
@@ -119,7 +117,9 @@ function createApiMethod(method: HttpMethod) {
 }
 
 export const api = {
-  get: createApiMethod('get'),
+  get: <T = unknown>(url: string, data?: RequestData) =>
+    createApiMethod<T>('get')(url, data),
+  // get: createApiMethod('get'),
   post: createApiMethod('post'),
   put: createApiMethod('put'),
   delete: createApiMethod('delete'),
