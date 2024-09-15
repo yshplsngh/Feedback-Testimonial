@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.lintstagedrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.lintstagedrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/lib/manageFetch/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/lib/manageFetch/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/lib/fetchAPI/authAPI.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/users/user.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/users/usersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/users/usersSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,31 +54,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yshpl/WD/react_redux_toolkit&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/yshpl/WD/Testimonial/api/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/yshpl/WD/Testimonial/web/src/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/yshpl/WD/Testimonial/api/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/assets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/ui/components" />
+      <recent name="$PROJECT_DIR$/web/src/ui/logo" />
+      <recent name="$PROJECT_DIR$/web/src/ui" />
       <recent name="$PROJECT_DIR$/web/src" />
       <recent name="$PROJECT_DIR$/api" />
-      <recent name="$PROJECT_DIR$/api/src/database" />
-      <recent name="$PROJECT_DIR$/api/src" />
-      <recent name="$PROJECT_DIR$/apps/api" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -107,7 +115,8 @@
       <workItem from="1726146693497" duration="9718000" />
       <workItem from="1726164265877" duration="5339000" />
       <workItem from="1726275011064" duration="17582000" />
-      <workItem from="1726309253307" duration="8204000" />
+      <workItem from="1726309253307" duration="8647000" />
+      <workItem from="1726391708480" duration="7231000" />
     </task>
     <servers />
   </component>

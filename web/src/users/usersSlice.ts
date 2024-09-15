@@ -34,7 +34,7 @@ const usersSlice = createSlice({
     builder.addCase(
       fetchUserInfo.fulfilled,
       (state, action: PayloadAction<ProcessedResponse<UserData>>) => {
-        // when id is not present, user not exist in cookies , in response we are getting a empty object
+        // when id is not present, mean cookies is expired, in response we are getting an empty object.
         if (!action.payload.json.id) {
           state.userData = initialState.userData;
         } else {
