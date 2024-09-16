@@ -4,9 +4,14 @@ import { RootState } from '../app/store';
 
 interface UserData {
   id: number | null;
+  googleId: string | null;
+  username: string | null;
   name: string | null;
   email: string | null;
   pictureUrl: string | null;
+  authProvider: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
 }
 
 interface UsersState {
@@ -17,9 +22,14 @@ interface UsersState {
 const initialState: UsersState = {
   userData: {
     id: null,
+    googleId: null,
+    username: null,
     name: null,
     email: null,
     pictureUrl: null,
+    authProvider: null,
+    createdAt: null,
+    updatedAt: null,
   },
   status: 'pending',
 };
@@ -44,8 +54,7 @@ const usersSlice = createSlice({
           if (!action.payload.json.id) {
             state.userData = initialState.userData;
           } else {
-            const { id, pictureUrl, name, email } = action.payload.json;
-            state.userData = { id, pictureUrl, name, email };
+            state.userData = action.payload.json;
           }
         },
       )

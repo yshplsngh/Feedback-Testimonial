@@ -17,6 +17,7 @@ model User {
   id           Int      @id @default(autoincrement())
   googleId     String   @unique
   name         String
+  userName     String   @unique
   email        String   @unique
   pictureUrl   String?
   authProvider String
