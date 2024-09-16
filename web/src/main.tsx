@@ -5,7 +5,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { fetchUserInfo } from './users/usersSlice';
+import { fetchUserInfo } from './auth/authSlice';
 
 store.dispatch(fetchUserInfo());
 

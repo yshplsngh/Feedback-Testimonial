@@ -13,7 +13,6 @@ passport.use(
       scope: ['profile'],
     },
     async (_accessToken, _refreshToken, profile, done) => {
-      console.log(profile);
       try {
         const userExist: User | null = await prisma.user.findUnique({
           where: { googleId: profile.id },

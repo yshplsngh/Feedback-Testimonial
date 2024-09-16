@@ -5,7 +5,7 @@ import { RootState } from '../app/store';
 interface UserData {
   id: number | null;
   googleId: string | null;
-  username: string | null;
+  userName: string | null;
   name: string | null;
   email: string | null;
   pictureUrl: string | null;
@@ -14,16 +14,16 @@ interface UserData {
   updatedAt: string | null;
 }
 
-interface UsersState {
+interface authState {
   userData: UserData;
   status: 'pending' | 'fulfilled';
 }
 
-const initialState: UsersState = {
+const initialState: authState = {
   userData: {
     id: null,
     googleId: null,
-    username: null,
+    userName: null,
     name: null,
     email: null,
     pictureUrl: null,
@@ -39,8 +39,8 @@ export const fetchUserInfo = createAsyncThunk('api/user', async () => {
   return await api.get<UserData>(url);
 });
 
-const usersSlice = createSlice({
-  name: 'users',
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -58,13 +58,16 @@ const usersSlice = createSlice({
           }
         },
       )
+      .addCase(fetchUserInfo.rejected, (state) => {
+        state.status = 'fulfilled';
+      })
       .addCase(fetchUserInfo.pending, (state) => {
         state.status = 'pending';
       });
   },
 });
 
-export const selectUser = (state: RootState) => state.users.userData;
-export const selectUserStatus = (state: RootState) => state.users.status;
+export const selectUser = (state: RootState) => state.auth.userData;
+export const selectUserStatus = (state: RootState) => state.auth.status;
 
-export default usersSlice.reducer;
+export default authSlice.reducer;

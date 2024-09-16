@@ -37,7 +37,7 @@ export const createServer = (): Express => {
     });
   });
 
-  // require('./users').default(app);
+  // require('./auth').default(app);
   authRoutes(app);
 
   app.use(errorHandlingMiddleware);

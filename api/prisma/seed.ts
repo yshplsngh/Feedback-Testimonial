@@ -1,7 +1,7 @@
 // import prisma from '../src/database';
 
 // async function seedUsers() {
-//     const users = [
+//     const auth = [
 //         {
 //             username: 'john_doe',
 //             email: 'john.doe@example.com',
@@ -40,7 +40,7 @@
 //             console.error('DB is already seeded with courses.');
 //             return;
 //         }
-//         await prisma.user.createMany({ data: users });
+//         await prisma.user.createMany({ data: auth });
 //     } catch (error) {
 //         console.error('Error seeding courses:', error);
 //         throw error;

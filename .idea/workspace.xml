@@ -6,14 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/20240910073131_scheme_change/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/migration_lock.toml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/api/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/auth/authTypes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/seed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/prisma/seed.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/auth/passport_conf.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/passport_conf.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/auth/users.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dev.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/users/usersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/users/usersSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/auth/requireAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/requireAuth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/database/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/users/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/users/usersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/authSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +121,7 @@
       <workItem from="1726391708480" duration="12357000" />
       <workItem from="1726420273976" duration="758000" />
       <workItem from="1726465198850" duration="11890000" />
-      <workItem from="1726497589661" duration="3740000" />
+      <workItem from="1726497589661" duration="9150000" />
     </task>
     <servers />
   </component>

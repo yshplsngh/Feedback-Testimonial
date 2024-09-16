@@ -2,7 +2,7 @@ import Button from './Button';
 import { FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectUser, selectUserStatus } from '../../users/usersSlice';
+import { selectUser, selectUserStatus } from '../../auth/authSlice';
 
 function Header() {
   const user = useSelector(selectUser);
@@ -31,7 +31,7 @@ function Header() {
           {status === 'pending' ? (
             <Button variant={'primary'} loading={true} />
           ) : user.id ? (
-            <Link to="/dashboard">
+            <Link to={`${user.userName}/dashboard`}>
               <Button variant={'primary'} text={'Dashboard'} />
             </Link>
           ) : (
