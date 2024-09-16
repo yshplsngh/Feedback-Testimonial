@@ -1,17 +1,24 @@
-import { Routes, Route, Outlet } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './auth/Login';
-import Layout from './Layout';
+import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense, ReactElement } from 'react';
 
-export default function App() {
+import Layout from './Layout';
+import LoadingSpinner from './ui/components/LoadingSpinner';
+
+// Lazy load the Login component
+const Home = lazy(() => import('./pages/Home'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Login = lazy(() => import('./users/Login'));
+
+export default function App(): ReactElement {
   return (
-    <Layout>
-      <Routes>
-        <Route path={'/'} element={<Outlet />}>
-          <Route index element={<Home />} />
-          <Route path={'/login'} element={<Login />} />
-        </Route>
-      </Routes>
-    </Layout>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path={'/privacy-policy'} element={<PrivacyPolicy />} />
+        </Routes>
+      </Layout>
+    </Suspense>
   );
 }

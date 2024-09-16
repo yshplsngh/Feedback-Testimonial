@@ -1,9 +1,6 @@
-import Header from '../ui/components/Header';
-
 const Home = () => {
   return (
     <main>
-      <Header />
       <div>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
         dolorem est excepturi illo officiis quasi ullam voluptatibus? Aliquid

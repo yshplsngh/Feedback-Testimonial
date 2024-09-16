@@ -1,8 +1,13 @@
 import Button from './Button';
 import { FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser, selectUserStatus } from '../../users/usersSlice';
 
 function Header() {
+  const user = useSelector(selectUser);
+  const status = useSelector(selectUserStatus);
+
   return (
     <div
       className={
@@ -12,7 +17,7 @@ function Header() {
       <div className="flex items-center justify-between border-b px-9 py-2">
         <div className="px-4 py-2 text-xl md:text-3xl">
           <Link to={'/'} className="flex items-center space-x-1">
-            <span className="font-bold text-[#fe640b]">Testimonial</span>
+            <span className="font-bold text-[#fe640b]">Y</span>
             <FileText className="h-6 w-6" />
           </Link>
         </div>
@@ -23,13 +28,17 @@ function Header() {
           {/*<Link to={'/'}>*/}
           {/*  <Button variant={'primary'} className="sm md:hidden flex" text={'pro member'} />*/}
           {/*</Link>*/}
-
-          <Link to="/dashboard">
-            <Button variant={'primary'} text={'Dashboard'} />
-          </Link>
-          <Link to="/dashboard">
-            <Button variant={'primary'} text={'Login'} />
-          </Link>
+          {status === 'pending' ? (
+            <Button variant={'primary'} loading={true} />
+          ) : user.id ? (
+            <Link to="/dashboard">
+              <Button variant={'primary'} text={'Dashboard'} />
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button variant={'outline'} text={'Login'} />{' '}
+            </Link>
+          )}
         </div>
       </div>
     </div>
