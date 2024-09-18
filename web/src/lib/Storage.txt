@@ -1,0 +1,37 @@
+// const NewSpace = () => {
+//
+//   const {
+//     register,
+//     handleSubmit,
+//     watch,
+//     formState: { errors, isValid },
+//   } = useForm<NewSpaceType>({ resolver: zodResolver(NewSpaceScheme) });
+//
+//   const onSubmit: SubmitHandler<NewSpaceType> = (data: NewSpaceType) => {
+//     console.log(data);
+//     if (isValid) {
+//       console.log('valid data');
+//     }
+//   };
+//
+//   return (
+//     <section className={'op flex justify-center items-center transition-all'}>
+//       <main className={'op bg-white w-[25rem] my-10 mx-auto px-9 py-10 rounded-lg shadow-2xl space-y-4'}>
+//         {/*<p className={'op h-5 text-[0.8rem] text-red-500 block'}>{error}</p>*/}
+//         <form onSubmit={handleSubmit(onSubmit)}>
+//
+//           <Input inputName={'spaceName'} inputError={errors.spaceName} register={register} watch={watch}/>
+//           <Input inputName={'websiteUrl'} inputError={errors.websiteUrl} register={register} watch={watch}/>
+//           <Input inputName={'headerTitle'} inputError={errors.headerTitle} register={register} watch={watch}/>
+//           <Input inputName={'customMessage'} inputError={errors.customMessage} register={register} watch={watch}/>
+//           <Input inputName={'question'} inputError={errors.question} register={register} watch={watch}/>
+//
+//           <Button type={'submit'} text={'Register'} variant={'outlineB'} className={'mt-10 w-40'} />
+//         </form>
+//       </main>
+//     </section>
+//   );
+// };
+// export default NewSpace;
+
+

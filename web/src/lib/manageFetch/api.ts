@@ -119,8 +119,14 @@ function createApiMethod<T = unknown>(method: HttpMethod) {
 export const api = {
   get: <T = unknown>(url: string, data?: RequestData) =>
     createApiMethod<T>('get')(url, data),
+  post: <T = unknown>(url: string, data?: RequestData) =>
+    createApiMethod<T>('post')(url, data),
+  put: <T = unknown>(url: string, data?: RequestData) =>
+    createApiMethod<T>('put')(url, data),
+  delete: <T = unknown>(url: string, data?: RequestData) =>
+    createApiMethod<T>('delete')(url, data),
   // get: createApiMethod('get'),
-  post: createApiMethod('post'),
-  put: createApiMethod('put'),
-  delete: createApiMethod('delete'),
+  // post: createApiMethod('post'),
+  // put: createApiMethod('put'),
+  // delete: createApiMethod('delete'),
 };

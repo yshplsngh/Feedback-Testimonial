@@ -39,11 +39,7 @@ export default function authRoutes(app: Express): void {
     },
   );
 
-  app.get('/api/user', (req: Request, res: Response) => {
-    res.status(200).json(req.user || { message: 'yeah no login user' });
-  });
-
-  app.post('/api/logout', (req: Request, res: Response) => {
+  app.post('/api/auth/logout', (req: Request, res: Response) => {
     if (!req.user) return res.sendStatus(401);
 
     req.logout((err) => {

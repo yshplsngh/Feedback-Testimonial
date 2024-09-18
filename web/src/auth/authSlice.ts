@@ -16,7 +16,7 @@ interface UserData {
 
 interface authState {
   userData: UserData;
-  status: 'pending' | 'fulfilled';
+  statusLoading: boolean;
 }
 
 const initialState: authState = {
@@ -31,7 +31,7 @@ const initialState: authState = {
     createdAt: null,
     updatedAt: null,
   },
-  status: 'pending',
+  statusLoading: false,
 };
 
 export const fetchUserInfo = createAsyncThunk('api/user', async () => {
@@ -39,17 +39,29 @@ export const fetchUserInfo = createAsyncThunk('api/user', async () => {
   return await api.get<UserData>(url);
 });
 
+export const logoutUser = createAsyncThunk('/api/auth/logout', async () => {
+  const url = '/api/auth/logout';
+  return await api.post(url);
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    // startLoading(state){
+    //   state.mainLoading = true
+    // },
+    // stopLoading(state){
+    //   state.mainLoading = false
+    // }
+  },
   extraReducers(builder) {
     builder
       .addCase(
         fetchUserInfo.fulfilled,
         (state, action: PayloadAction<ProcessedResponse<UserData>>) => {
           console.log(action.payload.json);
-          state.status = 'fulfilled';
+          state.statusLoading = false;
           // when id is not present, mean cookies is expired, in response we are getting an empty object.
           if (!action.payload.json.id) {
             state.userData = initialState.userData;
@@ -59,15 +71,19 @@ const authSlice = createSlice({
         },
       )
       .addCase(fetchUserInfo.rejected, (state) => {
-        state.status = 'fulfilled';
+        state.statusLoading = false;
       })
       .addCase(fetchUserInfo.pending, (state) => {
-        state.status = 'pending';
+        state.statusLoading = true;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.userData = initialState.userData;
       });
   },
 });
 
 export const selectUser = (state: RootState) => state.auth.userData;
-export const selectUserStatus = (state: RootState) => state.auth.status;
+export const selectStatusLoading = (state: RootState) =>
+  state.auth.statusLoading;
 
 export default authSlice.reducer;

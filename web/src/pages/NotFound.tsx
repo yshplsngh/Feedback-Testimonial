@@ -8,16 +8,19 @@ const NotFound = () => {
         <h1 className="uppercase tracking-widest text-slate-300">
           404 | Page Not Found!
         </h1>
-        <Button
-          className="mt-3 text-slate-200"
-          variant={'outline'}
-          text={'Go Back Home 🏡'}
-        >
-          Go Back Home 🏡
-        </Button>
-        <Link to={'/'}></Link>
+
+        <Link to={'/'}>
+          <Button
+            type={'button'}
+            className="mt-3 text-slate-200"
+            variant={'outlineB'}
+            text={'Go Back Home 🏡'}
+          >
+            Go Back Home 🏡
+          </Button>
+        </Link>
         <p className="mt-2 text-center font-thin text-slate-200">
-          - Testimonial -
+          - localhost:3000 -
         </p>
       </div>
     </div>

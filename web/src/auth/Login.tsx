@@ -27,10 +27,10 @@ export default function Login() {
             </a>
             <div className={''}>
               <h3 className="text-xl font-semibold tracking-wide">
-                Sign in to Quizzy.com
+                Sign in to localhost:3000
               </h3>
               <p className="text-sm tracking-wide text-gray-500">
-                to continue to Quizzy
+                to continue to localhost:3000
               </p>
             </div>
           </div>
@@ -38,12 +38,18 @@ export default function Login() {
             <Suspense
               fallback={
                 <>
-                  <Button disabled={true} text="" variant="secondary" />
+                  <Button
+                    type={'button'}
+                    disabled={true}
+                    text=""
+                    variant="secondary"
+                  />
                   <div className="mx-auto h-5 w-3/4 rounded-lg bg-gray-100" />
                 </>
               }
             >
               <Button
+                type={'button'}
                 variant={'secondary'}
                 text={'continue with google'}
                 icon={<GoogleLogo className="h-4 w-4" />}

@@ -1,15 +1,15 @@
-import { selectUser, selectUserStatus } from './authSlice';
+import { selectUser, selectStatusLoading } from './authSlice';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import LoadingSpinner from '../ui/components/LoadingSpinner';
 
 const ProtectedRoute = () => {
   const user = useSelector(selectUser);
-  const userStatus = useSelector(selectUserStatus);
+  const statusLoading = useSelector(selectStatusLoading);
 
-  if (userStatus === 'pending') {
+  if (statusLoading) {
     return <LoadingSpinner />;
-  } else if (userStatus === 'fulfilled') {
+  } else {
     if (user.id) {
       return <Outlet />;
     }

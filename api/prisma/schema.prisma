@@ -23,4 +23,18 @@ model User {
   authProvider String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  Space        Space[]
+}
+
+model Space {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  User          User     @relation(fields: [userId], references: [id])
+  spaceName     String   @unique
+  websiteUrl    String
+  headerTitle   String
+  customMessage String
+  Question      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

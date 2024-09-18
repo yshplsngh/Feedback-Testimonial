@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import authRoutes from './auth/index.ts';
+import userRoutes from './user/index.ts';
 
 import {
   errorHandlingMiddleware,
@@ -39,6 +40,7 @@ export const createServer = (): Express => {
 
   // require('./auth').default(app);
   authRoutes(app);
+  userRoutes(app);
 
   app.use(errorHandlingMiddleware);
   return app;
