@@ -34,7 +34,7 @@ model Space {
   websiteUrl    String
   headerTitle   String
   customMessage String
-  Question      String
+  question      String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

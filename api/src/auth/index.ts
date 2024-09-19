@@ -32,7 +32,7 @@ export default function authRoutes(app: Express): void {
 
   app.get(
     '/api/auth/google/redirect',
-    passport.authenticate('google'),
+    passport.authenticate('google', { failureRedirect: '/login' }),
     (_req: Request, res: Response) => {
       res.status(200);
       res.redirect(config.WEB_LOGIN_REDIRECT_URL);
@@ -40,6 +40,7 @@ export default function authRoutes(app: Express): void {
   );
 
   app.post('/api/auth/logout', (req: Request, res: Response) => {
+    console.log(req.user);
     if (!req.user) return res.sendStatus(401);
 
     req.logout((err) => {

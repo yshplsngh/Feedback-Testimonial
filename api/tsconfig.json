@@ -15,8 +15,10 @@
     "noEmit": true,
     "checkJs": true,
     "lib": ["es2022"],
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "typeRoots": ["./src/types.d.ts", "./node_modules/@types"],
+    "types": ["node", "express"]
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/types.d.ts"]
 }

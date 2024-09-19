@@ -23,7 +23,7 @@ const NewSpace = () => {
     <section className="flex items-center justify-center transition-all">
       <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12 shadow-2xl">
         <h1 className="mb-14 text-center text-2xl font-bold text-gray-800">
-          New Project
+          New Space
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
           <Input

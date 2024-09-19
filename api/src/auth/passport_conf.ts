@@ -48,7 +48,6 @@ passport.use(
 );
 
 passport.serializeUser((user: Express.User, done): void => {
-  // @ts-expect-error User type from Express doesn't include googleId
   done(null, user.googleId);
 });
 
