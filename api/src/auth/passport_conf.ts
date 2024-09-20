@@ -37,7 +37,6 @@ passport.use(
               authProvider: profile.provider,
             },
           });
-          console.log(user);
           return done(null, user);
         }
       } catch (error) {

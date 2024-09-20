@@ -21,6 +21,8 @@ export function handleError({ _error, uncaught }: HandleError): {
   code: number;
   uncaught?: string;
 } {
+  console.log(_error);
+
   //default error
   let error: { message: string; code: number; uncaught?: string } = {
     message: 'Unexpected error has occurred',

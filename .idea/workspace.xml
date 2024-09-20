@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/auth/passport_conf.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/passport_conf.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/auth/requireAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/requireAuth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/space/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/newSpace/NewSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/newSpace/NewSpace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/database/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +111,7 @@
       <workItem from="1726420273976" duration="758000" />
       <workItem from="1726465198850" duration="11890000" />
       <workItem from="1726497589661" duration="9278000" />
-      <workItem from="1726535590262" duration="71759000" />
+      <workItem from="1726535590262" duration="74225000" />
     </task>
     <servers />
   </component>

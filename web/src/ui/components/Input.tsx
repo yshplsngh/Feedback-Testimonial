@@ -13,7 +13,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   watch: UseFormWatch<NewSpaceType>;
 }
 
-function UpperCamelCase(data: string) {
+function camelCaseToSentenceCase(data: string) {
   let result = data.charAt(0).toUpperCase();
   for (let i = 1; i < data.length; i++) {
     const char = data.charAt(i);
@@ -51,7 +51,7 @@ let Input: React.FC<InputProps> = ({
         htmlFor={inputName}
         className="absolute top-3 -z-10 origin-[0] -translate-y-7 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:start-0 peer-focus:-translate-y-7 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4 peer-focus:dark:text-blue-500"
       >
-        {UpperCamelCase(inputName)}
+        {camelCaseToSentenceCase(inputName)}
       </label>
 
       {inputError && (

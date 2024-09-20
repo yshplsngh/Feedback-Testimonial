@@ -6,11 +6,18 @@ const prismaClientSingleton = () => {
 
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
 
-// eslint-disable-next-line
+/**
+ * it checks in Node.js global for a prisma of exactly PrismaClientSingleton
+ *  and if not exist it will be undefined
+ */
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClientSingleton | undefined;
 };
 
+/**
+ * if prisma found in global it return prisma of type PrismaClientSingleton.
+ * or it will just create a new instance
+ */
 const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
 
 export default prisma;
