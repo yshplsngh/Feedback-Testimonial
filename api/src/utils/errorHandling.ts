@@ -2,27 +2,26 @@ import type { NextFunction, Response, Request } from 'express';
 import { ZodError } from 'zod';
 import { zodErrorToString } from './handleZodError';
 
-interface HandleError {
+export class createError extends Error {
+  code: number;
+
+  constructor(message: string, code: number = 500) {
+    super(message);
+    this.code = code;
+  }
+}
+
+export function handleError({
+  _error,
+  uncaught,
+}: {
   _error: unknown;
   uncaught?: boolean;
-}
-
-interface CreateErrorMessage {
-  message: string;
-  code?: number;
-}
-
-export function createError({ message, code = 500 }: CreateErrorMessage) {
-  return { message, code };
-}
-
-export function handleError({ _error, uncaught }: HandleError): {
+}): {
   message: string;
   code: number;
   uncaught?: string;
 } {
-  console.log(_error);
-
   //default error
   let error: { message: string; code: number; uncaught?: string } = {
     message: 'Unexpected error has occurred',
@@ -30,7 +29,9 @@ export function handleError({ _error, uncaught }: HandleError): {
   };
 
   if (typeof _error === 'string') {
-    error = createError({ message: _error });
+    error = new createError(_error);
+  } else if (_error instanceof createError) {
+    error = { code: _error.code, message: _error.message };
   } else if (_error instanceof ZodError) {
     error = { code: 400, message: zodErrorToString(_error) };
   } else if (_error instanceof Error) {
@@ -48,7 +49,7 @@ export function handleError({ _error, uncaught }: HandleError): {
   return error;
 }
 
-export function errorHandlingMiddleware(
+export function errorHandling(
   error: Error,
   _req: Request,
   res: Response,

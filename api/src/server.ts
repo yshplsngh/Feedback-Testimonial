@@ -5,10 +5,7 @@ import authRoutes from './auth/index.ts';
 import userRoutes from './user/index.ts';
 import spaceRoutes from './space/index.ts';
 
-import {
-  errorHandlingMiddleware,
-  handleError,
-} from './utils/errorHandlingMiddleware.ts';
+import { errorHandling, handleError } from './utils/errorHandling.ts';
 import cookieParser from 'cookie-parser';
 
 export const createServer = (): Express => {
@@ -44,6 +41,6 @@ export const createServer = (): Express => {
   userRoutes(app);
   spaceRoutes(app);
 
-  app.use(errorHandlingMiddleware);
+  app.use(errorHandling);
   return app;
 };

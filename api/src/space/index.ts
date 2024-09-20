@@ -1,12 +1,13 @@
 import { Express, NextFunction, Response, Request } from 'express';
 import { NewSpaceScheme } from './types.ts';
 import prisma from '../database';
-import { createError } from '../utils/errorHandlingMiddleware.ts';
+import { createError } from '../utils/errorHandling.ts';
+import requireAuth from '../auth/requireAuth.ts';
 
 export default function (app: Express) {
   app.post(
     '/api/space/new',
-    // requireAuth,
+    requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = NewSpaceScheme.safeParse(req.body);
       if (!parsedResult.success) {
@@ -19,9 +20,7 @@ export default function (app: Express) {
         },
       });
       if (spaceExist) {
-        return next(
-          createError({ message: 'Space Name must be unique', code: 409 }),
-        );
+        return next(new createError('Space Name must be unique', 409));
       }
       await prisma.space.create({
         data: {

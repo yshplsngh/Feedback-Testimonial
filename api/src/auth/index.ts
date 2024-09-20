@@ -2,7 +2,7 @@ import type { Express, Response, Request } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config.ts';
-import './passport_conf.ts';
+import './passportConfig.ts';
 
 export default function authRoutes(app: Express): void {
   app.use(
