@@ -1,16 +1,12 @@
 import React from 'react';
-import type {
-  FieldError,
-  UseFormRegister,
-  UseFormWatch,
-} from 'react-hook-form';
-import { NewSpaceScheme, NewSpaceType } from '../../newSpace/Types';
+import type { FieldError, UseFormRegister } from 'react-hook-form';
+import { NewSpaceType } from '../../space/Types';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   inputName: keyof NewSpaceType;
   inputError?: FieldError | undefined;
   register: UseFormRegister<NewSpaceType>;
-  watch: UseFormWatch<NewSpaceType>;
+  publicUrl?: string;
 }
 
 function camelCaseToSentenceCase(data: string) {
@@ -30,13 +26,8 @@ let Input: React.FC<InputProps> = ({
   inputName,
   inputError,
   register,
-  watch,
+  publicUrl,
 }: InputProps) => {
-  const watchedSpaceName = watch('spaceName');
-  const transformedSpaceName = watchedSpaceName
-    ? NewSpaceScheme.shape.spaceName.parse(watchedSpaceName)
-    : '';
-
   return (
     <div className="group relative z-0 w-full">
       <input
@@ -57,10 +48,9 @@ let Input: React.FC<InputProps> = ({
       {inputError && (
         <p className={'text-[0.7rem] text-red-500'}>{inputError?.message}</p>
       )}
-
-      {inputName === 'spaceName' && watchedSpaceName && (
+      {publicUrl && (
         <p className={'text-[0.7rem] text-gray-500'}>
-          Public URL: http://localhost:3000/space/{transformedSpaceName}
+          Public URL: http://localhost:3000/space/{publicUrl}
         </p>
       )}
     </div>

@@ -1,15 +1,12 @@
 import Button from './Button';
-import { FileText, SquarePlus } from 'lucide-react';
+import { Activity, SquarePlus } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  logoutUser,
-  selectUser,
-  selectStatusLoading,
-} from '../../auth/authSlice';
+import { selectUser, selectStatusLoading } from '../../auth/authSlice';
 import LoadingSpinner from './LoadingSpinner';
 import { AppDispatch } from '../../app/store';
 import { useState } from 'react';
+import { logoutUser } from '../../auth/authApi';
 
 function Header() {
   const dispatch: AppDispatch = useDispatch();
@@ -100,8 +97,8 @@ function Header() {
       <div className="flex items-center justify-between px-9 py-2">
         <div className="px-4 py-2 text-xl md:text-3xl">
           <Link to={'/'} className="flex items-center space-x-1">
-            <span className="font-bold text-[#fe640b]">Soul Goodman</span>
-            <FileText className="h-6 w-6" />
+            <span className="font-bold text-[#fe640b]">Chuck</span>
+            <Activity className="h-6 w-6" />
           </Link>
         </div>
         <div className="flex items-center gap-x-2">

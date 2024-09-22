@@ -6,7 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/database/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/space/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/space/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/utils/errorHandling.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/utils/errorHandling.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/auth/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/authSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/lib/Storage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/lib/Storage.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/newSpace/NewSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/NewSpace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/newSpace/Types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/Types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +125,8 @@
       <workItem from="1726420273976" duration="758000" />
       <workItem from="1726465198850" duration="11890000" />
       <workItem from="1726497589661" duration="9278000" />
-      <workItem from="1726535590262" duration="74225000" />
+      <workItem from="1726535590262" duration="85898000" />
+      <workItem from="1726985943774" duration="12702000" />
     </task>
     <servers />
   </component>

@@ -47,7 +47,7 @@ const Footer = () => {
           target="_blank"
           className="text-zinc-500 underline hover:text-zinc-500"
         >
-          Testimonial
+          Localhost
         </a>
         <span className="mx-2">|</span>
         <a

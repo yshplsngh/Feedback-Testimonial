@@ -11,7 +11,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Login = lazy(() => import('./auth/Login'));
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
-const NewSpace = lazy(() => import('./newSpace/NewSpace'));
+const NewSpace = lazy(() => import('./space/NewSpace'));
 
 export default function App(): ReactElement {
   return (

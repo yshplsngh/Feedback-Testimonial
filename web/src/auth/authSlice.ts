@@ -1,8 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { api, ProcessedResponse } from '../lib/manageFetch/api';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ProcessedResponse } from '../lib/manageFetch/api';
 import { RootState } from '../app/store';
+import { fetchUserInfo, logoutUser } from './authApi';
 
-interface UserData {
+export interface UserData {
   id: number | null;
   googleId: string | null;
   userName: string | null;
@@ -34,27 +35,10 @@ const initialState: authState = {
   statusLoading: false,
 };
 
-export const fetchUserInfo = createAsyncThunk('api/user', async () => {
-  const url = '/api/user';
-  return await api.get<UserData>(url);
-});
-
-export const logoutUser = createAsyncThunk('/api/auth/logout', async () => {
-  const url = '/api/auth/logout';
-  return await api.post(url);
-});
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    // startLoading(state){
-    //   state.mainLoading = true
-    // },
-    // stopLoading(state){
-    //   state.mainLoading = false
-    // }
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(
@@ -77,7 +61,17 @@ const authSlice = createSlice({
         state.statusLoading = true;
       })
       .addCase(logoutUser.fulfilled, (state) => {
+        state.statusLoading = false;
         state.userData = initialState.userData;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.statusLoading = false;
+        if (action.error.code === '401') {
+          state.userData = initialState.userData;
+        }
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.statusLoading = true;
       });
   },
 });

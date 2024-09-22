@@ -16,5 +16,3 @@ export const NewSpaceScheme = z.object({
   customMessage: z.string().trim().min(4),
   question: z.string().trim().min(1),
 });
-
-// export type NewSpaceType = z.infer<typeof NewSpaceScheme>;

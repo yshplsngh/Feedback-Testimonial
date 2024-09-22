@@ -20,7 +20,7 @@ export default function (app: Express) {
         },
       });
       if (spaceExist) {
-        return next(new createError('Space Name must be unique', 409));
+        return next(new createError('Space Name already exist', 409));
       }
       await prisma.space.create({
         data: {

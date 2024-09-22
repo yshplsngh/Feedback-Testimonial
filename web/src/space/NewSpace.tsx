@@ -3,8 +3,18 @@ import { NewSpaceScheme, NewSpaceType } from './Types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../ui/components/Button';
 import Input from '../ui/components/Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../app/store';
+import { createNewSpace, getSpaceLoading } from './spaceSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { FetchResponseError } from '../lib/manageFetch/api';
 
 const NewSpace = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const loading = useSelector(getSpaceLoading);
+
   const {
     register,
     handleSubmit,
@@ -12,10 +22,23 @@ const NewSpace = () => {
     formState: { errors, isValid },
   } = useForm<NewSpaceType>({ resolver: zodResolver(NewSpaceScheme) });
 
-  const onSubmit: SubmitHandler<NewSpaceType> = (data: NewSpaceType) => {
-    console.log(data);
+  const watchedSpaceName = watch('spaceName');
+  const publicUrl = watchedSpaceName
+    ? NewSpaceScheme.shape.spaceName.parse(watchedSpaceName)
+    : '';
+
+  const onSubmit: SubmitHandler<NewSpaceType> = async (data: NewSpaceType) => {
     if (isValid) {
-      console.log('valid data');
+      try {
+        await dispatch(createNewSpace(data)).unwrap();
+        toast.success('New space created successfully');
+        navigate('/dashboard');
+      } catch (err) {
+        const errorMessage =
+          (err as FetchResponseError).message ||
+          'An error occurred while creating the space.';
+        toast.error(errorMessage);
+      }
     }
   };
 
@@ -30,31 +53,27 @@ const NewSpace = () => {
             inputName={'spaceName'}
             inputError={errors.spaceName}
             register={register}
-            watch={watch}
+            publicUrl={publicUrl}
           />
           <Input
             inputName={'websiteUrl'}
             inputError={errors.websiteUrl}
             register={register}
-            watch={watch}
           />
           <Input
             inputName={'headerTitle'}
             inputError={errors.headerTitle}
             register={register}
-            watch={watch}
           />
           <Input
             inputName={'customMessage'}
             inputError={errors.customMessage}
             register={register}
-            watch={watch}
           />
           <Input
             inputName={'question'}
             inputError={errors.question}
             register={register}
-            watch={watch}
           />
 
           <Button
@@ -62,6 +81,7 @@ const NewSpace = () => {
             text={'Create '}
             variant={'outlineB'}
             className={'w-full text-lg'}
+            loading={loading}
           />
         </form>
       </main>
