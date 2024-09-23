@@ -13,12 +13,12 @@ export default function Login() {
   }, []);
 
   function handleGoogle() {
-    console.log('yes');
+    console.log('google login start');
     window.location.assign('http://localhost:4000/api/auth/google');
   }
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center text-black">
+    <div className="flex h-screen items-center justify-center text-black">
       <div className="flex items-center justify-center">
         <div className="w-full max-w-md overflow-hidden rounded-2xl border-y border-gray-200 sm:border sm:shadow-xl">
           <div className="flex flex-col justify-center space-y-3 border-b border-gray-200 bg-gray-100 px-4 py-6 pt-8 sm:px-10">

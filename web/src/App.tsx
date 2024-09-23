@@ -3,19 +3,19 @@ import { lazy, Suspense, ReactElement } from 'react';
 
 import Layout from './Layout';
 import ProtectedRoute from './auth/ProtectedRoute';
-import BigLoadingSpinner from './ui/components/BIgLoadingSpinner';
+import LoLoadingSpinner from './ui/components/LoLoadingSpinner';
 
 // Lazy load the components
 const Home = lazy(() => import('./pages/Home'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Login = lazy(() => import('./auth/Login'));
-const Dashboard = lazy(() => import('./dashboard/Dashboard'));
-const NewSpace = lazy(() => import('./space/NewSpace'));
+const Dashboard = lazy(() => import('./space/Dashboard'));
+const NewSpace = lazy(() => import('./space/CreateSpace'));
 
 export default function App(): ReactElement {
   return (
-    <Suspense fallback={<BigLoadingSpinner />}>
+    <Suspense fallback={<LoLoadingSpinner />}>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

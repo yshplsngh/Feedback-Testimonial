@@ -2,18 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProcessedResponse } from '../lib/manageFetch/api';
 import { RootState } from '../app/store';
 import { fetchUserInfo, logoutUser } from './authApi';
-
-export interface UserData {
-  id: number | null;
-  googleId: string | null;
-  userName: string | null;
-  name: string | null;
-  email: string | null;
-  pictureUrl: string | null;
-  authProvider: string | null;
-  createdAt: string | null;
-  updatedAt: string | null;
-}
+import { UserData } from './types';
 
 interface authState {
   userData: UserData;

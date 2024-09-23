@@ -1,4 +1,4 @@
-// const NewSpace = () => {
+// const CreateSpace = () => {
 //
 //   const {
 //     register,
@@ -32,7 +32,7 @@
 //     </section>
 //   );
 // };
-// export default NewSpace;
+// export default CreateSpace;
 
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
@@ -100,7 +100,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useState } from 'react';
 
-const NewSpace = () => {
+const CreateSpace = () => {
   const [loading,setLoading] = useState<boolean>(false);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
@@ -181,4 +181,4 @@ const NewSpace = () => {
   );
 };
 
-export default NewSpace;
+export default CreateSpace;

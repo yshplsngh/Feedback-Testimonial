@@ -50,7 +50,7 @@ let Input: React.FC<InputProps> = ({
       )}
       {publicUrl && (
         <p className={'text-[0.7rem] text-gray-500'}>
-          Public URL: http://localhost:3000/space/{publicUrl}
+          Public URL: http://localhost:3000/feedback/{publicUrl}
         </p>
       )}
     </div>

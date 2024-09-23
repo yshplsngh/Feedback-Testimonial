@@ -1,7 +1,7 @@
-export default function BigLoadingSpinner() {
+export default function LoLoadingSpinner() {
   return (
     <div className="z-40 flex h-60 items-center justify-center">
-      <div className={`loading-spinner relative h-20 w-20`}>
+      <div className={`loading-spinner relative h-10 w-10`}>
         {[...Array(12)].map((_, i) => (
           <div
             key={i}

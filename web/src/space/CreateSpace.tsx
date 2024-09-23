@@ -5,12 +5,14 @@ import Button from '../ui/components/Button';
 import Input from '../ui/components/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../app/store';
-import { createNewSpace, getSpaceLoading } from './spaceSlice';
+import { getSpaceLoading } from './spaceSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
+import { SquarePlus } from 'lucide-react';
+import { createNewSpace } from './spaceApi';
 
-const NewSpace = () => {
+const CreateSpace = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const loading = useSelector(getSpaceLoading);
@@ -78,7 +80,8 @@ const NewSpace = () => {
 
           <Button
             type={'submit'}
-            text={'Create '}
+            text={'Create Space'}
+            icon={<SquarePlus className={'h-4 w-4'} />}
             variant={'outlineB'}
             className={'w-full text-lg'}
             loading={loading}
@@ -89,4 +92,4 @@ const NewSpace = () => {
   );
 };
 
-export default NewSpace;
+export default CreateSpace;

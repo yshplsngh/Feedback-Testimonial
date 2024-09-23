@@ -18,3 +18,15 @@ export const NewSpaceScheme = z.object({
 });
 
 export type NewSpaceType = z.infer<typeof NewSpaceScheme>;
+
+export interface UserSpacesType {
+  id: number;
+  userId: number;
+  spaceName: string;
+  websiteUrl: string;
+  headerTitle: string;
+  customMessage: string;
+  question: string;
+  createdAt: string;
+  updatedAt: string;
+}

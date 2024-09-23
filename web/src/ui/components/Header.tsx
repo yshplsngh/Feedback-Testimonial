@@ -52,46 +52,11 @@ function Header() {
       <Button type={'button'} variant={'outlineB'} text={'Login'} />
     </Link>
   );
-  //
-  // if (mainLoading) {
-  //   // coz header already contain mainLoading
-  //   content = <div/>
-  // } else {
-  //   if (user.id) {
-  //     content = <>{dashboardBtn}{LogoutBtn}</>
-  //     if (location.pathname === '/dashboard') {
-  //       content = <>{createSpaceBtn}{dashboardBtn}{LogoutBtn}</>;
-  //     }
-  //   } else {
-  //     content = loginBtn;
-  //   }
-  // }
-
-  const renderContent = () => {
-    if (!user.id) {
-      return <>{loginBtn}</>;
-    }
-    if (location.pathname === '/dashboard') {
-      return (
-        <>
-          {createSpaceBtn}
-          {dashboardBtn}
-          {logoutBtn}
-        </>
-      );
-    }
-    return (
-      <>
-        {dashboardBtn}
-        {logoutBtn}
-      </>
-    );
-  };
 
   return (
     <div
       className={
-        'sticky top-0 z-50 mx-auto items-center justify-between border-b-2 border-zinc-800 bg-zinc-900 bg-opacity-30 bg-clip-padding px-6 py-1 backdrop-blur-sm backdrop-filter md:px-16'
+        'sticky top-0 z-50 mx-auto max-w-[100rem] items-center justify-between border-b-2 border-zinc-800 bg-zinc-900 bg-opacity-30 bg-clip-padding px-6 py-1 backdrop-blur-sm backdrop-filter md:px-16'
       }
     >
       <div className="flex items-center justify-between px-9 py-2">
@@ -101,9 +66,19 @@ function Header() {
             <Activity className="h-6 w-6" />
           </Link>
         </div>
-        <div className="flex items-center gap-x-2">
-          {statusLoading ? <LoadingSpinner /> : renderContent()}
 
+        <div className="flex items-center gap-x-2">
+          {statusLoading ? (
+            <LoadingSpinner />
+          ) : !user.id ? (
+            loginBtn
+          ) : (
+            <>
+              {location.pathname === '/dashboard' && createSpaceBtn}
+              {dashboardBtn}
+              {logoutBtn}
+            </>
+          )}
           {/*<Link to={'/'}>*/}
           {/*  <Button variant={'primary'} className="md:block hidden" text={'Pro member'} />*/}
           {/*</Link>*/}

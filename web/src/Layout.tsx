@@ -14,9 +14,9 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
       {!omitHeader.includes(location.pathname) && <Header />}
       <div
         style={{ position: 'relative', zIndex: 2 }}
-        className={`${!pickBG.includes(location.pathname) ? 'bg-background-dark' : ''}`}
+        className={`${!pickBG.includes(location.pathname) ? 'bg-background-dark' : ''} flex justify-center`}
       >
-        {children}
+        <div className={'min-h-[40rem] w-[80rem]'}>{children}</div>
       </div>
       <Toaster richColors closeButton duration={4000} />
     </>
