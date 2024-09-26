@@ -1,6 +1,14 @@
+import { motion } from 'framer-motion';
+
 export default function LoadingSpinner({ className }: { className?: string }) {
   return (
-    <div className={`h-5 w-5${className}`}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`h-5 w-5${className}`}
+    >
       <div
         style={{
           position: 'relative',
@@ -27,6 +35,6 @@ export default function LoadingSpinner({ className }: { className?: string }) {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

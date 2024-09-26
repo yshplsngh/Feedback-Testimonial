@@ -1,9 +1,13 @@
 import Button from '../ui/components/Button';
 import { Link } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 const NotFound = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+    >
       <div className="grid min-h-[80vh] place-content-center px-4">
         <h1 className="uppercase tracking-widest text-slate-300">
           404 | Page Not Found!
@@ -14,16 +18,14 @@ const NotFound = () => {
             type={'button'}
             className="mt-3 text-slate-200"
             variant={'outlineB'}
-            text={'Go Back Home 🏡'}
-          >
-            Go Back Home 🏡
-          </Button>
+            text={'Go Home Page 🏡'}
+          />
         </Link>
         <p className="mt-2 text-center font-thin text-slate-200">
           - localhost:3000 -
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default NotFound;

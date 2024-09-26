@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import LoadingSpinner from './LoadingSpinner';
+import { motion } from 'framer-motion';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
@@ -19,7 +20,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button
+    <motion.button
       type={type}
       onClick={props.onClick}
       disabled={loading || props.disabled}
@@ -27,7 +28,7 @@ const Button = ({
     >
       {loading ? <LoadingSpinner /> : icon ? icon : null}
       {text && <p>{text}</p>}
-    </button>
+    </motion.button>
   );
 };
 export default Button;

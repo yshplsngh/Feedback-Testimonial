@@ -21,14 +21,13 @@ export default function App(): ReactElement {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path={'/privacy-policy'} element={<PrivacyPolicy />} />
-
-          {/*protected Routes*/}
+          {/*protected Routes*/}s
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<Dashboard />} />
             <Route path={'/new-space'} element={<NewSpace />} />
           </Route>
-
           <Route path={'*'} element={<NotFound />} />
+          {/*<Route path={'*'} element={<Testing />} />*/}
         </Routes>
       </Layout>
     </Suspense>
