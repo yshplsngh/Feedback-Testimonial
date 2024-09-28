@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { NewSpaceScheme, NewSpaceType } from './Types';
+import { NewSpaceScheme, NewSpaceType } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../ui/components/Button';
 import Input from '../ui/components/Input';
@@ -26,7 +26,7 @@ const CreateSpace = () => {
   } = useForm<NewSpaceType>({ resolver: zodResolver(NewSpaceScheme) });
 
   const watchedSpaceName = watch('spaceName');
-  const publicUrl = watchedSpaceName
+  const publicSpaceName = watchedSpaceName
     ? NewSpaceScheme.shape.spaceName.parse(watchedSpaceName)
     : '';
 
@@ -64,7 +64,7 @@ const CreateSpace = () => {
               inputName={'spaceName'}
               inputError={errors.spaceName}
               register={register}
-              publicUrl={publicUrl}
+              publicSpaceName={publicSpaceName}
             />
             <Input
               inputName={'websiteUrl'}

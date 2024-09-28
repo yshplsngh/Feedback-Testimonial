@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { NewSpaceType, UserSpacesType } from './Types';
+import { NewSpaceType, UserSpacesType } from './types';
 import { api } from '../lib/manageFetch/api';
 
 export const createNewSpace = createAsyncThunk(

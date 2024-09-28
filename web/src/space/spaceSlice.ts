@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { ProcessedResponse } from '../lib/manageFetch/api';
-import { UserSpacesType } from './Types';
+import { UserSpacesType } from './types';
 import { RootState } from '../app/store';
 import { createNewSpace, getUserSpaces } from './spaceApi';
 

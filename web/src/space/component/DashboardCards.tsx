@@ -10,20 +10,21 @@ const DashboardCards = ({ spaceName, headerTitle }: PropsType) => {
   const feedbackUrl = `http://localhost:3000/feedback/${spaceName}`;
   return (
     <div
-      onClick={() => navigate(`/dashboard/space/${spaceName}`)}
+      // onClick={() => navigate(`/dashboard/space/${spaceName}`)}
+      onClick={() => navigate(`/feedback/${spaceName}`)}
       className="border-accent hover:bg-accent mx-auto flex w-full cursor-pointer flex-col gap-y-2 overflow-hidden rounded-md border-[2px] px-4 py-3 transition-all ease-in-out md:mx-0 md:max-w-80"
     >
       <div className="block text-lg">{spaceName}</div>
       <hr className={'border-gray-500'} />
-      <p className="text-xs font-light text-blue-500">
-        {feedbackUrl.length > 45
-          ? `${feedbackUrl.substring(0, 45)}...`
-          : feedbackUrl}
-      </p>
       <p className={'text-sm text-gray-300'}>
         {headerTitle.length > 35
           ? `${headerTitle.slice(0, 35)}...`
           : headerTitle}
+      </p>
+      <p className="text-xs font-light text-blue-500">
+        {feedbackUrl.length > 45
+          ? `${feedbackUrl.substring(0, 45)}...`
+          : feedbackUrl}
       </p>
     </div>
   );
