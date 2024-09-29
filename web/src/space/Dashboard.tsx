@@ -48,7 +48,7 @@ const Dashboard = () => {
           </h1>
         </div>
         <hr />
-        <div className="mt-10 flex flex-wrap gap-6 p-3">
+        <div className="mt-10 flex flex-wrap justify-evenly gap-y-5">
           {spaces && spaces.length > 0 ? (
             spaces.map((data, index) => (
               <DashboardCards

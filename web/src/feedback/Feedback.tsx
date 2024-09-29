@@ -39,12 +39,12 @@ const Feedback = () => {
             <Input
               inputName={'name'}
               inputError={errors.name}
-              register={register}
+              register={register('name')}
             />
             <Input
               inputName={'email'}
               inputError={errors.email}
-              register={register}
+              register={register('email')}
             />
             <Button
               type={'submit'}

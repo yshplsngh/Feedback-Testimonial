@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/CreateSpace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/Types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/spaceApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +117,7 @@
       <workItem from="1727342260390" duration="11433000" />
       <workItem from="1727417387262" duration="71000" />
       <workItem from="1727492168168" duration="1764000" />
-      <workItem from="1727540061999" duration="5831000" />
+      <workItem from="1727540061999" duration="6216000" />
     </task>
     <servers />
   </component>

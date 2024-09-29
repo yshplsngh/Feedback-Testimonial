@@ -31,6 +31,7 @@ const CreateSpace = () => {
     : '';
 
   const onSubmit: SubmitHandler<NewSpaceType> = async (data: NewSpaceType) => {
+    console.log(data);
     if (isValid) {
       try {
         await dispatch(createNewSpace(data)).unwrap();
@@ -63,28 +64,28 @@ const CreateSpace = () => {
             <Input
               inputName={'spaceName'}
               inputError={errors.spaceName}
-              register={register}
+              register={register('spaceName')}
               publicSpaceName={publicSpaceName}
             />
             <Input
               inputName={'websiteUrl'}
               inputError={errors.websiteUrl}
-              register={register}
+              register={register('websiteUrl')}
             />
             <Input
               inputName={'headerTitle'}
               inputError={errors.headerTitle}
-              register={register}
+              register={register('headerTitle')}
             />
             <Input
               inputName={'customMessage'}
               inputError={errors.customMessage}
-              register={register}
+              register={register('customMessage')}
             />
             <Input
               inputName={'question'}
               inputError={errors.question}
-              register={register}
+              register={register('question')}
             />
 
             <Button

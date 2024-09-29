@@ -1,12 +1,12 @@
 import React from 'react';
-import type { FieldError, UseFormRegister } from 'react-hook-form';
+import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import { NewSpaceType } from '../../space/types';
 import { FeedbackType } from '../../feedback/types';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  inputName: keyof FeedbackType | keyof NewSpaceType;
+  inputName: keyof NewSpaceType | keyof FeedbackType;
   inputError?: FieldError;
-  register: UseFormRegister<NewSpaceType> | UseFormRegister<FeedbackType>;
+  register: UseFormRegisterReturn;
   publicSpaceName?: string;
 }
 
@@ -37,8 +37,7 @@ let Input: React.FC<InputProps> = ({
         className={`text-md block w-full appearance-none border-0 border-b-2 bg-transparent px-0 py-1.5 text-gray-900 focus:outline-none focus:ring-0 ${inputError ? 'border-red-300 focus:border-red-300' : 'border-gray-300 focus:border-blue-600'} peer`}
         placeholder=" "
         required
-        // @ts-expect-error invalid register type
-        {...register(inputName, { required: true })}
+        {...register}
       />
       <label
         htmlFor={inputName}
