@@ -31,7 +31,7 @@ function Header() {
       <Button
         type={'button'}
         variant={'danger'}
-        text={'LogOut'}
+        text={'Sign out'}
         onClick={() => handleLogout()}
         loading={loading}
       />
@@ -62,7 +62,7 @@ function Header() {
       <div className="flex items-center justify-between px-9 py-2">
         <div className="px-4 py-2 text-xl md:text-3xl">
           <Link to={'/'} className="flex items-center space-x-1">
-            <span className="font-bold text-[#fe640b]">Chuck</span>
+            <span className="text-orange font-bold">Chuck</span>
             <Activity className="h-6 w-6" />
           </Link>
         </div>

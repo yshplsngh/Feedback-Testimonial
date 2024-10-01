@@ -1,16 +1,20 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Input from '../ui/components/Input';
 import Button from '../ui/components/Button';
-import { SquarePlus } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FeedbackSchema, FeedbackType } from './types';
+import Stars from './components/Stars';
+import { useState } from 'react';
 
 const Feedback = () => {
+  const navigate = useNavigate();
   const params = useParams();
-  console.log(params);
-  const loading = false;
+  const spaceName = params.spaceName || '';
+  const [stars, setStars] = useState<number>(2);
+
+  // const loading = false;
 
   const {
     register,
@@ -19,6 +23,7 @@ const Feedback = () => {
   } = useForm<FeedbackType>({ resolver: zodResolver(FeedbackSchema) });
 
   const onSubmit: SubmitHandler<FeedbackType> = async (data: FeedbackType) => {
+    console.log({ ...data, stars });
     if (isValid) {
       console.log(data);
     }
@@ -33,9 +38,33 @@ const Feedback = () => {
         type: 'spring',
       }}
     >
-      <section className="flex items-center justify-center transition-all">
-        <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12 shadow-2xl">
+      <section className="flex items-center justify-center text-black transition-all">
+        <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12">
+          <p className={'text-sm text-gray-700'}>Write text testimonial to</p>
+          <span className={'text-orange text-3xl font-bold'}>{spaceName}</span>
+
+          <div className={'text-gray-600'}>
+            Q: what one thing you like about my website
+          </div>
+
+          <Stars stars={stars} setStars={setStars} />
+
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
+            <div className="group relative z-0 w-full">
+              <textarea
+                id={'customerFeedback'}
+                rows={5}
+                className={`text-md block w-full appearance-none rounded-md border-2 bg-transparent px-0 py-1 text-gray-900 focus:outline-none focus:ring-0 ${errors.customerFeedback ? 'border-red-300 focus:border-red-300' : 'border-gray-300 focus:border-blue-600'} peer`}
+                placeholder=""
+                required
+                {...register('customerFeedback')}
+              />
+              {errors.customerFeedback && (
+                <p className={'text-[0.7rem] text-red-500'}>
+                  {errors.customerFeedback?.message}
+                </p>
+              )}
+            </div>
             <Input
               inputName={'name'}
               inputError={errors.name}
@@ -46,14 +75,21 @@ const Feedback = () => {
               inputError={errors.email}
               register={register('email')}
             />
-            <Button
-              type={'submit'}
-              text={'Create Space'}
-              icon={<SquarePlus className={'h-4 w-4'} />}
-              variant={'outlineB'}
-              className={'w-full text-lg'}
-              loading={loading}
-            />
+            <div className={'flex justify-end gap-x-4 pr-5'}>
+              <Button
+                type={'button'}
+                onClick={() => navigate('/')}
+                text={'cancel'}
+                variant={'danger'}
+                className={'max-w-24 text-lg'}
+              />
+              <Button
+                type={'submit'}
+                text={'Send'}
+                variant={'outlineB'}
+                className={'max-w-24 text-lg'}
+              />
+            </div>
           </form>
         </main>
       </section>

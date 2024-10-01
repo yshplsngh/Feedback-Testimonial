@@ -7,6 +7,7 @@ export default {
         'background-dark': '#151719',
         accent: '#27272a',
         indigo: '#5c6ac4',
+        orange: '#fe640b',
         'indigo-dark': '#202e78',
       },
       typography: {
@@ -19,8 +20,22 @@ export default {
       },
     },
     fontFamily: {
-      display: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
-      default: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+      sans: [
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        '"Noto Sans"',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"',
+      ],
     },
     animation: {
       // Modal

@@ -30,6 +30,7 @@ export default function App(): ReactElement {
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<Dashboard />} />
             <Route path={'/new-space'} element={<NewSpace />} />
+            {/*<Route path="/spaces/:spaceName" element={<Feedback />} />*/}
           </Route>
           <Route path={'*'} element={<NotFound />} />
         </Routes>

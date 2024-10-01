@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import LoadingSpinner from './LoadingSpinner';
-import { motion } from 'framer-motion';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
@@ -20,15 +19,15 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <motion.button
+    <button
       type={type}
       onClick={props.onClick}
       disabled={loading || props.disabled}
-      className={`group flex h-8 w-full items-center justify-center space-x-2 rounded-md px-4 text-sm transition-all ${props.disabled || loading ? 'cursor-not-allowed bg-black' : ''} ${variant == 'primary' ? 'border-accent border-[2px] bg-black text-white hover:border-white hover:bg-white hover:text-black' : ''} ${variant == 'secondary' ? 'border-1 border-gray-200 bg-gray-100 text-gray-800 hover:bg-gray-200' : ''} ${variant == 'success' ? 'border-blue-500 bg-blue-500 text-white hover:bg-white hover:text-blue-500' : ''} ${variant == 'danger' ? 'border-red-900 bg-red-800 text-white hover:bg-red-900' : ''} ${variant == 'outlineB' ? 'border-accent hover:bg-accent h-9 border-[2px] bg-black text-white' : ''} ${className} `}
+      className={`group flex h-8 w-full items-center justify-center space-x-2 rounded-md px-4 text-sm transition-all ${props.disabled || loading ? 'cursor-not-allowed bg-black' : ''} ${variant == 'primary' ? 'border-accent border-[2px] bg-black text-white hover:border-white hover:bg-white hover:text-black' : ''} ${variant == 'secondary' ? 'border-1 border-gray-200 bg-gray-100 text-gray-800 hover:bg-gray-200' : ''} ${variant == 'success' ? 'border-blue-500 bg-blue-500 text-white hover:bg-white hover:text-blue-500' : ''} ${variant == 'danger' ? 'border-red-900 bg-red-800 text-white hover:bg-red-900' : ''} ${variant == 'outlineB' ? 'border-accent hover:bg-accent border-[2px] bg-black text-white' : ''} ${className} `}
     >
       {loading ? <LoadingSpinner /> : icon ? icon : null}
       {text && <p>{text}</p>}
-    </motion.button>
+    </button>
   );
 };
 export default Button;

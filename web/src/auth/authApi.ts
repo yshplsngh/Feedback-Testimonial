@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../lib/manageFetch/api';
-import { UserData } from './authSlice';
+import { UserData } from './types';
 
 export const fetchUserInfo = createAsyncThunk('/api/user', async () => {
   const url = '/api/user';
