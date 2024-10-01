@@ -6,15 +6,34 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FeedbackSchema, FeedbackType } from './types';
 import Stars from './components/Stars';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { getExtraFormInfo, getFeedbackFormInfo } from './feedbackSlice';
+import { AppDispatch } from '../app/store';
 
 const Feedback = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const { question, customMessage } = useSelector(getExtraFormInfo);
   const params = useParams();
   const spaceName = params.spaceName || '';
   const [stars, setStars] = useState<number>(2);
+  const dispatch: AppDispatch = useDispatch();
 
-  // const loading = false;
+  useEffect(() => {
+    async function fetchFeedbackFormInfo() {
+      setLoading(true);
+      try {
+        await dispatch(getFeedbackFormInfo(spaceName)).unwrap();
+      } catch (err) {
+        console.error(err);
+        navigate('/error');
+      }
+    }
+
+    fetchFeedbackFormInfo().then(() => setLoading(false));
+  }, [dispatch, navigate, spaceName]);
 
   const {
     register,
@@ -29,6 +48,10 @@ const Feedback = () => {
     }
   };
 
+  if (loading) {
+    return <LoLoadingSpinner />;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -41,15 +64,14 @@ const Feedback = () => {
       <section className="flex items-center justify-center text-black transition-all">
         <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12">
           <p className={'text-sm text-gray-700'}>Write text testimonial to</p>
-          <span className={'text-orange text-3xl font-bold'}>{spaceName}</span>
+          <span className={'text-orange text-4xl font-bold'}>{spaceName}</span>
 
-          <div className={'text-gray-600'}>
-            Q: what one thing you like about my website
-          </div>
+          <div className={'text-lg text-gray-600'}>{customMessage}</div>
+          <div className={'text-gray-600'}>Q: {question}</div>
 
           <Stars stars={stars} setStars={setStars} />
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
             <div className="group relative z-0 w-full">
               <textarea
                 id={'customerFeedback'}
@@ -75,21 +97,13 @@ const Feedback = () => {
               inputError={errors.email}
               register={register('email')}
             />
-            <div className={'flex justify-end gap-x-4 pr-5'}>
-              <Button
-                type={'button'}
-                onClick={() => navigate('/')}
-                text={'cancel'}
-                variant={'danger'}
-                className={'max-w-24 text-lg'}
-              />
-              <Button
-                type={'submit'}
-                text={'Send'}
-                variant={'outlineB'}
-                className={'max-w-24 text-lg'}
-              />
-            </div>
+            <Button
+              type={'submit'}
+              text={'Send'}
+              variant={'outlineB'}
+              className={'text-lg'}
+              loading={loading}
+            />
           </form>
         </main>
       </section>

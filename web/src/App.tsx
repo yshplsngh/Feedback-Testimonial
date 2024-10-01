@@ -32,7 +32,8 @@ export default function App(): ReactElement {
             <Route path={'/new-space'} element={<NewSpace />} />
             {/*<Route path="/spaces/:spaceName" element={<Feedback />} />*/}
           </Route>
-          <Route path={'*'} element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/error" element={<NotFound />} />
         </Routes>
       </Layout>
     </Suspense>

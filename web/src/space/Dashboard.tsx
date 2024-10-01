@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../app/store';
-import { useEffect } from 'react';
-import { getSpaceLoading, selectAllSpaces } from './spaceSlice';
+import { useEffect, useState } from 'react';
+import { selectAllSpaces } from './spaceSlice';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import { toast } from 'sonner';
 import { getUserSpaces } from './spaceApi';
@@ -15,9 +15,11 @@ import { motion } from 'framer-motion';
 const Dashboard = () => {
   const dispatch: AppDispatch = useDispatch();
   const spaces = useSelector(selectAllSpaces);
-  const loading = useSelector(getSpaceLoading);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function fetchSpaces() {
+      setLoading(true);
       try {
         await dispatch(getUserSpaces()).unwrap();
       } catch (err) {
@@ -28,7 +30,7 @@ const Dashboard = () => {
       }
     }
 
-    fetchSpaces();
+    fetchSpaces().then(() => setLoading(false));
   }, [dispatch]);
 
   if (loading) {

@@ -3,20 +3,20 @@ import { NewSpaceScheme, NewSpaceType } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../ui/components/Button';
 import Input from '../ui/components/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../app/store';
-import { getSpaceLoading } from './spaceSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import { SquarePlus } from 'lucide-react';
 import { createNewSpace } from './spaceApi';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const CreateSpace = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const loading = useSelector(getSpaceLoading);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -33,6 +33,7 @@ const CreateSpace = () => {
   const onSubmit: SubmitHandler<NewSpaceType> = async (data: NewSpaceType) => {
     console.log(data);
     if (isValid) {
+      setLoading(true);
       try {
         await dispatch(createNewSpace(data)).unwrap();
         toast.success('New space created successfully');
@@ -42,6 +43,8 @@ const CreateSpace = () => {
           (err as FetchResponseError).message ||
           'An error occurred while creating the space.';
         toast.error(errorMessage);
+      } finally {
+        setLoading(false);
       }
     }
   };

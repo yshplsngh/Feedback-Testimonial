@@ -4,6 +4,7 @@ import cors from 'cors';
 import authRoutes from './auth/index.ts';
 import userRoutes from './user/index.ts';
 import spaceRoutes from './space/index.ts';
+import feedbackRoutes from './feedback/index.ts';
 
 import { errorHandling, handleError } from './utils/errorHandling.ts';
 import cookieParser from 'cookie-parser';
@@ -40,6 +41,7 @@ export const createServer = (): Express => {
   authRoutes(app);
   userRoutes(app);
   spaceRoutes(app);
+  feedbackRoutes(app);
 
   app.use(errorHandling);
   return app;
