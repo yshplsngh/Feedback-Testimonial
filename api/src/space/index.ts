@@ -40,7 +40,6 @@ export default function (app: Express) {
           userId: req.user!.id,
           spaceName: parsedResult.data.spaceName,
           websiteUrl: parsedResult.data.websiteUrl,
-          headerTitle: parsedResult.data.headerTitle,
           customMessage: parsedResult.data.customMessage,
           question: parsedResult.data.question,
         },

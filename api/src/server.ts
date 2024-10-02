@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import authRoutes from './auth/index.ts';
@@ -13,7 +13,7 @@ export const createServer = (): Express => {
   const app: Express = express();
   app.disable('x-powered-by');
   app.use(morgan('dev'));
-  // app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(express.json());
   app.use(
@@ -22,6 +22,14 @@ export const createServer = (): Express => {
       credentials: true,
     }),
   );
+
+  // to delay server request
+  app.use(async (_req: Request, _res: Response, next: NextFunction) => {
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    await delay(0);
+    next();
+  });
 
   const uncaughtError = (error: unknown) => {
     handleError({ _error: error, uncaught: true });

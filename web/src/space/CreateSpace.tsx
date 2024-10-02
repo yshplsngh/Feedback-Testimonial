@@ -31,7 +31,6 @@ const CreateSpace = () => {
     : '';
 
   const onSubmit: SubmitHandler<NewSpaceType> = async (data: NewSpaceType) => {
-    console.log(data);
     if (isValid) {
       setLoading(true);
       try {
@@ -76,11 +75,6 @@ const CreateSpace = () => {
               register={register('websiteUrl')}
             />
             <Input
-              inputName={'headerTitle'}
-              inputError={errors.headerTitle}
-              register={register('headerTitle')}
-            />
-            <Input
               inputName={'customMessage'}
               inputError={errors.customMessage}
               register={register('customMessage')}
@@ -96,7 +90,7 @@ const CreateSpace = () => {
               text={'Create Space'}
               icon={<SquarePlus className={'h-4 w-4'} />}
               variant={'outlineB'}
-              className={'w-full text-lg'}
+              className={'h-9 text-lg'}
               loading={loading}
             />
           </form>

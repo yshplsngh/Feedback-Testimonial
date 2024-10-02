@@ -15,7 +15,7 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 /**
- * if prisma found in global it return prisma of type PrismaClientSingleton.
+ * if prisma found in global it returns prisma of type PrismaClientSingleton.
  * or it will just create a new instance
  */
 const prisma = globalForPrisma.prisma ?? prismaClientSingleton();

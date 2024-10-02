@@ -12,7 +12,6 @@ export const NewSpaceScheme = z.object({
         .join('-'),
     ),
   websiteUrl: z.string().trim().min(1),
-  headerTitle: z.string().trim().min(1),
   customMessage: z.string().trim().min(4),
   question: z.string().trim().min(1),
 });
@@ -24,7 +23,6 @@ export interface UserSpacesType {
   userId: number;
   spaceName: string;
   websiteUrl: string;
-  headerTitle: string;
   customMessage: string;
   question: string;
   createdAt: string;

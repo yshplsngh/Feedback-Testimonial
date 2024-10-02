@@ -22,7 +22,6 @@
 //
 //           <Input inputName={'spaceName'} inputError={errors.spaceName} register={register} watch={watch}/>
 //           <Input inputName={'websiteUrl'} inputError={errors.websiteUrl} register={register} watch={watch}/>
-//           <Input inputName={'headerTitle'} inputError={errors.headerTitle} register={register} watch={watch}/>
 //           <Input inputName={'customMessage'} inputError={errors.customMessage} register={register} watch={watch}/>
 //           <Input inputName={'question'} inputError={errors.question} register={register} watch={watch}/>
 //
@@ -153,11 +152,6 @@ const CreateSpace = () => {
             register={register}
           />
           <Input
-            inputName={'headerTitle'}
-            inputError={errors.headerTitle}
-            register={register}
-          />
-          <Input
             inputName={'customMessage'}
             inputError={errors.customMessage}
             register={register}
@@ -182,3 +176,6 @@ const CreateSpace = () => {
 };
 
 export default CreateSpace;
+
+  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  await delay(10000)

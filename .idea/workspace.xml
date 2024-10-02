@@ -6,13 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/20240916151924_init/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/20240918152603_add_space/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/20240918153122_df/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/20240919164114_l/migration.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/migrations/migration_lock.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/database/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/feedback/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/feedback/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/space/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/space/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/auth/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/lib/Storage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/lib/Storage.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/CreateSpace.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +141,9 @@
       <workItem from="1727540061999" duration="6216000" />
       <workItem from="1727619684882" duration="4294000" />
       <workItem from="1727713032397" duration="17562000" />
-      <workItem from="1727799791106" duration="6570000" />
+      <workItem from="1727799791106" duration="6666000" />
+      <workItem from="1727853503091" duration="4867000" />
+      <workItem from="1727858384057" duration="2156000" />
     </task>
     <servers />
   </component>

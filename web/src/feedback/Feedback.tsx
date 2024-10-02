@@ -1,24 +1,32 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Send } from 'lucide-react';
 import Input from '../ui/components/Input';
 import Button from '../ui/components/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FeedbackSchema, FeedbackType } from './types';
+import { FeedbackSchema, FeedbackType, FeedbackTypeWSS } from './types';
 import Stars from './components/Stars';
 import { useEffect, useState } from 'react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExtraFormInfo, getFeedbackFormInfo } from './feedbackSlice';
+import {
+  getExtraFormInfo,
+  getFeedbackFormInfo,
+  sendFeedback,
+} from './feedbackSlice';
 import { AppDispatch } from '../app/store';
+import { toast } from 'sonner';
+import { FetchResponseError } from '../lib/manageFetch/api';
 
 const Feedback = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(false);
   const { question, customMessage } = useSelector(getExtraFormInfo);
   const params = useParams();
   const spaceName = params.spaceName || '';
-  const [stars, setStars] = useState<number>(2);
+  const [stars, setStars] = useState<number>(3);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -38,13 +46,32 @@ const Feedback = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FeedbackType>({ resolver: zodResolver(FeedbackSchema) });
 
   const onSubmit: SubmitHandler<FeedbackType> = async (data: FeedbackType) => {
-    console.log({ ...data, stars });
+    console.log({ ...data, stars, spaceName });
+    const feedbackSchemaWithStars: FeedbackTypeWSS = {
+      ...data,
+      stars,
+      spaceName,
+    };
     if (isValid) {
-      console.log(data);
+      setBtnLoading(true);
+      try {
+        await dispatch(sendFeedback(feedbackSchemaWithStars)).unwrap();
+        toast.success('Thank you for giving feedback');
+        reset();
+        setStars(3);
+      } catch (err) {
+        const errorMessage =
+          (err as FetchResponseError).message ||
+          'An error occurred while sending feedback';
+        toast.error(errorMessage);
+      } finally {
+        setBtnLoading(false);
+      }
     }
   };
 
@@ -63,7 +90,7 @@ const Feedback = () => {
     >
       <section className="flex items-center justify-center text-black transition-all">
         <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12">
-          <p className={'text-sm text-gray-700'}>Write text testimonial to</p>
+          <p className={'text-sm text-gray-700'}>Write text feedback to</p>
           <span className={'text-orange text-4xl font-bold'}>{spaceName}</span>
 
           <div className={'text-lg text-gray-600'}>{customMessage}</div>
@@ -101,8 +128,9 @@ const Feedback = () => {
               type={'submit'}
               text={'Send'}
               variant={'outlineB'}
-              className={'text-lg'}
-              loading={loading}
+              className={'h-9 text-lg'}
+              icon={<Send className={'h-4 w-4'} />}
+              loading={btnLoading}
             />
           </form>
         </main>

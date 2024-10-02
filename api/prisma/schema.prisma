@@ -27,14 +27,24 @@ model User {
 }
 
 model Space {
-  id            Int      @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   userId        Int
-  User          User     @relation(fields: [userId], references: [id])
-  spaceName     String   @unique
+  User          User       @relation(fields: [userId], references: [id])
+  spaceName     String     @unique
   websiteUrl    String
-  headerTitle   String
   customMessage String
   question      String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Feedback      Feedback[]
+}
+
+model Feedback {
+  id               Int    @id @default(autoincrement())
+  spaceId          Int
+  Space            Space  @relation(fields: [spaceId], references: [id])
+  name             String
+  email            String
+  stars            Int
+  customerFeedback String
 }

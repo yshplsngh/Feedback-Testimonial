@@ -1,24 +1,36 @@
 import Button from './Button';
 import { Activity, SquarePlus } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectStatusLoading } from '../../auth/authSlice';
 import LoadingSpinner from './LoadingSpinner';
 import { AppDispatch } from '../../app/store';
 import { useState } from 'react';
 import { logoutUser } from '../../auth/authApi';
+import { FetchResponseError } from '../../lib/manageFetch/api';
+import { toast } from 'sonner';
 
 function Header() {
   const dispatch: AppDispatch = useDispatch();
   const user = useSelector(selectUser);
   const statusLoading = useSelector(selectStatusLoading);
   const location = useLocation();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-  function handleLogout() {
+  async function handleLogout() {
     setLoading(true);
-    dispatch(logoutUser());
-    setLoading(false);
+    try {
+      await dispatch(logoutUser()).unwrap();
+      navigate('/login');
+    } catch (err) {
+      const errorMessage =
+        (err as FetchResponseError).message ||
+        'An error occurred while sending feedback';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const dashboardBtn = (

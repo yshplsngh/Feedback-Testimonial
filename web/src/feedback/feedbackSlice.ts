@@ -1,12 +1,21 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { api, ProcessedResponse } from '../lib/manageFetch/api';
+import { FeedbackTypeWSS } from './types';
 
 export const getFeedbackFormInfo = createAsyncThunk(
   'feedback/getFeedbackFormInfo',
   async (spaceName: string) => {
     const url = `/api/feedback/formInfo/${spaceName}`;
     return await api.get<ExtraFormInfo>(url);
+  },
+);
+
+export const sendFeedback = createAsyncThunk(
+  'feedback/sendFeedback',
+  async (data: FeedbackTypeWSS) => {
+    const url = '/api/feedback/sendFeedback';
+    return await api.post(url, data);
   },
 );
 

@@ -1,19 +1,20 @@
 import GoogleLogo from '../ui/logo/GoogleLogo';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import Button from '../ui/components/Button';
 import AppLogo from '../ui/logo/AppLogo';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Login() {
-  const [clickedGoogle, setClickedGoogle] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    // when leave page,reset state
-    setClickedGoogle(false);
-  }, []);
+  // useEffect(() => {
+  //   // when leave page,reset state
+  //   setClickedGoogle(false);
+  // }, []);
 
   function handleGoogle() {
+    setLoading(true);
     console.log('google login start');
     window.location.assign('http://localhost:4000/api/auth/google');
   }
@@ -59,7 +60,7 @@ export default function Login() {
                   variant={'secondary'}
                   text={'continue with google'}
                   icon={<GoogleLogo className="h-4 w-4" />}
-                  loading={clickedGoogle}
+                  loading={loading}
                   onClick={() => handleGoogle()}
                 />
               </Suspense>

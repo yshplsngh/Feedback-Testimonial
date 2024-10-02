@@ -57,7 +57,6 @@ const Dashboard = () => {
                 key={index}
                 id={data.id}
                 spaceName={data.spaceName}
-                headerTitle={data.headerTitle}
               />
             ))
           ) : (
