@@ -93,8 +93,10 @@ const Feedback = () => {
           <p className={'text-sm text-gray-700'}>Write text feedback to</p>
           <span className={'text-orange text-4xl font-bold'}>{spaceName}</span>
 
-          <div className={'text-lg text-gray-600'}>{customMessage}</div>
-          <div className={'text-gray-600'}>Q: {question}</div>
+          <div className={'text-lg text-black'}>{customMessage}</div>
+          <div className={'flex text-black'}>
+            Q:&nbsp;<p className={'text-gray-600'}>{question}</p>
+          </div>
 
           <Stars stars={stars} setStars={setStars} />
 

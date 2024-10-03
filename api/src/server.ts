@@ -1,13 +1,16 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import authRoutes from './auth/index.ts';
-import userRoutes from './user/index.ts';
-import spaceRoutes from './space/index.ts';
-import feedbackRoutes from './feedback/index.ts';
+import cookieParser from 'cookie-parser';
 
 import { errorHandling, handleError } from './utils/errorHandling.ts';
-import cookieParser from 'cookie-parser';
+
+// routes imports
+import authRoutes from './auth';
+import userRoutes from './user';
+import spaceRoutes from './space';
+import feedbackRoutes from './feedback';
+import warehouseRoutes from './warehouse';
 
 export const createServer = (): Express => {
   const app: Express = express();
@@ -50,6 +53,7 @@ export const createServer = (): Express => {
   userRoutes(app);
   spaceRoutes(app);
   feedbackRoutes(app);
+  warehouseRoutes(app);
 
   app.use(errorHandling);
   return app;

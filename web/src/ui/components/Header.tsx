@@ -1,5 +1,5 @@
 import Button from './Button';
-import { Activity, SquarePlus } from 'lucide-react';
+import { Activity, SquarePlus, PackageCheck } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, selectStatusLoading } from '../../auth/authSlice';
@@ -59,6 +59,16 @@ function Header() {
       />
     </Link>
   );
+  const testingBtn = (
+    <Link to={'http://localhost:5000'} target={'_blank'}>
+      <Button
+        type={'button'}
+        variant={'secondary'}
+        text={'testing page'}
+        icon={<PackageCheck className={'h-4 w-4'} />}
+      />
+    </Link>
+  );
   const loginBtn = (
     <Link to="/login">
       <Button type={'button'} variant={'outlineB'} text={'Login'} />
@@ -79,25 +89,23 @@ function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-x-2">
-          {statusLoading ? (
-            <LoadingSpinner />
-          ) : !user.id ? (
-            loginBtn
-          ) : (
-            <>
-              {location.pathname === '/dashboard' && createSpaceBtn}
-              {dashboardBtn}
-              {logoutBtn}
-            </>
-          )}
-          {/*<Link to={'/'}>*/}
-          {/*  <Button variant={'primary'} className="md:block hidden" text={'Pro member'} />*/}
-          {/*</Link>*/}
-          {/*<Link to={'/'}>*/}
-          {/*  <Button variant={'primary'} className="sm md:hidden flex" text={'pro member'} />*/}
-          {/*</Link>*/}
-        </div>
+        {/*remove all button on feedback page*/}
+        {!location.pathname.startsWith('/feedback/') && (
+          <div className="flex items-center gap-x-2">
+            {statusLoading ? (
+              <LoadingSpinner />
+            ) : !user.id ? (
+              loginBtn
+            ) : (
+              <>
+                {location.pathname === '/dashboard' && createSpaceBtn}
+                {dashboardBtn}
+                {logoutBtn}
+              </>
+            )}
+            {testingBtn}
+          </div>
+        )}
       </div>
     </div>
   );

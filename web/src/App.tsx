@@ -11,10 +11,12 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Login = lazy(() => import('./auth/Login'));
 const Feedback = lazy(() => import('./feedback/Feedback'));
+const Testing = lazy(() => import('./Testing'));
 
 // Lazy load the Private Component
 const Dashboard = lazy(() => import('./space/Dashboard'));
 const NewSpace = lazy(() => import('./space/CreateSpace'));
+const ManageSpace = lazy(() => import('./space/ManageSpace'));
 
 export default function App(): ReactElement {
   return (
@@ -25,15 +27,16 @@ export default function App(): ReactElement {
           <Route path="/login" element={<Login />} />
           <Route path={'/privacy-policy'} element={<PrivacyPolicy />} />
           <Route path="/feedback/:spaceName" element={<Feedback />} />
-
-          {/*protected Routes*/}
+          {/*protected Routes start*/}
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<Dashboard />} />
+            <Route path={'/spaces/:spaceName'} element={<ManageSpace />} />
             <Route path={'/new-space'} element={<NewSpace />} />
-            {/*<Route path="/spaces/:spaceName" element={<Feedback />} />*/}
           </Route>
-          <Route path="*" element={<NotFound />} />
-          <Route path="/error" element={<NotFound />} />
+          {/*protected Routes end*/}
+          <Route path={'/testing'} element={<Testing />} />
+          <Route path={'*'} element={<NotFound />} />
+          <Route path={'/error'} element={<NotFound />} />
         </Routes>
       </Layout>
     </Suspense>
