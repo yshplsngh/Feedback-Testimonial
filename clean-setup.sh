@@ -6,7 +6,7 @@ echo "|     Clean Setup    |"
 echo "|-------------------|"
 echo ""
 
-BASE_DIR="/home/yshpl/WD/Testimonial"
+BASE_DIR="/home/yshpl/wd/Testimonial"
 
 remove_dir() {
     rm -rf "$1"
@@ -18,17 +18,19 @@ remove_dir() {
     fi
 }
 
-remove_dir "$BASE_DIR/node_modules" "root node_modules"
-remove_dir "$BASE_DIR/package-lock.json" "root package-lock.json"
+remove_dir "$BASE_DIR/node_modules" "root-node_modules"
+remove_dir "$BASE_DIR/package-lock.json" "root-package-lock.json"
 
-remove_dir "$BASE_DIR/api/node_modules" "api node_modules"
-remove_dir "$BASE_DIR/api/package-lock.json" "api package-lock.json"
+remove_dir "$BASE_DIR/api/node_modules" "api-node_modules"
+remove_dir "$BASE_DIR/api/package-lock.json" "api-package-lock.json"
 
-remove_dir "$BASE_DIR/web/node_modules" "web node_modules"
-remove_dir "$BASE_DIR/web/package-lock.json" "web package-lock.json"
+remove_dir "$BASE_DIR/web/node_modules" "web-node_modules"
+remove_dir "$BASE_DIR/web/package-lock.json" "web-package-lock.json"
+remove_dir "$BASE_DIR/web/dist" "web-dist"
 
-remove_dir "$BASE_DIR/test/node_modules" "test node_modules"
-remove_dir "$BASE_DIR/test/package-lock.json" "test package-lock.json"
+remove_dir "$BASE_DIR/test/node_modules" "test-node_modules"
+remove_dir "$BASE_DIR/test/package-lock.json" "test-package-lock.json"
+remove_dir "$BASE_DIR/test/dist" "test-dist"
 
 echo "All files deleted successfully ✅"
 

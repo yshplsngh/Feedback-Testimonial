@@ -6,15 +6,15 @@ import { FeedbackTypeWSS } from './types';
 export const getFeedbackFormInfo = createAsyncThunk(
   'feedback/getFeedbackFormInfo',
   async (spaceName: string) => {
-    const url = `/api/feedback/formInfo/${spaceName}`;
+    const url = `/api/space/spaceInfo/${spaceName}`;
     return await api.get<ExtraFormInfo>(url);
   },
 );
 
-export const sendFeedback = createAsyncThunk(
-  'feedback/sendFeedback',
+export const submitFeedback = createAsyncThunk(
+  'feedback/submitFeedback',
   async (data: FeedbackTypeWSS) => {
-    const url = '/api/feedback/sendFeedback';
+    const url = '/api/feedback/submitFeedback';
     return await api.post(url, data);
   },
 );

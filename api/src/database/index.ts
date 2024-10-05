@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Feedback } from '@prisma/client';
 
 const prismaClientSingleton = () => {
   return new PrismaClient();
@@ -7,7 +7,7 @@ const prismaClientSingleton = () => {
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
 
 /**
- * it checks in Node.js global for a prisma of exactly PrismaClientSingleton
+ * it checks in Node.js global for a prisma of exactly PrismaClientSingleton,
  *  and if not exist it will be undefined
  */
 const globalForPrisma = globalThis as unknown as {
@@ -21,5 +21,6 @@ const globalForPrisma = globalThis as unknown as {
 const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
 
 export default prisma;
+export type { Feedback };
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;

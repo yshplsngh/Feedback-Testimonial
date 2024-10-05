@@ -34,17 +34,19 @@ model Space {
   websiteUrl    String
   customMessage String
   question      String
+  Feedback      Feedback[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
-  Feedback      Feedback[]
 }
 
 model Feedback {
-  id               Int    @id @default(autoincrement())
+  id               Int      @id @default(autoincrement())
   spaceId          Int
-  Space            Space  @relation(fields: [spaceId], references: [id])
+  Space            Space    @relation(fields: [spaceId], references: [id])
   name             String
   email            String
   stars            Int
   customerFeedback String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

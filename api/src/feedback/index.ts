@@ -2,30 +2,12 @@ import { Express, Response, Request, NextFunction } from 'express';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import { FeedbackSchema } from './types.ts';
+import requireAuth from '../auth/requireAuth.ts';
 
 export default function (app: Express) {
-  app.get(
-    '/api/feedback/formInfo/:spaceName',
-    async (req: Request, res: Response, next: NextFunction) => {
-      const receivedSpaceName = req.params.spaceName;
-      const data = await prisma.space.findUnique({
-        where: {
-          spaceName: receivedSpaceName,
-        },
-        select: {
-          question: true,
-          customMessage: true,
-        },
-      });
-      if (!data) {
-        return next(new createError('Space does not exist', 404));
-      }
-      res.status(200).json(data);
-    },
-  );
-
   app.post(
-    '/api/feedback/sendFeedback',
+    '/api/feedback/submitFeedback',
+    requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = FeedbackSchema.safeParse(req.body);
       if (!parsedResult.success) {
@@ -50,8 +32,32 @@ export default function (app: Express) {
           customerFeedback: parsedResult.data.customerFeedback,
         },
       });
-
       return res.status(201).json({ success: true });
+    },
+  );
+
+  app.get(
+    '/api/feedback/getFeedbacks/:spaceName',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const spaceName = req.params.spaceName;
+      if (!spaceName) {
+        return next(new createError('spaceName is not defined in url', 402));
+      }
+      const spaceExist = await prisma.space.findUnique({
+        where: {
+          spaceName: spaceName,
+        },
+      });
+      if (!spaceExist) {
+        return res.status(200).send('oh no invalid url 🤦🏼‍♂️');
+      }
+      const feedbackData = await prisma.feedback.findMany({
+        where: {
+          spaceId: spaceExist.id,
+        },
+      });
+      console.log(feedbackData);
+      res.status(200).send(feedbackData);
     },
   );
 }

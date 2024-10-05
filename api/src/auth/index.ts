@@ -4,9 +4,9 @@ import passport from 'passport';
 import config from '../utils/config.ts';
 import './passportConfig.ts';
 
-export const memoryStore = new session.MemoryStore();
-
 export default function authRoutes(app: Express): void {
+  const memoryStore = new session.MemoryStore();
+
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
@@ -26,11 +26,13 @@ export default function authRoutes(app: Express): void {
        */
       saveUninitialized: false,
       cookie: {
-        // when true cookie set over a secure channel like HTTPS only.
-        // when auto cookie set over an HTTP also.
-        // secure: config.NODE_ENV === 'production' ? true : "auto",
-        // when true, cookie can't be accessed through client-side JavaScript.
-        // httpOnly: true,
+        /**
+         * when true: cookie set over a secure channel like HTTPS only.
+         * when auto: cookie set over an HTTP also.
+         */
+        secure: config.NODE_ENV === 'production' ? true : 'auto',
+        /** when true, cookie can't be accessed through client-side JavaScript.*/
+        httpOnly: true,
         // sameSite: config.NODE_ENV === 'production' ? "none": "lax",
         maxAge: 60000 * 60 * 60,
       },
@@ -60,7 +62,6 @@ export default function authRoutes(app: Express): void {
   );
 
   app.post('/api/auth/logout', (req: Request, res: Response) => {
-    console.log(req.user);
     if (!req.user) return res.sendStatus(401);
 
     req.logout((err) => {

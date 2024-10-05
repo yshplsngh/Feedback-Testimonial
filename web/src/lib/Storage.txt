@@ -179,3 +179,16 @@ export default CreateSpace;
 
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
   await delay(10000)
+
+
+  <!--    <script>-->
+  <!--      document.addEventListener('DOMContentLoaded', function() {-->
+  <!--        createFeedbackWidget();-->
+  <!--      });-->
+  <!--    </script>-->
+  <!--    <script src="https://yshplsngh.github.io/cdn/embed-feedback-widget.js"></script>-->
+
+  <!--    <div style="position: fixed; bottom: 15px; right: 15px">-->
+  <!--      <widget-web-component theme="midnightMystery" website-name="oksdfsdf" projectid="cm1f3szzw0001ihr9g8s8lut1"></widget-web-component>-->
+  <!--    </div>-->
+  <!--    <script src="https://widget.opinify.in/widget.umd.js"></script>-->

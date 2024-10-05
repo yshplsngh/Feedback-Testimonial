@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getExtraFormInfo,
   getFeedbackFormInfo,
-  sendFeedback,
+  submitFeedback,
 } from './feedbackSlice';
 import { AppDispatch } from '../app/store';
 import { toast } from 'sonner';
@@ -51,7 +51,6 @@ const Feedback = () => {
   } = useForm<FeedbackType>({ resolver: zodResolver(FeedbackSchema) });
 
   const onSubmit: SubmitHandler<FeedbackType> = async (data: FeedbackType) => {
-    console.log({ ...data, stars, spaceName });
     const feedbackSchemaWithStars: FeedbackTypeWSS = {
       ...data,
       stars,
@@ -60,7 +59,7 @@ const Feedback = () => {
     if (isValid) {
       setBtnLoading(true);
       try {
-        await dispatch(sendFeedback(feedbackSchemaWithStars)).unwrap();
+        await dispatch(submitFeedback(feedbackSchemaWithStars)).unwrap();
         toast.success('Thank you for giving feedback');
         reset();
         setStars(3);
