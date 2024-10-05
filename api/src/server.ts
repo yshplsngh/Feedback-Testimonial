@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import { errorHandling, handleError } from './utils/errorHandling.ts';
 
 // routes imports
-import authRoutes from './auth';
+import authRoutes, { memoryStore } from './auth';
 import userRoutes from './user';
 import spaceRoutes from './space';
 import feedbackRoutes from './feedback';
@@ -50,6 +50,12 @@ export const createServer = (): Express => {
 
   // require('./auth').default(app);
   authRoutes(app);
+
+  app.use(async (_req: Request, _res: Response, next: NextFunction) => {
+    console.log(memoryStore);
+    next();
+  });
+
   userRoutes(app);
   spaceRoutes(app);
   feedbackRoutes(app);
