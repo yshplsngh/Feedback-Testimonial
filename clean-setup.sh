@@ -28,10 +28,6 @@ remove_dir "$BASE_DIR/web/node_modules" "web-node_modules"
 remove_dir "$BASE_DIR/web/package-lock.json" "web-package-lock.json"
 remove_dir "$BASE_DIR/web/dist" "web-dist"
 
-remove_dir "$BASE_DIR/test/node_modules" "test-node_modules"
-remove_dir "$BASE_DIR/test/package-lock.json" "test-package-lock.json"
-remove_dir "$BASE_DIR/test/dist" "test-dist"
-
 echo "All files deleted successfully ✅"
 
 cd "$BASE_DIR" || { echo "Failed to navigate to $BASE_DIR. Exiting..."; exit 1; }
