@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../app/store';
+import { AppDispatch } from '../../app/store';
 import { useEffect, useState } from 'react';
-import { selectAllSpaces } from './spaceSlice';
-import { FetchResponseError } from '../lib/manageFetch/api';
+import { selectAllSpaces } from '../spaceSlice';
+import { FetchResponseError } from '../../lib/manageFetch/api';
 import { toast } from 'sonner';
-import { getUserSpaces } from './spaceApi';
-import Button from '../ui/components/Button';
-import { SquarePlus } from 'lucide-react';
-import DashboardCards from './component/DashboardCards';
-import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
+import { getUserSpaces } from '../spaceApi';
+import Button from '../../ui/components/Button';
+import { SquarePlus, LayoutDashboard } from 'lucide-react';
+import DashboardCards from './DashboardCards';
+import LoLoadingSpinner from '../../ui/components/LoLoadingSpinner';
 import { motion } from 'framer-motion';
 
 const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
@@ -39,9 +39,9 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
       transition={{ duration: 0.2 }}
     >
       <div className="w-full">
-        <div className="flex items-center justify-between px-5 py-3">
-          <h1 className="text-xl font-semibold md:text-3xl">
-            Dashboard Page 📄
+        <div className="flex items-center justify-between px-5 py-6">
+          <h1 className="flex items-center text-xl font-semibold md:text-3xl">
+            Dashboard <LayoutDashboard className={'ml-3 h-6 w-6'} />
           </h1>
           <Button
             type={'button'}
@@ -52,7 +52,7 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
             className={'max-w-fit'}
           />
         </div>
-        <hr />
+        <hr className={'border-accent'} />
         <div className="mt-10 flex flex-wrap justify-evenly gap-y-5">
           {spaces && spaces.length > 0 ? (
             spaces.map((data, index) => (

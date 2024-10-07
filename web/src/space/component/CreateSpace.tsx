@@ -1,14 +1,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { NewSpaceScheme, NewSpaceType } from './types';
+import { NewSpaceScheme, NewSpaceType } from '../types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Button from '../ui/components/Button';
-import Input from '../ui/components/Input';
+import Button from '../../ui/components/Button';
+import Input from '../../ui/components/Input';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../app/store';
+import { AppDispatch } from '../../app/store';
 import { toast } from 'sonner';
-import { FetchResponseError } from '../lib/manageFetch/api';
+import { FetchResponseError } from '../../lib/manageFetch/api';
 import { SquarePlus, ArrowLeft } from 'lucide-react';
-import { createNewSpace } from './spaceApi';
+import { createNewSpace } from '../spaceApi';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -67,10 +67,8 @@ const CreateSpace = ({
             <Button
               type={'button'}
               variant={'secondary'}
-              className={
-                'h-fit w-fit rounded-full bg-white px-0 py-1 hover:bg-white'
-              }
-              icon={<ArrowLeft className={'h-5 w-5'} />}
+              className={'rounded-full bg-white p-1 hover:bg-gray-100'}
+              icon={<ArrowLeft className={'h-5 w-6'} />}
               onClick={() => prevStep()}
             />
           </span>

@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'background-dark': '#151719',
+        'background-dark': '#0d1117',
         accent: '#27272a',
         indigo: '#5c6ac4',
         orange: '#fe640b',

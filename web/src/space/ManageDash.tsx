@@ -1,8 +1,8 @@
 import { useSteps } from '../hooks/useSteps';
-import Dashboard from './Dashboard';
-import CreateSpace from './CreateSpace';
+import Dashboard from './component/Dashboard';
+import CreateSpace from './component/CreateSpace';
 
-const ManageDashboard = () => {
+const ManageDash = () => {
   const { step, startStep, nextStep, prevStep } = useSteps();
 
   const steps = [
@@ -16,4 +16,4 @@ const ManageDashboard = () => {
 
   return steps[step];
 };
-export default ManageDashboard;
+export default ManageDash;

@@ -18,19 +18,21 @@ import {
 import { AppDispatch } from '../app/store';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
+import NotFound from '../pages/NotFound';
 
 const Feedback = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
   const { question, customMessage } = useSelector(getExtraFormInfo);
-  const params = useParams();
-  const spaceName = params.spaceName || '';
+  const { spaceName } = useParams<{ spaceName?: string }>();
   const [stars, setStars] = useState<number>(3);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     async function fetchFeedbackFormInfo() {
+      if (!spaceName) return;
+
       setLoading(true);
       try {
         await dispatch(getFeedbackFormInfo(spaceName)).unwrap();
@@ -39,7 +41,6 @@ const Feedback = () => {
         navigate('/error');
       }
     }
-
     fetchFeedbackFormInfo().then(() => setLoading(false));
   }, [dispatch, navigate, spaceName]);
 
@@ -49,6 +50,10 @@ const Feedback = () => {
     reset,
     formState: { errors, isValid },
   } = useForm<FeedbackType>({ resolver: zodResolver(FeedbackSchema) });
+
+  if (spaceName === undefined) {
+    return <NotFound message={'Error: Space Name Is Missing!'} />;
+  }
 
   const onSubmit: SubmitHandler<FeedbackType> = async (data: FeedbackType) => {
     const feedbackSchemaWithStars: FeedbackTypeWSS = {
@@ -74,11 +79,7 @@ const Feedback = () => {
     }
   };
 
-  if (loading) {
-    return <LoLoadingSpinner />;
-  }
-
-  return (
+  return !loading ? (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ scale: 1, opacity: 1 }}
@@ -137,6 +138,8 @@ const Feedback = () => {
         </main>
       </section>
     </motion.div>
+  ) : (
+    <LoLoadingSpinner />
   );
 };
 export default Feedback;

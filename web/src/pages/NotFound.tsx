@@ -1,7 +1,7 @@
 import Button from '../ui/components/Button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-const NotFound = () => {
+const NotFound = ({ message }: { message?: string }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -9,8 +9,8 @@ const NotFound = () => {
       transition={{ duration: 0.2 }}
     >
       <div className="grid min-h-[80vh] place-content-center px-4">
-        <h1 className="uppercase tracking-widest text-slate-300">
-          404 | Page Not Found!
+        <h1 className="tracking-widest text-slate-300">
+          {message ? message : '404 | Page Not Found!'}
         </h1>
 
         <Link to={'/'}>
