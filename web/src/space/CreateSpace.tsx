@@ -8,7 +8,7 @@ import { AppDispatch } from '../app/store';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
-import { SquarePlus } from 'lucide-react';
+import { SquarePlus, X } from 'lucide-react';
 import { createNewSpace } from './spaceApi';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -50,51 +50,64 @@ const CreateSpace = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{
-        duration: 0.3,
+        duration: 0.5,
         type: 'spring',
       }}
     >
       <section className="flex items-center justify-center transition-all">
-        <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12 shadow-2xl">
-          <h1 className="mb-14 text-center text-2xl font-bold text-gray-800">
-            Create New Space
-          </h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-14">
-            <Input
-              inputName={'spaceName'}
-              inputError={errors.spaceName}
-              register={register('spaceName')}
-              publicSpaceName={publicSpaceName}
-            />
-            <Input
-              inputName={'websiteUrl'}
-              inputError={errors.websiteUrl}
-              register={register('websiteUrl')}
-            />
-            <Input
-              inputName={'customMessage'}
-              inputError={errors.customMessage}
-              register={register('customMessage')}
-            />
-            <Input
-              inputName={'question'}
-              inputError={errors.question}
-              register={register('question')}
-            />
-
+        <div className="relative mx-auto my-10 w-full max-w-[65rem] rounded-lg bg-white px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
+          <span className={'absolute right-2 top-2'}>
             <Button
-              type={'submit'}
-              text={'Create Space'}
-              icon={<SquarePlus className={'h-4 w-4'} />}
-              variant={'outlineB'}
-              className={'h-9 text-lg'}
-              loading={loading}
+              type={'button'}
+              variant={'secondary'}
+              className={'h-fit w-fit rounded-full bg-white px-1 py-1'}
+              icon={<X className={'h-4 w-4'} />}
             />
-          </form>
-        </main>
+          </span>
+          <div className={'w-full border-2 border-red-500 md:w-2/5'}>
+            live preview
+          </div>
+          <div className={'w-full border-2 border-red-500 md:w-3/5'}>
+            <h1 className="text:xl mb-14 text-center font-bold md:text-2xl">
+              Create New Space
+            </h1>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+              <Input
+                inputName={'spaceName'}
+                inputError={errors.spaceName}
+                register={register('spaceName')}
+                publicSpaceName={publicSpaceName}
+              />
+              <Input
+                inputName={'websiteUrl'}
+                inputError={errors.websiteUrl}
+                register={register('websiteUrl')}
+              />
+              <Input
+                inputName={'customMessage'}
+                inputError={errors.customMessage}
+                register={register('customMessage')}
+              />
+              <Input
+                inputName={'question'}
+                inputError={errors.question}
+                register={register('question')}
+              />
+
+              <Button
+                type={'submit'}
+                text={'Create Space'}
+                icon={<SquarePlus className={'h-4 w-4'} />}
+                variant={'outlineB'}
+                className={'h-9 text-lg'}
+                loading={loading}
+              />
+            </form>
+          </div>
+        </div>
       </section>
     </motion.div>
   );

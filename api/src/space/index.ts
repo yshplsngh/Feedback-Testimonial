@@ -3,10 +3,12 @@ import { NewSpaceScheme } from './types.ts';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import requireAuth from '../auth/requireAuth.ts';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 
 export default function (app: Express) {
   app.get(
     '/api/space/getUserSpaces',
+    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response) => {
       const spaces = await prisma.space.findMany({
@@ -20,6 +22,7 @@ export default function (app: Express) {
 
   app.get(
     '/api/space/spaceInfo/:spaceName',
+    rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
       const receivedSpaceName = req.params.spaceName;
       const data = await prisma.space.findUnique({
@@ -40,6 +43,7 @@ export default function (app: Express) {
 
   app.post(
     '/api/space/new',
+    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = NewSpaceScheme.safeParse(req.body);

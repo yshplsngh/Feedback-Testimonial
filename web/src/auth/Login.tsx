@@ -21,9 +21,9 @@ export default function Login() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.7 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.2, type: 'spring' }}
+      transition={{ duration: 0.5, type: 'spring' }}
     >
       <div className="flex h-screen items-center justify-center text-black">
         <div className="flex items-center justify-center">

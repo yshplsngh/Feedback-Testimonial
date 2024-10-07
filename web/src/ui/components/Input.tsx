@@ -8,6 +8,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   inputError?: FieldError;
   register: UseFormRegisterReturn;
   publicSpaceName?: string;
+  className?: string;
 }
 
 function camelCaseToSentenceCase(data: string) {
@@ -28,9 +29,10 @@ let Input: React.FC<InputProps> = ({
   inputError,
   register,
   publicSpaceName,
+  className,
 }: InputProps) => {
   return (
-    <div className="group relative z-0 w-full">
+    <div className={`group relative z-0 w-full ${className} }`}>
       <input
         type="text"
         id={inputName}

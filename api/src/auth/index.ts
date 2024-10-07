@@ -3,6 +3,7 @@ import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config.ts';
 import './passportConfig.ts';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 
 export default function authRoutes(app: Express): void {
   const memoryStore = new session.MemoryStore();
@@ -44,6 +45,7 @@ export default function authRoutes(app: Express): void {
 
   app.get(
     '/api/auth/google',
+    rateLimitMiddleware,
     passport.authenticate('google', {
       scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
@@ -54,6 +56,7 @@ export default function authRoutes(app: Express): void {
 
   app.get(
     '/api/auth/google/redirect',
+    rateLimitMiddleware,
     passport.authenticate('google', { failureRedirect: '/login' }),
     (_req: Request, res: Response) => {
       res.status(200);
@@ -61,17 +64,21 @@ export default function authRoutes(app: Express): void {
     },
   );
 
-  app.post('/api/auth/logout', (req: Request, res: Response) => {
-    if (!req.user) return res.sendStatus(401);
+  app.post(
+    '/api/auth/logout',
+    rateLimitMiddleware,
+    (req: Request, res: Response) => {
+      if (!req.user) return res.sendStatus(401);
 
-    req.logout((err) => {
-      if (err) return res.sendStatus(400);
+      req.logout((err) => {
+        if (err) return res.sendStatus(400);
 
-      req.session.destroy((err) => {
-        if (err) return res.sendStatus(500);
-        res.clearCookie('connect.sid');
-        res.sendStatus(200);
+        req.session.destroy((err) => {
+          if (err) return res.sendStatus(500);
+          res.clearCookie('connect.sid');
+          res.sendStatus(200);
+        });
       });
-    });
-  });
+    },
+  );
 }

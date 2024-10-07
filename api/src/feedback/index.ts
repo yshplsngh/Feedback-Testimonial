@@ -3,10 +3,12 @@ import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import { FeedbackSchema } from './types.ts';
 import requireAuth from '../auth/requireAuth.ts';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 
 export default function (app: Express) {
   app.post(
     '/api/feedback/submitFeedback',
+    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = FeedbackSchema.safeParse(req.body);
@@ -36,8 +38,10 @@ export default function (app: Express) {
     },
   );
 
+  //this will go in another backend
   app.get(
     '/api/feedback/getFeedbacks/:spaceName',
+    rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
       const spaceName = req.params.spaceName;
       if (!spaceName) {
