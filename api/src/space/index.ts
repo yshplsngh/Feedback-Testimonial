@@ -16,7 +16,17 @@ export default function (app: Express) {
           userId: req.user!.id,
         },
       });
-      return res.status(201).json(spaces);
+      const spaceWithFeedbackCount = await Promise.all(
+        spaces.map(async (space) => {
+          const feedbackCount = await prisma.feedback.count({
+            where: {
+              spaceId: space.id,
+            },
+          });
+          return { ...space, feedbackCount };
+        }),
+      );
+      return res.status(201).json(spaceWithFeedbackCount);
     },
   );
 

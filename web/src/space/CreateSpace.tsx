@@ -5,17 +5,21 @@ import Button from '../ui/components/Button';
 import Input from '../ui/components/Input';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../app/store';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
-import { SquarePlus, X } from 'lucide-react';
+import { SquarePlus, ArrowLeft } from 'lucide-react';
 import { createNewSpace } from './spaceApi';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-const CreateSpace = () => {
+const CreateSpace = ({
+  prevStep,
+  startStep,
+}: {
+  prevStep: () => void;
+  startStep: () => void;
+}) => {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const {
@@ -36,7 +40,7 @@ const CreateSpace = () => {
       try {
         await dispatch(createNewSpace(data)).unwrap();
         toast.success('New space created successfully');
-        navigate('/dashboard');
+        startStep();
       } catch (err) {
         const errorMessage =
           (err as FetchResponseError).message ||
@@ -59,12 +63,15 @@ const CreateSpace = () => {
     >
       <section className="flex items-center justify-center transition-all">
         <div className="relative mx-auto my-10 w-full max-w-[65rem] rounded-lg bg-white px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
-          <span className={'absolute right-2 top-2'}>
+          <span className={'absolute left-2 top-2'}>
             <Button
               type={'button'}
               variant={'secondary'}
-              className={'h-fit w-fit rounded-full bg-white px-1 py-1'}
-              icon={<X className={'h-4 w-4'} />}
+              className={
+                'h-fit w-fit rounded-full bg-white px-0 py-1 hover:bg-white'
+              }
+              icon={<ArrowLeft className={'h-5 w-5'} />}
+              onClick={() => prevStep()}
             />
           </span>
           <div className={'w-full border-2 border-red-500 md:w-2/5'}>
@@ -99,7 +106,7 @@ const CreateSpace = () => {
 
               <Button
                 type={'submit'}
-                text={'Create Space'}
+                text={'Create New Space'}
                 icon={<SquarePlus className={'h-4 w-4'} />}
                 variant={'outlineB'}
                 className={'h-9 text-lg'}

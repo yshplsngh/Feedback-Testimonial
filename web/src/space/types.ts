@@ -24,6 +24,7 @@ export interface UserSpacesType {
   spaceName: string;
   websiteUrl: string;
   customMessage: string;
+  feedbackCount: number;
   question: string;
   createdAt: string;
   updatedAt: string;

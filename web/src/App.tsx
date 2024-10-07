@@ -14,8 +14,7 @@ const Feedback = lazy(() => import('./feedback/Feedback'));
 const Testing = lazy(() => import('./Testing'));
 
 // Lazy load the Private Component
-const Dashboard = lazy(() => import('./space/Dashboard'));
-const NewSpace = lazy(() => import('./space/CreateSpace'));
+const ManageDashboard = lazy(() => import('./space/ManageDashboard'));
 const ManageSpace = lazy(() => import('./space/ManageSpace'));
 
 export default function App(): ReactElement {
@@ -29,9 +28,9 @@ export default function App(): ReactElement {
           <Route path="/feedback/:spaceName" element={<Feedback />} />
           {/*protected Routes start*/}
           <Route element={<ProtectedRoute />}>
-            <Route path={'/dashboard'} element={<Dashboard />} />
+            <Route path={'/dash'} element={<ManageDashboard />} />
+            <Route path={'/dashboard'} element={<ManageDashboard />} />
             <Route path={'/spaces/:spaceName'} element={<ManageSpace />} />
-            <Route path={'/new-space'} element={<NewSpace />} />
           </Route>
           {/*protected Routes end*/}
           <Route path={'/testing'} element={<Testing />} />
