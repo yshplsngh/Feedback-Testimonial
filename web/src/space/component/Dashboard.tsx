@@ -71,7 +71,7 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
                 text={`create Project`}
                 icon={<SquarePlus className={'h-4 w-4'} />}
                 onClick={() => nextStep()}
-                className={'w-20'}
+                className={'max-w-fit'}
               />
             </div>
           )}

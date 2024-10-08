@@ -29,7 +29,7 @@ export default function App(): ReactElement {
           {/*protected Routes start*/}
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<ManageDash />} />
-            <Route path={'/spaces/:spaceName'} element={<ManageSpace />} />
+            <Route path={'/space/:spaceName'} element={<ManageSpace />} />
           </Route>
           {/*protected Routes end*/}
           <Route path={'/testing'} element={<Testing />} />

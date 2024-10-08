@@ -1,9 +1,9 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../ui/components/Button';
 import { SquarePen } from 'lucide-react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Avatar,
   AvatarFallback,
@@ -11,28 +11,87 @@ import {
 } from '../ui/components/RadixAvatar';
 import NotFound from '../pages/NotFound';
 import { toast } from 'sonner';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../app/store';
+import { getFeedbacks } from '../feedback/feedbackSlice';
+import { getUserSpaces } from './spaceApi';
+import { FetchResponseError } from '../lib/manageFetch/api';
+import { selectSpaceIds } from './spaceSlice';
 
 const ManageSpace = () => {
-  const [loading] = useState(false);
-  // const stars = 4;
-  // const name = 'ManageSpace';
-  // const email = 'admin@gmail.com';
-  // const customerFeedback = 'customerFeedback';
-
+  const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
+  const spaceIds = useSelector(selectSpaceIds);
+  const [loading, setLoading] = useState(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
+
+  useEffect(() => {
+    async function fetchData() {
+      if (spaceName === undefined) {
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      try {
+        await dispatch(getFeedbacks(spaceName)).unwrap();
+        if (spaceIds.length === 0) {
+          await dispatch(getUserSpaces()).unwrap();
+        }
+      } catch (err) {
+        console.error(err);
+        if (err instanceof FetchResponseError) {
+          toast.error(err.message || 'An error occurred while fetching data');
+        } else {
+          navigate('/error');
+        }
+      }
+    }
+    fetchData().then(() => setLoading(false));
+  }, [dispatch, navigate, spaceName, spaceIds]);
+
+  // useEffect(() => {
+  //   async function fetchFeedbacks() {
+  //     if (spaceName === undefined) return;
+  //     setLoading(true);
+  //     try {
+  //       await dispatch(getFeedbacks(spaceName)).unwrap();
+  //     } catch (err) {
+  //       console.error(err);
+  //       navigate('/error');
+  //     }
+  //   }
+  //   async function fetchSpaces() {
+  //     setLoading(true);
+  //     try {
+  //       await dispatch(getUserSpaces()).unwrap();
+  //     } catch (err) {
+  //       const errorMessage =
+  //         (err as FetchResponseError).message ||
+  //         'An error occurred while fetching spaces';
+  //       toast.error(errorMessage);
+  //     }
+  //   }
+  //   fetchFeedbacks().then(() => {
+  //     if (spaceIds.length === 0){
+  //       fetchSpaces().then(() => setLoading(false));
+  //     }
+  //   }).then(()=> setLoading(false));
+  // }, [dispatch, navigate, spaceName,spaceIds]);
+
+  // console.log(feedbacks);
 
   if (spaceName === undefined) {
     return <NotFound message={'Error: Space Name Is Missing!'} />;
   }
-
   return !loading ? (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="w-full">
-        <div className="flex items-center justify-between px-5 py-6">
+        <div className="flex items-center justify-between px-5 py-4">
           <div className={'flex items-center space-x-5'}>
             <Avatar className="h-14 w-14 rounded-md">
               <AvatarImage
@@ -57,14 +116,17 @@ const ManageSpace = () => {
               </Link>
             </div>
           </div>
-          <Button
-            type={'button'}
-            variant={'secondary'}
-            text={`Edit Space`}
-            icon={<SquarePen className={'h-4 w-4'} />}
-            className={'max-w-fit'}
-            onClick={() => toast.info('service not available')}
-          />
+          <div>
+            <span>Feedbacks: {}</span>
+            <Button
+              type={'button'}
+              variant={'secondary'}
+              text={`Edit Space`}
+              icon={<SquarePen className={'h-4 w-4'} />}
+              className={'max-w-fit'}
+              onClick={() => toast.info('service not available')}
+            />
+          </div>
         </div>
         <hr className={'border-accent'} />
 

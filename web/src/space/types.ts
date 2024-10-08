@@ -18,7 +18,7 @@ export const NewSpaceScheme = z.object({
 
 export type NewSpaceType = z.infer<typeof NewSpaceScheme>;
 
-export interface UserSpacesType {
+export interface BNewSpacesType {
   id: number;
   userId: number;
   spaceName: string;

@@ -1,7 +1,12 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { api, ProcessedResponse } from '../lib/manageFetch/api';
-import { FeedbackTypeWSS } from './types';
+import { BFeedbackTypeWSAS, FeedbackTypeWSAS } from './types';
 
 export const getFeedbackFormInfo = createAsyncThunk(
   'feedback/getFeedbackFormInfo',
@@ -13,9 +18,17 @@ export const getFeedbackFormInfo = createAsyncThunk(
 
 export const submitFeedback = createAsyncThunk(
   'feedback/submitFeedback',
-  async (data: FeedbackTypeWSS) => {
+  async (data: FeedbackTypeWSAS) => {
     const url = '/api/feedback/submitFeedback';
     return await api.post(url, data);
+  },
+);
+
+export const getFeedbacks = createAsyncThunk(
+  'feedback/getFeedbacks',
+  async (spaceName: string) => {
+    const url = `/api/feedback/getFeedbacks/${spaceName}`;
+    return await api.get<BFeedbackTypeWSAS[]>(url);
   },
 );
 
@@ -24,16 +37,16 @@ interface ExtraFormInfo {
   question: null | string;
 }
 
-interface InitialState {
-  extraFormInfo: ExtraFormInfo;
-}
+const feedbackAdapter = createEntityAdapter<BFeedbackTypeWSAS>();
 
-const initialState: InitialState = {
+const initialState = feedbackAdapter.getInitialState<{
+  extraFormInfo: ExtraFormInfo;
+}>({
   extraFormInfo: {
     customMessage: null,
     question: null,
   },
-};
+});
 
 const feedbackSlice = createSlice({
   name: 'feedback',
@@ -49,10 +62,26 @@ const feedbackSlice = createSlice({
       )
       .addCase(getFeedbackFormInfo.rejected, (state) => {
         state.extraFormInfo = initialState.extraFormInfo;
-      });
+      })
+      .addCase(
+        getFeedbacks.fulfilled,
+        (
+          state,
+          action: PayloadAction<ProcessedResponse<BFeedbackTypeWSAS[]>>,
+        ) => {
+          feedbackAdapter.upsertMany(state, action.payload.json);
+        },
+      );
   },
 });
 
+export const {
+  selectAll: selectAllFeedbacks,
+  selectById: selectFeedbackById,
+  selectIds: selectFeedbackIds,
+} = feedbackAdapter.getSelectors((state: RootState) => state.feedback);
+
 export const getExtraFormInfo = (state: RootState) =>
   state.feedback.extraFormInfo;
+
 export default feedbackSlice.reducer;

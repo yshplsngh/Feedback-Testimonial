@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/feedback/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/feedback/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/spaceApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +55,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/yshpl/wd/Nityam-Need",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/home/yshpl/wd/Testimonial/web/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yshpl/wosc/backpack&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/yshpl/wd/Testimonial/web/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test-site" />
@@ -70,11 +80,11 @@
       <recent name="$PROJECT_DIR$/web/src/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/space/component" />
       <recent name="$PROJECT_DIR$/web/src/dashboard" />
       <recent name="$PROJECT_DIR$/web/src/users" />
       <recent name="$PROJECT_DIR$/web/src/ui/components" />
       <recent name="$PROJECT_DIR$/web/src/ui/logo" />
-      <recent name="$PROJECT_DIR$/web/src/ui" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -134,6 +144,8 @@
       <workItem from="1728089199850" duration="7042000" />
       <workItem from="1728105426028" duration="15258000" />
       <workItem from="1728194520129" duration="117000" />
+      <workItem from="1728262056256" duration="36621000" />
+      <workItem from="1728401701005" duration="9429000" />
     </task>
     <servers />
   </component>

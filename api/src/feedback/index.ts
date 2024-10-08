@@ -38,7 +38,6 @@ export default function (app: Express) {
     },
   );
 
-  //this will go in another backend
   app.get(
     '/api/feedback/getFeedbacks/:spaceName',
     rateLimitMiddleware,
@@ -53,14 +52,13 @@ export default function (app: Express) {
         },
       });
       if (!spaceExist) {
-        return res.status(200).send('oh no invalid url 🤦🏼‍♂️');
+        return next(new createError('Space does not exist', 404));
       }
       const feedbackData = await prisma.feedback.findMany({
         where: {
           spaceId: spaceExist.id,
         },
       });
-      console.log(feedbackData);
       res.status(200).send(feedbackData);
     },
   );

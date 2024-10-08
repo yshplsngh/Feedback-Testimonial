@@ -4,11 +4,11 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { ProcessedResponse } from '../lib/manageFetch/api';
-import { UserSpacesType } from './types';
+import { BNewSpacesType } from './types';
 import { RootState } from '../app/store';
 import { getUserSpaces } from './spaceApi';
 
-const spacesAdapter = createEntityAdapter<UserSpacesType>();
+const spacesAdapter = createEntityAdapter<BNewSpacesType>();
 
 const initialState = spacesAdapter.getInitialState();
 
@@ -19,7 +19,7 @@ const spaceSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       getUserSpaces.fulfilled,
-      (state, action: PayloadAction<ProcessedResponse<UserSpacesType[]>>) => {
+      (state, action: PayloadAction<ProcessedResponse<BNewSpacesType[]>>) => {
         spacesAdapter.upsertMany(state, action.payload.json);
       },
     );

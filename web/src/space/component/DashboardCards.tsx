@@ -9,7 +9,7 @@ const DashboardCards = ({ spaceName, feedbackCount }: PropsType) => {
   const feedbackUrl = `http://localhost:3000/feedback/${spaceName}`;
   return (
     <div
-      onClick={() => navigate(`/spaces/${spaceName}`)}
+      onClick={() => navigate(`/space/${spaceName}`)}
       // onClick={() => navigate(`/feedback/${spaceName}`)}
       className="border-accent hover:bg-accent mx-auto flex w-full cursor-pointer flex-col gap-y-2 overflow-hidden rounded-md border-[2px] px-4 py-3 transition-all ease-in-out md:mx-0 md:max-w-96"
     >

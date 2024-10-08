@@ -5,7 +5,7 @@ import Input from '../ui/components/Input';
 import Button from '../ui/components/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FeedbackSchema, FeedbackType, FeedbackTypeWSS } from './types';
+import { FeedbackSchema, FeedbackType, FeedbackTypeWSAS } from './types';
 import Stars from './components/Stars';
 import { useEffect, useState } from 'react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
@@ -31,7 +31,7 @@ const Feedback = () => {
 
   useEffect(() => {
     async function fetchFeedbackFormInfo() {
-      if (!spaceName) return;
+      if (spaceName === undefined) return;
 
       setLoading(true);
       try {
@@ -41,6 +41,7 @@ const Feedback = () => {
         navigate('/error');
       }
     }
+
     fetchFeedbackFormInfo().then(() => setLoading(false));
   }, [dispatch, navigate, spaceName]);
 
@@ -56,7 +57,7 @@ const Feedback = () => {
   }
 
   const onSubmit: SubmitHandler<FeedbackType> = async (data: FeedbackType) => {
-    const feedbackSchemaWithStars: FeedbackTypeWSS = {
+    const feedbackSchemaWithStars: FeedbackTypeWSAS = {
       ...data,
       stars,
       spaceName,
