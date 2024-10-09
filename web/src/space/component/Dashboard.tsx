@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import { getUserSpaces } from '../spaceApi';
 import Button from '../../ui/components/Button';
 import { SquarePlus, LayoutDashboard } from 'lucide-react';
-import DashboardCards from './DashboardCards';
+import DashboardCard from './DashboardCard';
 import LoLoadingSpinner from '../../ui/components/LoLoadingSpinner';
 import { motion } from 'framer-motion';
 
@@ -53,10 +53,10 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
           />
         </div>
         <hr className={'border-accent'} />
-        <div className="mt-10 flex flex-wrap justify-evenly gap-y-5">
+        <div className="mx-2 mt-10 grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
           {spaces && spaces.length > 0 ? (
             spaces.map((data, index) => (
-              <DashboardCards
+              <DashboardCard
                 key={index}
                 spaceName={data.spaceName}
                 feedbackCount={data.feedbackCount}

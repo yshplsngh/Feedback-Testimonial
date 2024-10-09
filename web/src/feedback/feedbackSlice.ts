@@ -1,6 +1,7 @@
 import {
   createAsyncThunk,
   createEntityAdapter,
+  createSelector,
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
@@ -80,6 +81,12 @@ export const {
   selectById: selectFeedbackById,
   selectIds: selectFeedbackIds,
 } = feedbackAdapter.getSelectors((state: RootState) => state.feedback);
+
+export const selectFeedbacksBySpaceId = createSelector(
+  [selectAllFeedbacks, (_state: RootState, spaceId) => spaceId],
+  (feedbacks, spaceId) =>
+    feedbacks.filter((feedback) => feedback.spaceId === spaceId),
+);
 
 export const getExtraFormInfo = (state: RootState) =>
   state.feedback.extraFormInfo;

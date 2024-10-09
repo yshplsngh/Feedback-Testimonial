@@ -35,7 +35,6 @@ const Feedback = () => {
         setLoading(false);
         return;
       }
-
       setLoading(true);
       try {
         await dispatch(getFeedbackFormInfo(spaceName)).unwrap();

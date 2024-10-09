@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../ui/components/Button';
-import { SquarePen } from 'lucide-react';
+import { SquarePen, MessageSquareText } from 'lucide-react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
 import { useEffect, useState } from 'react';
 import {
@@ -13,20 +13,27 @@ import NotFound from '../pages/NotFound';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
-import { getFeedbacks, selectAllFeedbacks } from '../feedback/feedbackSlice';
+import {
+  getFeedbacks,
+  selectFeedbacksBySpaceId,
+} from '../feedback/feedbackSlice';
 import { getUserSpaces } from './spaceApi';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
+import FeedbackCard from './component/FeedbackCard';
 
 const ManageSpace = () => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
-  const feedbacks = useSelector(selectAllFeedbacks);
+
   const [loading, setLoading] = useState(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
   // handle carefully, on directly rendering this page space must be undefined.
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
+  );
+  const feedbacks = useSelector((state: RootState) =>
+    selectFeedbacksBySpaceId(state, space?.id),
   );
 
   useEffect(() => {
@@ -35,11 +42,9 @@ const ManageSpace = () => {
         setLoading(false);
         return;
       }
-
       setLoading(true);
       try {
         await dispatch(getFeedbacks(spaceName)).unwrap();
-
         if (space === undefined) {
           await dispatch(getUserSpaces()).unwrap();
         }
@@ -58,7 +63,7 @@ const ManageSpace = () => {
 
   if (spaceName === undefined)
     return <NotFound message={'Error: Space Name Is Missing!'} />;
-  // if(space === undefined) return <NotFound/>
+  if (space === undefined) return <NotFound />;
 
   // if (space) {
   //   console.log('space fetched boom');
@@ -66,7 +71,7 @@ const ManageSpace = () => {
   // }
   // if (feedbacks) {
   //   console.log('feedback fetched boom');
-  console.log(feedbacks);
+  // console.log(feedbacks);
   // }
 
   return !loading ? (
@@ -101,43 +106,63 @@ const ManageSpace = () => {
               </Link>
             </div>
           </div>
-          <div>
-            <span>Feedbacks: {}</span>
+          <div className={'flex items-center space-x-5'}>
+            <span className={'flex items-center space-x-1'}>
+              <MessageSquareText className={'h-4 w-4'} />
+              <p>Feedbacks: {space?.feedbackCount}</p>
+            </span>
             <Button
               type={'button'}
               variant={'secondary'}
               text={`Edit Space`}
               icon={<SquarePen className={'h-4 w-4'} />}
               className={'max-w-fit'}
-              onClick={() => toast.info('service not available')}
+              onClick={() => toast.info('feature not implemented yet!')}
             />
           </div>
         </div>
         <hr className={'border-accent'} />
 
-        {/*<div className="mt-10 flex flex-wrap justify-evenly gap-y-5">*/}
-        {/*  {spaces && spaces.length > 0 ? (*/}
-        {/*    spaces.map((data, index) => (*/}
-        {/*      <DashboardCards*/}
-        {/*        key={index}*/}
-        {/*        spaceName={data.spaceName}*/}
-        {/*        feedbackCount={data.feedbackCount}*/}
-        {/*      />*/}
-        {/*    ))*/}
-        {/*  ) : (*/}
-        {/*    <div className="mx-auto flex flex-col justify-center gap-y-3">*/}
-        {/*      <div className="mt-3 w-full text-center">No projects found!</div>*/}
-        {/*      <Button*/}
-        {/*        type={'button'}*/}
-        {/*        variant={'secondary'}*/}
-        {/*        text={`create Project`}*/}
-        {/*        icon={<SquarePlus className={'h-4 w-4'} />}*/}
-        {/*        onClick={() => nextStep()}*/}
-        {/*        className={'w-20'}*/}
-        {/*      />*/}
-        {/*    </div>*/}
-        {/*  )}*/}
-        {/*</div>*/}
+        <div>
+          {feedbacks && feedbacks.length > 0 ? (
+            feedbacks.map((feedback) => (
+              <FeedbackCard
+                key={feedback.id}
+                feedbackId={feedback.id}
+                fspaceId={feedback.spaceId}
+                spaceId={space?.id}
+              />
+            ))
+          ) : (
+            <div className="mx-auto flex flex-col justify-center gap-y-3">
+              <div className="mt-3 w-full text-center">No Feedback found!</div>
+            </div>
+          )}
+        </div>
+
+        {/*  <div className="mt-10 flex flex-wrap justify-evenly gap-y-5">*/}
+        {/*    {spaces && spaces.length > 0 ? (*/}
+        {/*      spaces.map((data, index) => (*/}
+        {/*        <DashboardCard*/}
+        {/*          key={index}*/}
+        {/*          spaceName={data.spaceName}*/}
+        {/*          feedbackCount={data.feedbackCount}*/}
+        {/*        />*/}
+        {/*      ))*/}
+        {/*    ) : (*/}
+        {/*      <div className="mx-auto flex flex-col justify-center gap-y-3">*/}
+        {/*        <div className="mt-3 w-full text-center">No projects found!</div>*/}
+        {/*        <Button*/}
+        {/*          type={'button'}*/}
+        {/*          variant={'secondary'}*/}
+        {/*          text={`create Project`}*/}
+        {/*          icon={<SquarePlus className={'h-4 w-4'} />}*/}
+        {/*          onClick={() => nextStep()}*/}
+        {/*          className={'w-20'}*/}
+        {/*        />*/}
+        {/*      </div>*/}
+        {/*    )}*/}
+        {/*  </div>*/}
       </div>
     </motion.div>
   ) : (
