@@ -35,7 +35,7 @@ const authSlice = createSlice({
         (state, action: PayloadAction<ProcessedResponse<UserData>>) => {
           console.log(action.payload.json);
           state.statusLoading = false;
-          // when id is not present, mean cookies is expired, in response we are getting an empty object.
+          // when id is not present, it means cookies are expired in response; we are getting an empty object.
           if (!action.payload.json.id) {
             state.userData = initialState.userData;
           } else {

@@ -1,5 +1,6 @@
 import {
   createEntityAdapter,
+  createSelector,
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
@@ -31,5 +32,10 @@ export const {
   selectById: selectSpaceById,
   selectIds: selectSpaceIds,
 } = spacesAdapter.getSelectors((state: RootState) => state.space);
+
+export const selectSpaceBySpaceName = createSelector(
+  [selectAllSpaces, (_state: RootState, spaceName) => spaceName],
+  (spaces, spaceName) => spaces.find((space) => space.spaceName === spaceName),
+);
 
 export default spaceSlice.reducer;

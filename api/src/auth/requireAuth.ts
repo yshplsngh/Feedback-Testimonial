@@ -4,6 +4,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated() && req.user && req.user.id) {
     return next();
   }
-  res.status(401);
-  return res.json({ error: 'Unauthorized', message: 'Unauthorized' });
+  return res
+    .status(401)
+    .json({ error: 'Unauthorized', message: 'Unauthorized' });
 };

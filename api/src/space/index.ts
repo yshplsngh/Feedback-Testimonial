@@ -30,6 +30,7 @@ export default function (app: Express) {
     },
   );
 
+  // using in public facing endpoint, so no protection
   app.get(
     '/api/space/spaceInfo/:spaceName',
     rateLimitMiddleware,

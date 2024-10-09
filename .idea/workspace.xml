@@ -7,16 +7,13 @@
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/feedback/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/feedback/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/space/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/auth/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/authSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/feedback/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/spaceApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/spaceSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +142,7 @@
       <workItem from="1728105426028" duration="15258000" />
       <workItem from="1728194520129" duration="117000" />
       <workItem from="1728262056256" duration="36621000" />
-      <workItem from="1728401701005" duration="9429000" />
+      <workItem from="1728401701005" duration="19038000" />
     </task>
     <servers />
   </component>

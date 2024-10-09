@@ -31,7 +31,10 @@ const Feedback = () => {
 
   useEffect(() => {
     async function fetchFeedbackFormInfo() {
-      if (spaceName === undefined) return;
+      if (spaceName === undefined) {
+        setLoading(false);
+        return;
+      }
 
       setLoading(true);
       try {

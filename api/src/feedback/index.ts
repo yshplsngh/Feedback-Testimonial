@@ -2,14 +2,14 @@ import { Express, Response, Request, NextFunction } from 'express';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import { FeedbackSchema } from './types.ts';
-import requireAuth from '../auth/requireAuth.ts';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
+import requireAuth from '../auth/requireAuth.ts';
 
 export default function (app: Express) {
+  //collect feedback from public facing endpoint, so no protection
   app.post(
     '/api/feedback/submitFeedback',
     rateLimitMiddleware,
-    requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = FeedbackSchema.safeParse(req.body);
       if (!parsedResult.success) {
@@ -40,8 +40,10 @@ export default function (app: Express) {
 
   app.get(
     '/api/feedback/getFeedbacks/:spaceName',
+    requireAuth,
     rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
+      console.log(req.user);
       const spaceName = req.params.spaceName;
       if (!spaceName) {
         return next(new createError('spaceName is not defined in url', 402));
@@ -49,6 +51,7 @@ export default function (app: Express) {
       const spaceExist = await prisma.space.findUnique({
         where: {
           spaceName: spaceName,
+          userId: req.user!.id,
         },
       });
       if (!spaceExist) {

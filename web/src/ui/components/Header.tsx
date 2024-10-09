@@ -24,9 +24,7 @@ function Header() {
       await dispatch(logoutUser()).unwrap();
       navigate('/login');
     } catch (err) {
-      const errorMessage =
-        (err as FetchResponseError).message ||
-        'An error occurred while sending feedback';
+      const errorMessage = (err as FetchResponseError).message || 'An error';
       toast.error(errorMessage);
     } finally {
       setLoading(false);

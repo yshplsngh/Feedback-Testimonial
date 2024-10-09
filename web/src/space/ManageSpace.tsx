@@ -12,18 +12,22 @@ import {
 import NotFound from '../pages/NotFound';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../app/store';
-import { getFeedbacks } from '../feedback/feedbackSlice';
+import { AppDispatch, RootState } from '../app/store';
+import { getFeedbacks, selectAllFeedbacks } from '../feedback/feedbackSlice';
 import { getUserSpaces } from './spaceApi';
 import { FetchResponseError } from '../lib/manageFetch/api';
-import { selectSpaceIds } from './spaceSlice';
+import { selectSpaceBySpaceName } from './spaceSlice';
 
 const ManageSpace = () => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
-  const spaceIds = useSelector(selectSpaceIds);
+  const feedbacks = useSelector(selectAllFeedbacks);
   const [loading, setLoading] = useState(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
+  // handle carefully, on directly rendering this page space must be undefined.
+  const space = useSelector((state: RootState) =>
+    selectSpaceBySpaceName(state, spaceName),
+  );
 
   useEffect(() => {
     async function fetchData() {
@@ -35,7 +39,8 @@ const ManageSpace = () => {
       setLoading(true);
       try {
         await dispatch(getFeedbacks(spaceName)).unwrap();
-        if (spaceIds.length === 0) {
+
+        if (space === undefined) {
           await dispatch(getUserSpaces()).unwrap();
         }
       } catch (err) {
@@ -47,43 +52,23 @@ const ManageSpace = () => {
         }
       }
     }
+
     fetchData().then(() => setLoading(false));
-  }, [dispatch, navigate, spaceName, spaceIds]);
+  }, [dispatch, navigate, spaceName, space]);
 
-  // useEffect(() => {
-  //   async function fetchFeedbacks() {
-  //     if (spaceName === undefined) return;
-  //     setLoading(true);
-  //     try {
-  //       await dispatch(getFeedbacks(spaceName)).unwrap();
-  //     } catch (err) {
-  //       console.error(err);
-  //       navigate('/error');
-  //     }
-  //   }
-  //   async function fetchSpaces() {
-  //     setLoading(true);
-  //     try {
-  //       await dispatch(getUserSpaces()).unwrap();
-  //     } catch (err) {
-  //       const errorMessage =
-  //         (err as FetchResponseError).message ||
-  //         'An error occurred while fetching spaces';
-  //       toast.error(errorMessage);
-  //     }
-  //   }
-  //   fetchFeedbacks().then(() => {
-  //     if (spaceIds.length === 0){
-  //       fetchSpaces().then(() => setLoading(false));
-  //     }
-  //   }).then(()=> setLoading(false));
-  // }, [dispatch, navigate, spaceName,spaceIds]);
-
-  // console.log(feedbacks);
-
-  if (spaceName === undefined) {
+  if (spaceName === undefined)
     return <NotFound message={'Error: Space Name Is Missing!'} />;
-  }
+  // if(space === undefined) return <NotFound/>
+
+  // if (space) {
+  //   console.log('space fetched boom');
+  //   console.log(space);
+  // }
+  // if (feedbacks) {
+  //   console.log('feedback fetched boom');
+  console.log(feedbacks);
+  // }
+
   return !loading ? (
     <motion.div
       initial={{ opacity: 0 }}
