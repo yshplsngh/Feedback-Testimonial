@@ -7,5 +7,3 @@ export const FeedbackSchema = z.object({
   stars: z.number().min(1).max(5),
   spaceName: z.string(),
 });
-
-export type FeedbackType = z.infer<typeof FeedbackSchema>;

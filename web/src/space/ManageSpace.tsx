@@ -101,8 +101,10 @@ const ManageSpace = () => {
               </Link>
             </div>
           </div>
-          <div className={'flex items-center space-x-5'}>
-            <span className={'flex items-center space-x-1'}>
+          <div
+            className={'flex flex-col items-center md:flex-row md:space-x-5'}
+          >
+            <span className={'flex items-center md:space-x-1'}>
               <MessageSquareText className={'h-4 w-4'} />
               <p>Feedbacks: {space?.feedbackCount}</p>
             </span>
@@ -117,16 +119,14 @@ const ManageSpace = () => {
           </div>
         </div>
         <hr className={'border-accent'} />
-
-        <div>
+        <div
+          className={
+            'mx-2 mt-10 grid grid-cols-1 gap-x-4 gap-y-6 xl:grid-cols-2'
+          }
+        >
           {feedbacks && feedbacks.length > 0 ? (
             feedbacks.map((feedback) => (
-              <FeedbackCard
-                key={feedback.id}
-                feedbackId={feedback.id}
-                fspaceId={feedback.spaceId}
-                spaceId={space?.id}
-              />
+              <FeedbackCard key={feedback.id} feedbackId={feedback.id} />
             ))
           ) : (
             <div className="mx-auto flex flex-col justify-center gap-y-3">
@@ -134,30 +134,6 @@ const ManageSpace = () => {
             </div>
           )}
         </div>
-
-        {/*  <div className="mt-10 flex flex-wrap justify-evenly gap-y-5">*/}
-        {/*    {spaces && spaces.length > 0 ? (*/}
-        {/*      spaces.map((data, index) => (*/}
-        {/*        <DashboardCard*/}
-        {/*          key={index}*/}
-        {/*          spaceName={data.spaceName}*/}
-        {/*          feedbackCount={data.feedbackCount}*/}
-        {/*        />*/}
-        {/*      ))*/}
-        {/*    ) : (*/}
-        {/*      <div className="mx-auto flex flex-col justify-center gap-y-3">*/}
-        {/*        <div className="mt-3 w-full text-center">No projects found!</div>*/}
-        {/*        <Button*/}
-        {/*          type={'button'}*/}
-        {/*          variant={'secondary'}*/}
-        {/*          text={`create Project`}*/}
-        {/*          icon={<SquarePlus className={'h-4 w-4'} />}*/}
-        {/*          onClick={() => nextStep()}*/}
-        {/*          className={'w-20'}*/}
-        {/*        />*/}
-        {/*      </div>*/}
-        {/*    )}*/}
-        {/*  </div>*/}
       </div>
     </motion.div>
   ) : (

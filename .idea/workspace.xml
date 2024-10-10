@@ -6,14 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/auth/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/authSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/lib/manageFetch/requestParams.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/feedback/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/feedback/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/components/Stars.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/components/Stars.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tsconfig.app.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/web/tsconfig.app.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/FeedbackCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/FeedbackCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yshpl/wosc/backpack&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yshpl/wd/Testimonial/web/src/space/component&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -72,6 +70,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/space/component" />
       <recent name="$PROJECT_DIR$/test-site" />
       <recent name="$PROJECT_DIR$/warehouse" />
       <recent name="$PROJECT_DIR$/web/src/assets" />
@@ -142,7 +141,9 @@
       <workItem from="1728105426028" duration="15258000" />
       <workItem from="1728194520129" duration="117000" />
       <workItem from="1728262056256" duration="36621000" />
-      <workItem from="1728401701005" duration="30085000" />
+      <workItem from="1728401701005" duration="40051000" />
+      <workItem from="1728553075705" duration="18000" />
+      <workItem from="1728575216222" duration="9316000" />
     </task>
     <servers />
   </component>
