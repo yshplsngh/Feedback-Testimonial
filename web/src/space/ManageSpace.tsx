@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../ui/components/Button';
 import { SquarePen, MessageSquareText } from 'lucide-react';
@@ -23,12 +23,10 @@ import { selectSpaceBySpaceName } from './spaceSlice';
 import FeedbackCard from './component/FeedbackCard';
 
 const ManageSpace = () => {
-  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
-  // handle carefully, on directly rendering this page space must be undefined.
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
   );
@@ -44,35 +42,32 @@ const ManageSpace = () => {
       }
       setLoading(true);
       try {
-        await dispatch(getFeedbacks(spaceName)).unwrap();
         if (space === undefined) {
           await dispatch(getUserSpaces()).unwrap();
         }
+        await dispatch(getFeedbacks(spaceName)).unwrap();
       } catch (err) {
-        console.error(err);
-        if (err instanceof FetchResponseError) {
-          toast.error(err.message || 'An error occurred while fetching data');
-        } else {
-          navigate('/error');
-        }
+        const errorMessage =
+          (err as FetchResponseError).message ||
+          'An error occurred while fetching data';
+        toast.error(errorMessage);
       }
     }
 
     fetchData().then(() => setLoading(false));
-  }, [dispatch, navigate, spaceName, space]);
+  }, [dispatch, spaceName, space]);
 
-  if (spaceName === undefined)
-    return <NotFound message={'Error: Space Name Is Missing!'} />;
-  if (space === undefined) return <NotFound />;
-
-  // if (space) {
-  //   console.log('space fetched boom');
-  //   console.log(space);
-  // }
-  // if (feedbacks) {
-  //   console.log('feedback fetched boom');
-  // console.log(feedbacks);
-  // }
+  if (!loading && (space === undefined || spaceName === undefined)) {
+    return (
+      <NotFound
+        message={
+          spaceName === undefined
+            ? 'Error: Space Name Is Missing!'
+            : 'Error: Space Not Found'
+        }
+      />
+    );
+  }
 
   return !loading ? (
     <motion.div
@@ -94,7 +89,7 @@ const ManageSpace = () => {
               </AvatarFallback>
             </Avatar>
             <div>
-              <span className="flex items-center text-xl font-semibold md:text-2xl">
+              <span className="flex items-center text-xl font-semibold capitalize md:text-2xl">
                 {spaceName}
               </span>
               <Link

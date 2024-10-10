@@ -56,7 +56,6 @@ export function errorHandling(
   next: NextFunction,
 ) {
   const { message, code, ...rest } = handleError({ _error: error });
-  res.status(code);
-  res.json({ message: message, ...rest });
+  res.status(code).json({ message: message, ...rest });
   next();
 }

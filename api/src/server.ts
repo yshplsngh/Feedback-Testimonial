@@ -42,7 +42,7 @@ export const createServer = (): Express => {
   process.on('uncaughtException', uncaughtError);
 
   app.all('/ping', (_req: Request, res: Response) => {
-    res.status(200).json({
+    return res.status(200).json({
       RunTime: process.uptime(),
     });
   });

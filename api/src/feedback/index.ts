@@ -62,7 +62,7 @@ export default function (app: Express) {
           spaceId: spaceExist.id,
         },
       });
-      res.status(200).send(feedbackData);
+      return res.status(200).send(feedbackData);
     },
   );
 }

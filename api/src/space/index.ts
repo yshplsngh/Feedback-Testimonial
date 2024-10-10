@@ -48,7 +48,7 @@ export default function (app: Express) {
       if (!data) {
         return next(new createError('Space does not exist', 404));
       }
-      res.status(200).json(data);
+      return res.status(200).json(data);
     },
   );
 

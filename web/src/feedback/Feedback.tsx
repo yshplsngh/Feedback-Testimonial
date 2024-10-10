@@ -54,11 +54,11 @@ const Feedback = () => {
     formState: { errors, isValid },
   } = useForm<FeedbackType>({ resolver: zodResolver(FeedbackSchema) });
 
-  if (spaceName === undefined) {
-    return <NotFound message={'Error: Space Name Is Missing!'} />;
-  }
-
   const onSubmit: SubmitHandler<FeedbackType> = async (data: FeedbackType) => {
+    if (spaceName === undefined) {
+      setLoading(false);
+      return;
+    }
     const feedbackSchemaWithStars: FeedbackTypeWSAS = {
       ...data,
       stars,
@@ -81,6 +81,10 @@ const Feedback = () => {
       }
     }
   };
+
+  if (!loading && spaceName === undefined) {
+    return <NotFound message={'Error: Space Name Is Missing!'} />;
+  }
 
   return !loading ? (
     <motion.div
