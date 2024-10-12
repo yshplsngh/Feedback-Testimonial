@@ -43,7 +43,6 @@ export default function (app: Express) {
     requireAuth,
     rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
-      console.log(req.user);
       const spaceName = req.params.spaceName;
       if (!spaceName) {
         return next(new createError('spaceName is not defined in url', 402));

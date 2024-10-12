@@ -1,9 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../ui/components/Button';
-import { SquarePen, MessageSquareText } from 'lucide-react';
+import {
+  SquarePen,
+  MessageSquareText,
+  SquareArrowOutUpRight,
+  GalleryVerticalEnd,
+  Heart,
+  LucideIcon,
+} from 'lucide-react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Avatar,
   AvatarFallback,
@@ -22,9 +29,11 @@ import { FetchResponseError } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
 import FeedbackCard from './component/FeedbackCard';
 
-const ManageSpace = () => {
+const ManageSpace: React.FC = () => {
+  type TabOption = keyof typeof tabOptions;
   const dispatch: AppDispatch = useDispatch();
-
+  const tabOptions = { All: GalleryVerticalEnd, Favorite: Heart };
+  const [activeTab, setActiveTab] = useState<TabOption>('All');
   const [loading, setLoading] = useState(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
   const space = useSelector((state: RootState) =>
@@ -33,6 +42,17 @@ const ManageSpace = () => {
   const feedbacks = useSelector((state: RootState) =>
     selectFeedbacksBySpaceId(state, space?.id),
   );
+
+  const getFilteredFeedbacks = () => {
+    switch (activeTab) {
+      case 'All':
+        return feedbacks;
+      case 'Favorite':
+        // return feedbacks.filter((feedback) => feedback.favorite);
+        return feedbacks.filter((feedback) => feedback.stars === 5);
+    }
+  };
+  const filteredFeedbacks = getFilteredFeedbacks();
 
   useEffect(() => {
     async function fetchData() {
@@ -76,9 +96,9 @@ const ManageSpace = () => {
       transition={{ duration: 0.3 }}
     >
       <div className="w-full">
-        <div className="flex items-center justify-between px-5 py-4">
+        <div className="flex flex-row items-center justify-between px-2 py-2 md:px-5 md:py-4">
           <div className={'flex items-center space-x-5'}>
-            <Avatar className="h-14 w-14 rounded-md">
+            <Avatar className="h-11 w-11 rounded-md md:h-14 md:w-14">
               <AvatarImage
                 src={`https://ui-avatars.com/api/?name=${spaceName}`}
                 className={'rounded-md'}
@@ -95,16 +115,20 @@ const ManageSpace = () => {
               <Link
                 to={`http://localhost:3000/feedback/${spaceName}`}
                 target={'_blank'}
-                className={'text-[0.8rem] text-gray-300 underline'}
+                className={'feedback-url text-[0.8rem] text-gray-300 underline'}
               >
-                Public URL: http://localhost:3000/feedback/{spaceName}
+                <span className="hidden md:inline">
+                  Public URL: http://localhost:3000/feedback/{spaceName}
+                </span>
+                <span className="flex items-center space-x-1 text-[0.9rem] md:hidden">
+                  <strong>Go to Feedback Page</strong>{' '}
+                  <SquareArrowOutUpRight className={'h-3 w-3'} />
+                </span>
               </Link>
             </div>
           </div>
-          <div
-            className={'flex flex-col items-center md:flex-row md:space-x-5'}
-          >
-            <span className={'flex items-center md:space-x-1'}>
+          <div className={'flex flex-row items-center md:gap-x-5 md:gap-y-3'}>
+            <span className={'hidden items-center space-x-1 md:flex'}>
               <MessageSquareText className={'h-4 w-4'} />
               <p>Feedbacks: {space?.feedbackCount}</p>
             </span>
@@ -119,20 +143,41 @@ const ManageSpace = () => {
           </div>
         </div>
         <hr className={'border-accent'} />
-        <div
-          className={
-            'mx-2 mt-10 grid grid-cols-1 gap-x-4 gap-y-6 xl:grid-cols-2'
-          }
-        >
-          {feedbacks && feedbacks.length > 0 ? (
-            feedbacks.map((feedback) => (
-              <FeedbackCard key={feedback.id} feedbackId={feedback.id} />
-            ))
-          ) : (
-            <div className="mx-auto flex flex-col justify-center gap-y-3">
-              <div className="mt-3 w-full text-center">No Feedback found!</div>
+        <div className={'mt-10 flex w-full flex-col gap-y-10 px-2 md:flex-row'}>
+          <div className={'sidebar flex w-full flex-col gap-y-2 md:w-1/5'}>
+            <span className={'text-lg font-semibold text-gray-300'}>Inbox</span>
+            <div className={'pl1 flex flex-col gap-y-1'}>
+              {(Object.entries(tabOptions) as [TabOption, LucideIcon][]).map(
+                ([tabOption, Icon]) => (
+                  <Button
+                    key={tabOption}
+                    type={'button'}
+                    variant={'outlineB'}
+                    text={tabOption}
+                    icon={<Icon className={'h-5 w-5'} />}
+                    className={`text-md h-10 justify-start border-none ${activeTab === tabOption ? 'bg-accent' : 'bg-transparent'}`}
+                    onClick={() => setActiveTab(tabOption)}
+                  />
+                ),
+              )}
             </div>
-          )}
+          </div>
+          <div className={'feedbacks grid w-full grid-cols-1 gap-y-5 md:w-4/5'}>
+            {filteredFeedbacks && filteredFeedbacks.length > 0 ? (
+              filteredFeedbacks.map((filteredFeedback) => (
+                <FeedbackCard
+                  key={filteredFeedback.id}
+                  feedbackId={filteredFeedback.id}
+                />
+              ))
+            ) : (
+              <div className="mx-auto flex flex-col justify-center gap-y-3">
+                <div className="mt-3 w-full text-center">
+                  No Feedback found!
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { logoutUser } from '../../auth/authApi';
 import { FetchResponseError } from '../../lib/manageFetch/api';
 import { toast } from 'sonner';
+import GithubLogo from '../logo/GithubLogo';
 
 function Header() {
   const dispatch: AppDispatch = useDispatch();
@@ -50,18 +51,32 @@ function Header() {
 
   const loginBtn = (
     <Link to="/login">
-      <Button type={'button'} variant={'outlineB'} text={'Login'} />
+      <Button type={'button'} variant={'outlineB'} text={'Sign in'} />
+    </Link>
+  );
+
+  const githubBtn = (
+    <Link
+      to={'https://github.com/yshplsngh/Feedback-Testimonial'}
+      target={'_blank'}
+    >
+      <Button
+        type={'button'}
+        variant={'secondary'}
+        text={'Github'}
+        icon={<GithubLogo />}
+      />
     </Link>
   );
 
   return (
     <div
       className={
-        'sticky top-0 z-50 mx-auto max-w-[100rem] items-center justify-between border-b-2 border-zinc-800 bg-zinc-900 bg-opacity-30 bg-clip-padding px-1 py-1 backdrop-blur-sm backdrop-filter md:px-10'
+        'sticky top-0 z-50 mx-auto max-w-[100rem] items-center justify-between border-b-2 border-zinc-800 bg-zinc-900 bg-opacity-30 bg-clip-padding backdrop-blur-sm backdrop-filter md:px-10'
       }
     >
-      <div className="flex items-center justify-between px-9 py-2">
-        <div className="px-4 py-2 text-xl md:text-3xl">
+      <div className="flex items-center justify-between px-5 py-2 md:px-9 md:py-5">
+        <div className="text-xl md:text-3xl">
           <Link to={'/'} className="flex items-center space-x-1">
             <span className="text-orange font-bold">Chuck</span>
             <Activity className="h-6 w-6" />
@@ -74,7 +89,10 @@ function Header() {
             {statusLoading ? (
               <LoadingSpinner />
             ) : !user.id ? (
-              loginBtn
+              <>
+                {loginBtn}
+                {githubBtn}
+              </>
             ) : (
               <>
                 {dashboardBtn}

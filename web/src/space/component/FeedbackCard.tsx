@@ -13,7 +13,7 @@ const FeedbackCard = ({ feedbackId }: { feedbackId: number }) => {
     selectFeedbackById(state, feedbackId),
   );
   return (
-    <div className="border-accent mx-auto flex w-full max-w-[40rem] flex-col space-y-4 overflow-hidden rounded-md border-[2px] px-4 py-4 transition-all ease-in-out">
+    <div className="border-accent mx-auto flex w-full max-w-[46rem] flex-col space-y-4 overflow-hidden rounded-md border-[2px] px-4 py-4 shadow-xl transition-all ease-in-out">
       <div className={'flex flex-row items-center justify-between gap-y-2'}>
         <div className={'w-fit'}>
           <ShowStars stars={feedback.stars} />
@@ -34,8 +34,8 @@ const FeedbackCard = ({ feedbackId }: { feedbackId: number }) => {
       <hr className={'border-gray-500'} />
       <div className={'flex flex-col text-sm'}>
         <div className={'flex flex-col md:flex-row'}>
-          <div className={'flex w-1/2 gap-x-2 capitalize'}>
-            <span className={'font-semibold'}>Name:</span> {feedback.name}
+          <div className={'flex gap-x-2 capitalize'}>
+            <strong>Name:</strong> {feedback.name}
           </div>
           <div
             className={
@@ -58,7 +58,7 @@ const FeedbackCard = ({ feedbackId }: { feedbackId: number }) => {
           </div>
         </div>
         <span className={'mt-2 flex gap-x-2'}>
-          <span className={'font-semibold'}>Submitted At:</span>{' '}
+          <strong>Submitted At:</strong>
           {format(parseISO(feedback.createdAt), 'MMM d, yyyy, h:mm:ss a')}
         </span>
       </div>

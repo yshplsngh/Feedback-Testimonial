@@ -39,8 +39,8 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
       transition={{ duration: 0.2 }}
     >
       <div className="w-full">
-        <div className="flex items-center justify-between px-5 py-6">
-          <h1 className="flex items-center text-xl font-semibold md:text-3xl">
+        <div className="flex flex-row items-center justify-between px-2 py-3 md:px-5 md:py-6">
+          <h1 className="flex items-center text-2xl font-semibold md:text-3xl">
             Dashboard <LayoutDashboard className={'ml-3 h-6 w-6'} />
           </h1>
           <Button
