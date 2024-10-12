@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion';
 
-export default function LoLoadingSpinner() {
+export default function LoLoadingSpinner({
+  className,
+}: {
+  className?: string;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
+      className={className}
     >
       <div className="z-40 flex h-60 items-center justify-center">
         <div className={`loading-spinner relative h-10 w-10`}>

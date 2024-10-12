@@ -46,6 +46,7 @@ model Feedback {
   name             String
   email            String
   stars            Int
+  favorite         Boolean  @default(false)
   customerFeedback String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

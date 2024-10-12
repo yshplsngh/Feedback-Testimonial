@@ -23,7 +23,7 @@ const DashboardCard = ({ spaceName, feedbackCount }: PropsType) => {
           type={'button'}
           variant={'secondary'}
           className={
-            'w-fit rounded-full bg-transparent p-1 hover:bg-transparent'
+            'w-fit rounded-full bg-transparent p-0 hover:bg-transparent md:p-0'
           }
           icon={<List className={'h-4 w-4 text-white hover:text-gray-300'} />}
           onClick={() => toast.info('feature not implemented yet!')}

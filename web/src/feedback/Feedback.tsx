@@ -22,8 +22,8 @@ import NotFound from '../pages/NotFound';
 
 const Feedback = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [btnLoading, setBtnLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [btnLoading, setBtnLoading] = useState<boolean>(false);
   const { question, customMessage } = useSelector(getExtraFormInfo);
   const { spaceName } = useParams<{ spaceName?: string }>();
   const [stars, setStars] = useState<number>(3);

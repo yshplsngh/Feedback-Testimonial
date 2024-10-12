@@ -6,16 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/prisma/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/feedback/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/feedback/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/utils/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/utils/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/components/Stars.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/components/Stars.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/feedbackSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/hooks/useSteps.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/hooks/useSteps.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/component/FeedbackCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/FeedbackCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tsconfig.app.tsbuildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tsconfig.node.tsbuildinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/LoLoadingSpinner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/LoLoadingSpinner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/tsconfig.node.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +155,7 @@
       <workItem from="1728553075705" duration="18000" />
       <workItem from="1728575216222" duration="9549000" />
       <workItem from="1728584821640" duration="371000" />
-      <workItem from="1728694430276" duration="19094000" />
+      <workItem from="1728694430276" duration="31321000" />
     </task>
     <servers />
   </component>

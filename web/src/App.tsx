@@ -19,7 +19,7 @@ const ManageSpace = lazy(() => import('./space/ManageSpace'));
 
 export default function App(): ReactElement {
   return (
-    <Suspense fallback={<LoLoadingSpinner />}>
+    <Suspense fallback={<LoLoadingSpinner className={'mt-20'} />}>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

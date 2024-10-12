@@ -40,7 +40,7 @@ interface StarsPropsType {
 }
 
 let Stars: React.FC<StarsPropsType> = ({ stars, setStars }: StarsPropsType) => {
-  const [hoverPosition, setHoverPosition] = useState(0);
+  const [hoverPosition, setHoverPosition] = useState<number>(0);
 
   return Array.from({ length: 5 }).map((_, index) => (
     <div

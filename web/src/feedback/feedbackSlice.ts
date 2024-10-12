@@ -33,6 +33,14 @@ export const getFeedbacks = createAsyncThunk(
   },
 );
 
+export const setFavoriteFeedback = createAsyncThunk(
+  'feedback/setFavoriteFeedback',
+  async (feedbackId: number) => {
+    const url = `/api/feedback/setFavoriteFeedback/${feedbackId}`;
+    return await api.post<BFeedbackTypeWSAS>(url);
+  },
+);
+
 interface ExtraFormInfo {
   customMessage: null | string;
   question: null | string;
@@ -52,7 +60,20 @@ const initialState = feedbackAdapter.getInitialState<{
 const feedbackSlice = createSlice({
   name: 'feedback',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleFavorite: (
+      state,
+      action: { payload: { feedbackId: number; explicitValue: boolean } },
+    ) => {
+      const feedbackExist = state.entities[action.payload.feedbackId];
+      if (feedbackExist) {
+        feedbackAdapter.updateOne(state, {
+          id: feedbackExist.id,
+          changes: { favorite: action.payload.explicitValue },
+        });
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(
@@ -71,6 +92,18 @@ const feedbackSlice = createSlice({
           action: PayloadAction<ProcessedResponse<BFeedbackTypeWSAS[]>>,
         ) => {
           feedbackAdapter.upsertMany(state, action.payload.json);
+        },
+      )
+      .addCase(
+        setFavoriteFeedback.fulfilled,
+        (
+          state,
+          action: PayloadAction<ProcessedResponse<BFeedbackTypeWSAS>>,
+        ) => {
+          feedbackAdapter.updateOne(state, {
+            id: action.payload.json.id,
+            changes: action.payload.json,
+          });
         },
       );
   },
@@ -91,4 +124,5 @@ export const selectFeedbacksBySpaceId = createSelector(
 export const getExtraFormInfo = (state: RootState) =>
   state.feedback.extraFormInfo;
 
+export const { toggleFavorite } = feedbackSlice.actions;
 export default feedbackSlice.reducer;

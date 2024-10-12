@@ -45,7 +45,7 @@ export default function (app: Express) {
     async (req: Request, res: Response, next: NextFunction) => {
       const spaceName = req.params.spaceName;
       if (!spaceName) {
-        return next(new createError('spaceName is not defined in url', 402));
+        return next(new createError('spaceName is not defined in url', 406));
       }
       const spaceExist = await prisma.space.findUnique({
         where: {
@@ -62,6 +62,34 @@ export default function (app: Express) {
         },
       });
       return res.status(200).send(feedbackData);
+    },
+  );
+
+  app.post(
+    '/api/feedback/setFavoriteFeedback/:feedbackId',
+    requireAuth,
+    async (req: Request, res: Response, next: NextFunction) => {
+      const feedbackId = req.params.feedbackId;
+      if (!feedbackId) {
+        return next(new createError('Feedback Id is not defined in url', 406));
+      }
+      const feedbackExist = await prisma.feedback.findUnique({
+        where: {
+          id: +feedbackId,
+        },
+      });
+      if (!feedbackExist) {
+        return next(new createError('Feedback does not exist', 404));
+      }
+      const updatedFeedback = await prisma.feedback.update({
+        where: {
+          id: +feedbackId,
+        },
+        data: {
+          favorite: !feedbackExist.favorite,
+        },
+      });
+      return res.status(200).json(updatedFeedback);
     },
   );
 }

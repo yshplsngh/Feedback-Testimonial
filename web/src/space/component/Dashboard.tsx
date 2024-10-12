@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
   const dispatch: AppDispatch = useDispatch();
   const spaces = useSelector(selectAllSpaces);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchSpaces() {

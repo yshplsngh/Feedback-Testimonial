@@ -20,7 +20,7 @@ const CreateSpace = ({
   startStep: () => void;
 }) => {
   const dispatch: AppDispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,

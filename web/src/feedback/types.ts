@@ -23,6 +23,7 @@ export interface BFeedbackTypeWSAS {
   customerFeedback: string;
   stars: number;
   spaceId: number;
+  favorite: boolean;
   createdAt: string;
   updatedAt: string;
 }

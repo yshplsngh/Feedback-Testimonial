@@ -34,7 +34,7 @@ const ManageSpace: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const tabOptions = { All: GalleryVerticalEnd, Favorite: Heart };
   const [activeTab, setActiveTab] = useState<TabOption>('All');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
@@ -42,14 +42,12 @@ const ManageSpace: React.FC = () => {
   const feedbacks = useSelector((state: RootState) =>
     selectFeedbacksBySpaceId(state, space?.id),
   );
-
   const getFilteredFeedbacks = () => {
     switch (activeTab) {
       case 'All':
         return feedbacks;
       case 'Favorite':
-        // return feedbacks.filter((feedback) => feedback.favorite);
-        return feedbacks.filter((feedback) => feedback.stars === 5);
+        return feedbacks.filter((feedback) => feedback.favorite);
     }
   };
   const filteredFeedbacks = getFilteredFeedbacks();
@@ -117,8 +115,9 @@ const ManageSpace: React.FC = () => {
                 target={'_blank'}
                 className={'feedback-url text-[0.8rem] text-gray-300 underline'}
               >
-                <span className="hidden md:inline">
-                  Public URL: http://localhost:3000/feedback/{spaceName}
+                <span className="hidden items-center space-x-1 md:flex">
+                  <p>Public URL: http://localhost:3000/feedback/{spaceName}</p>
+                  <SquareArrowOutUpRight className={'h-3 w-3'} />
                 </span>
                 <span className="flex items-center space-x-1 text-[0.9rem] md:hidden">
                   <strong>Go to Feedback Page</strong>{' '}
@@ -143,8 +142,12 @@ const ManageSpace: React.FC = () => {
           </div>
         </div>
         <hr className={'border-accent'} />
-        <div className={'mt-10 flex w-full flex-col gap-y-10 px-2 md:flex-row'}>
-          <div className={'sidebar flex w-full flex-col gap-y-2 md:w-1/5'}>
+        <div
+          className={
+            'mt-10 flex w-full flex-col gap-x-3 gap-y-10 px-2 md:flex-row md:px-8'
+          }
+        >
+          <div className={'sidebar flex w-full flex-col gap-y-2 md:w-3/12'}>
             <span className={'text-lg font-semibold text-gray-300'}>Inbox</span>
             <div className={'pl1 flex flex-col gap-y-1'}>
               {(Object.entries(tabOptions) as [TabOption, LucideIcon][]).map(
@@ -162,7 +165,9 @@ const ManageSpace: React.FC = () => {
               )}
             </div>
           </div>
-          <div className={'feedbacks grid w-full grid-cols-1 gap-y-5 md:w-4/5'}>
+          <div
+            className={'feedbacks grid w-full grid-cols-1 gap-y-5 md:w-9/12'}
+          >
             {filteredFeedbacks && filteredFeedbacks.length > 0 ? (
               filteredFeedbacks.map((filteredFeedback) => (
                 <FeedbackCard
