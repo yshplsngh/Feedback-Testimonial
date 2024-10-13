@@ -36,7 +36,7 @@ const DashboardCard = ({ spaceName, feedbackCount }: PropsType) => {
       <Link
         to={feedbackUrl}
         target={'_blank'}
-        className="cursor-pointer text-sm font-light text-blue-500 hover:underline"
+        className="w-fit cursor-pointer text-sm font-light text-blue-500 hover:underline"
       >
         {feedbackUrl.length > 45
           ? `${feedbackUrl.substring(0, 45)}...`

@@ -10,7 +10,7 @@ import { Heart, SquareArrowOutUpRight } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 import ShowStars from './ShowStars';
-import HeartLogo from '../../ui/logo/Heart';
+import HeartLogo from '../../ui/logo/HeartLogo';
 import { useState } from 'react';
 import { FetchResponseError } from '../../lib/manageFetch/api';
 import { toast } from 'sonner';

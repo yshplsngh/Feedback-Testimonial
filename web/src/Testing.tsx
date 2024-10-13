@@ -1,8 +1,9 @@
 const Testing = () => {
   return (
-    <div>
-      <iframe src={'embed.localhost:4000/space'} />
-    </div>
+    // <div>
+    //   <iframe src={'embed.localhost:4000/space'} />
+    // </div>
+    <div>thank you</div>
   );
 };
 

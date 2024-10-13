@@ -29,10 +29,11 @@ const CreateSpace = ({
     formState: { errors, isValid },
   } = useForm<NewSpaceType>({ resolver: zodResolver(NewSpaceScheme) });
 
-  const watchedSpaceName = watch('spaceName');
-  const publicSpaceName = watchedSpaceName
-    ? NewSpaceScheme.shape.spaceName.parse(watchedSpaceName)
-    : '';
+  const getParsedValue = <T extends keyof NewSpaceType>(field: T) => {
+    const watchField = watch(field);
+    return watchField ? NewSpaceScheme.shape[field].parse(watchField) : '';
+  };
+  const publicSpaceName = getParsedValue('spaceName');
 
   const onSubmit: SubmitHandler<NewSpaceType> = async (data: NewSpaceType) => {
     if (isValid) {
@@ -62,7 +63,7 @@ const CreateSpace = ({
       }}
     >
       <section className="flex items-center justify-center transition-all">
-        <div className="relative mx-auto my-10 w-full max-w-[65rem] rounded-lg bg-white px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
+        <div className="relative mx-auto my-10 w-full max-w-[40rem] rounded-lg bg-white px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
           <span className={'absolute left-2 top-2'}>
             <Button
               type={'button'}
@@ -72,34 +73,51 @@ const CreateSpace = ({
               onClick={() => prevStep()}
             />
           </span>
-          <div className={'w-full border-2 border-red-500 md:w-2/5'}>
-            live preview
-          </div>
-          <div className={'w-full border-2 border-red-500 md:w-3/5'}>
+          {/*<div className={'w-full border-2 border-red-500 md:w-5/12 space-y-5 p-5'}>*/}
+          {/*  <p className={'text-sm text-gray-700'}>Write text feedback to</p>*/}
+          {/*  <span*/}
+          {/*    className={'text-orange text-3xl font-bold capitalize'}>{publicSpaceName.length ? publicSpaceName : 'space-name'}</span>*/}
+          {/*  <div className={'text-lg text-black'}>{publicCustomMessage.length ? publicCustomMessage : 'We value your feedback! Please take a moment to share your thoughts about using Testimonial. Your insights help us improve and assist other developers.'}</div>*/}
+          {/*  <div className={'flex text-black'}>*/}
+          {/*    Q:&nbsp;<p className={'text-gray-600'}>{publicQuestion.length ? publicQuestion : 'How would you rate your overall experience with Vercel?'}</p>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
+          <div className={'w-full'}>
             <h1 className="text:xl mb-14 text-center font-bold md:text-2xl">
               Create New Space
             </h1>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-y-10"
+            >
               <Input
                 inputName={'spaceName'}
                 inputError={errors.spaceName}
                 register={register('spaceName')}
                 publicSpaceName={publicSpaceName}
+                defaultValue={'Space Name'}
               />
               <Input
                 inputName={'websiteUrl'}
                 inputError={errors.websiteUrl}
                 register={register('websiteUrl')}
+                defaultValue={'https://localhost:3000'}
               />
               <Input
                 inputName={'customMessage'}
                 inputError={errors.customMessage}
                 register={register('customMessage')}
+                defaultValue={
+                  'We value your feedback! Please take a moment to share your thoughts about using Testimonial.'
+                }
               />
               <Input
                 inputName={'question'}
                 inputError={errors.question}
                 register={register('question')}
+                defaultValue={
+                  'How would you rate your overall experience with Testimonial?'
+                }
               />
 
               <Button
@@ -107,7 +125,7 @@ const CreateSpace = ({
                 text={'Create New Space'}
                 icon={<SquarePlus className={'h-4 w-4'} />}
                 variant={'outlineB'}
-                className={'h-9 text-lg'}
+                className={'text-md mt-5 h-9'}
                 loading={loading}
               />
             </form>

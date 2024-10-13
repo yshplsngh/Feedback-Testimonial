@@ -20,13 +20,13 @@ import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import NotFound from '../pages/NotFound';
 
-const Feedback = () => {
+const Feedback = ({ onNext }: { onNext: () => void }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [btnLoading, setBtnLoading] = useState<boolean>(false);
   const { question, customMessage } = useSelector(getExtraFormInfo);
   const { spaceName } = useParams<{ spaceName?: string }>();
-  const [stars, setStars] = useState<number>(3);
+  const [stars, setStars] = useState<number>(2);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -68,10 +68,11 @@ const Feedback = () => {
       setBtnLoading(true);
       try {
         await dispatch(submitFeedback(feedbackSchemaWithStars)).unwrap();
-        toast.success('Thank you for giving feedback');
         reset();
         setStars(3);
+        onNext();
       } catch (err) {
+        console.log(err);
         const errorMessage =
           (err as FetchResponseError).message ||
           'An error occurred while sending feedback';
@@ -96,13 +97,17 @@ const Feedback = () => {
       }}
     >
       <section className="flex items-center justify-center text-black transition-all">
-        <main className="mx-auto my-10 w-full max-w-2xl space-y-6 rounded-lg bg-white px-12 py-12">
-          <p className={'text-sm text-gray-700'}>Write text feedback to</p>
-          <span className={'text-orange text-4xl font-bold'}>{spaceName}</span>
-
-          <div className={'text-lg text-black'}>{customMessage}</div>
-          <div className={'flex text-black'}>
-            Q:&nbsp;<p className={'text-gray-600'}>{question}</p>
+        <main className="mx-auto my-10 w-full max-w-2xl space-y-5 rounded-lg bg-white px-12 py-12">
+          <span
+            className={'text-orange text-lg font-bold capitalize underline'}
+          >
+            Write text testimonial to {spaceName}
+          </span>
+          <div className={'flex flex-col gap-y-2 text-gray-500'}>
+            <div className={'text-black'}>{customMessage}</div>
+            <div className={'flex text-black'}>
+              Q:&nbsp;<p className={'text-gray-600'}>{question}</p>
+            </div>
           </div>
 
           <Stars stars={stars} setStars={setStars} />
