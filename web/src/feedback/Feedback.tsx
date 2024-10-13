@@ -10,15 +10,12 @@ import Stars from './components/Stars';
 import { useEffect, useState } from 'react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getExtraFormInfo,
-  getFeedbackFormInfo,
-  submitFeedback,
-} from './feedbackSlice';
+import { getExtraFormInfo } from './feedbackSlice';
 import { AppDispatch } from '../app/store';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import NotFound from '../pages/NotFound';
+import { getFeedbackFormInfo, submitFeedback } from './feedbackApi';
 
 const Feedback = ({ onNext }: { onNext: () => void }) => {
   const navigate = useNavigate();
