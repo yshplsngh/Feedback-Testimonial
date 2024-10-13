@@ -1,5 +1,5 @@
 import { useSteps } from '../hooks/useSteps';
-import Feedback from './Feedback';
+import Feedback from './components/Feedback';
 import ThankYouPage from './components/ThankYouPage';
 import { toast } from 'sonner';
 

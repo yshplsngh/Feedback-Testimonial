@@ -4,7 +4,7 @@ const PrivacyPolicy = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="mx-auto max-w-4xl p-5 text-white">
         <h1 className="mb-6 text-center text-3xl font-bold">Privacy Policy</h1>

@@ -20,14 +20,12 @@ import NotFound from '../pages/NotFound';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
-import {
-  getFeedbacks,
-  selectFeedbacksBySpaceId,
-} from '../feedback/feedbackSlice';
+import { selectFeedbacksBySpaceId } from '../feedback/feedbackSlice';
 import { getUserSpaces } from './spaceApi';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
 import FeedbackCard from './component/FeedbackCard';
+import { getFeedbacks } from '../feedback/feedbackApi';
 
 const ManageSpace: React.FC = () => {
   type TabOption = keyof typeof tabOptions;
@@ -91,7 +89,7 @@ const ManageSpace: React.FC = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="w-full">
         <div className="flex flex-row items-center justify-between px-2 py-2 md:px-5 md:py-4">

@@ -6,8 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/auth/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/Feedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/components/Feedback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/ManageFeedback.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/ManageFeedback.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/feedback/components/ThankYouPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/components/ThankYouPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/NotFound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pages/NotFound.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/pages/PrivacyPolicy.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pages/PrivacyPolicy.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/component/FeedbackCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/FeedbackCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/logo/Heart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/logo/HeartLogo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/LoLoadingSpinner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/LoLoadingSpinner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,24 +59,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yshpl/wd/Testimonial/web/src/space/component&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/yshpl/wd/Testimonial/web/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/yshpl/wd/Testimonial/web/src/space/component",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
+    "ts.external.directory.path": "/home/yshpl/wd/Testimonial/web/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/web/src/space/component" />
@@ -72,11 +86,11 @@
       <recent name="$PROJECT_DIR$/web/src/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/src/feedback/components" />
       <recent name="$PROJECT_DIR$/web/src/space/component" />
       <recent name="$PROJECT_DIR$/web/src/dashboard" />
       <recent name="$PROJECT_DIR$/web/src/users" />
       <recent name="$PROJECT_DIR$/web/src/ui/components" />
-      <recent name="$PROJECT_DIR$/web/src/ui/logo" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -143,6 +157,8 @@
       <workItem from="1728584821640" duration="371000" />
       <workItem from="1728694430276" duration="31400000" />
       <workItem from="1728752148630" duration="62000" />
+      <workItem from="1728780495105" duration="11096000" />
+      <workItem from="1728824599521" duration="3724000" />
     </task>
     <servers />
   </component>

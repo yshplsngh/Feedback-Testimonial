@@ -6,7 +6,7 @@ const NotFound = ({ message }: { message?: string }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="grid min-h-[80vh] place-content-center px-4">
         <h1 className="tracking-widest text-slate-300">

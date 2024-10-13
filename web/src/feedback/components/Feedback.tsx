@@ -1,21 +1,21 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
-import Input from '../ui/components/Input';
-import Button from '../ui/components/Button';
+import Input from '../../ui/components/Input';
+import Button from '../../ui/components/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FeedbackSchema, FeedbackType, FeedbackTypeWSAS } from './types';
-import Stars from './components/Stars';
+import { FeedbackSchema, FeedbackType, FeedbackTypeWSAS } from '../types';
+import Stars from './Stars';
 import { useEffect, useState } from 'react';
-import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
+import LoLoadingSpinner from '../../ui/components/LoLoadingSpinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { getExtraFormInfo } from './feedbackSlice';
-import { AppDispatch } from '../app/store';
+import { getExtraFormInfo } from '../feedbackSlice';
+import { AppDispatch } from '../../app/store';
 import { toast } from 'sonner';
-import { FetchResponseError } from '../lib/manageFetch/api';
-import NotFound from '../pages/NotFound';
-import { getFeedbackFormInfo, submitFeedback } from './feedbackApi';
+import { FetchResponseError } from '../../lib/manageFetch/api';
+import NotFound from '../../pages/NotFound';
+import { getFeedbackFormInfo, submitFeedback } from '../feedbackApi';
 
 const Feedback = ({ onNext }: { onNext: () => void }) => {
   const navigate = useNavigate();
@@ -86,19 +86,16 @@ const Feedback = ({ onNext }: { onNext: () => void }) => {
 
   return !loading ? (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ scale: 1, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
         duration: 0.5,
-        type: 'spring',
       }}
     >
       <section className="flex items-center justify-center text-black transition-all">
-        <main className="mx-auto my-10 w-full max-w-2xl space-y-5 rounded-lg bg-white px-12 py-12">
-          <span
-            className={'text-orange text-lg font-bold capitalize underline'}
-          >
-            Write text testimonial to {spaceName}
+        <main className="bg-whitish mx-auto my-10 w-full max-w-2xl space-y-5 rounded-lg px-12 py-12">
+          <span className={'text-orange text-lg font-bold capitalize'}>
+            Write text testimonial for {spaceName}
           </span>
           <div className={'flex flex-col gap-y-2 text-gray-500'}>
             <div className={'text-black'}>{customMessage}</div>

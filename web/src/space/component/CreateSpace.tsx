@@ -63,12 +63,12 @@ const CreateSpace = ({
       }}
     >
       <section className="flex items-center justify-center transition-all">
-        <div className="relative mx-auto my-10 w-full max-w-[40rem] rounded-lg bg-white px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
+        <div className="bg-whitish relative mx-auto my-10 w-full max-w-[40rem] rounded-lg px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
           <span className={'absolute left-2 top-2'}>
             <Button
               type={'button'}
               variant={'secondary'}
-              className={'rounded-full bg-white p-1 hover:bg-gray-100'}
+              className={'bg-whitish rounded-full p-1 hover:bg-gray-200'}
               icon={<ArrowLeft className={'h-5 w-6'} />}
               onClick={() => prevStep()}
             />

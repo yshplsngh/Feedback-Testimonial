@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFeedbackById,
-  setFavoriteFeedback,
   toggleFavorite,
 } from '../../feedback/feedbackSlice';
 import { AppDispatch, RootState } from '../../app/store';
@@ -14,6 +13,7 @@ import HeartLogo from '../../ui/logo/HeartLogo';
 import { useState } from 'react';
 import { FetchResponseError } from '../../lib/manageFetch/api';
 import { toast } from 'sonner';
+import { setFavoriteFeedback } from '../../feedback/feedbackApi';
 
 const FeedbackCard = ({ feedbackId }: { feedbackId: number }) => {
   const [loading, setLoading] = useState<boolean>(false);
