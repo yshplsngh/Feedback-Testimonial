@@ -1,16 +1,31 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../ui/components/Button';
-import { Copy, Dock, List, SquarePen, TriangleAlert } from 'lucide-react';
+import {
+  Copy,
+  Dock,
+  SquareMenu,
+  SquarePen,
+  TriangleAlert,
+  X,
+} from 'lucide-react';
 import { toast } from 'sonner';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 type PropsType = {
   spaceName: string;
   feedbackCount: number;
+  menuStatus: boolean;
+  menuToggle: () => void;
 };
-const DashboardCard = ({ spaceName, feedbackCount }: PropsType) => {
+
+const DashboardCard = ({
+  spaceName,
+  feedbackCount,
+  menuStatus,
+  menuToggle,
+}: PropsType) => {
   const navigate = useNavigate();
-  const [menuStatus, setMenuStatus] = useState<boolean>(false);
+  // const [menuStatus, setMenuStatus] = useState<boolean>(false);
   const feedbackUrl: string = `http://localhost:3000/feedback/${spaceName}`;
 
   return (
@@ -31,13 +46,22 @@ const DashboardCard = ({ spaceName, feedbackCount }: PropsType) => {
                 'w-fit rounded-full border-none bg-transparent p-0 hover:bg-transparent md:p-0'
               }
               icon={
-                <List className={'h-4 w-4 text-white hover:text-gray-300'} />
+                menuStatus ? (
+                  <X className={'h-5 w-5 text-white hover:text-gray-300'} />
+                ) : (
+                  <SquareMenu
+                    className={'h-5 w-5 text-white hover:text-gray-300'}
+                  />
+                )
               }
-              onClick={() => setMenuStatus((prevState) => !prevState)}
+              onClick={menuToggle}
             />
           </div>
           {menuStatus && (
-            <div
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.1 }}
               className={
                 'menu border-accent absolute right-0 z-20 w-40 rounded-md border-[2px] bg-gray-950 py-1'
               }
@@ -78,7 +102,7 @@ const DashboardCard = ({ spaceName, feedbackCount }: PropsType) => {
                 className={`justify-start rounded-none border-none bg-transparent`}
                 onClick={() => toast.info('feature not implemented yet!')}
               />
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

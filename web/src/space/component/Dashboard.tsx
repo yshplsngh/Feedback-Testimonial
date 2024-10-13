@@ -15,6 +15,7 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
   const dispatch: AppDispatch = useDispatch();
   const spaces = useSelector(selectAllSpaces);
   const [loading, setLoading] = useState<boolean>(false);
+  const [menuToggle, setMenuToggle] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchSpaces() {
@@ -55,11 +56,19 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
         <hr className={'border-accent'} />
         <div className="mx-2 mt-10 grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
           {spaces && spaces.length > 0 ? (
-            spaces.map((data, index) => (
+            spaces.map((space, index) => (
               <DashboardCard
                 key={index}
-                spaceName={data.spaceName}
-                feedbackCount={data.feedbackCount}
+                menuStatus={index === menuToggle}
+                spaceName={space.spaceName}
+                feedbackCount={space.feedbackCount}
+                menuToggle={() => {
+                  if (menuToggle !== index) {
+                    setMenuToggle(index);
+                  } else {
+                    setMenuToggle(null);
+                  }
+                }}
               />
             ))
           ) : (
