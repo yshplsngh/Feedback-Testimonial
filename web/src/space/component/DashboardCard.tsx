@@ -46,13 +46,19 @@ const DashboardCard = ({
                 'w-fit rounded-full border-none bg-transparent p-0 hover:bg-transparent md:p-0'
               }
               icon={
-                menuStatus ? (
-                  <X className={'h-5 w-5 text-white hover:text-gray-300'} />
-                ) : (
-                  <SquareMenu
-                    className={'h-5 w-5 text-white hover:text-gray-300'}
-                  />
-                )
+                <motion.div
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: menuStatus ? 90 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {menuStatus ? (
+                    <X className={'h-5 w-5 text-white hover:text-gray-300'} />
+                  ) : (
+                    <SquareMenu
+                      className={'h-5 w-5 text-white hover:text-gray-300'}
+                    />
+                  )}
+                </motion.div>
               }
               onClick={menuToggle}
             />
