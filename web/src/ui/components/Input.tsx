@@ -9,7 +9,6 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn;
   publicSpaceName?: string;
   className?: string;
-  defaultValue?: string;
 }
 
 function camelCaseToSentenceCase(data: string) {
@@ -31,7 +30,6 @@ let Input: React.FC<InputProps> = ({
   register,
   publicSpaceName,
   className,
-  defaultValue,
 }: InputProps) => {
   return (
     <div className={`group relative z-0 w-full ${className} }`}>
@@ -42,7 +40,6 @@ let Input: React.FC<InputProps> = ({
         placeholder=" "
         required
         {...register}
-        value={defaultValue}
       />
       <label
         htmlFor={inputName}

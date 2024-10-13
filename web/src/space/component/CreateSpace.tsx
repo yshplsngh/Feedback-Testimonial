@@ -73,15 +73,6 @@ const CreateSpace = ({
               onClick={() => prevStep()}
             />
           </span>
-          {/*<div className={'w-full border-2 border-red-500 md:w-5/12 space-y-5 p-5'}>*/}
-          {/*  <p className={'text-sm text-gray-700'}>Write text feedback to</p>*/}
-          {/*  <span*/}
-          {/*    className={'text-orange text-3xl font-bold capitalize'}>{publicSpaceName.length ? publicSpaceName : 'space-name'}</span>*/}
-          {/*  <div className={'text-lg text-black'}>{publicCustomMessage.length ? publicCustomMessage : 'We value your feedback! Please take a moment to share your thoughts about using Testimonial. Your insights help us improve and assist other developers.'}</div>*/}
-          {/*  <div className={'flex text-black'}>*/}
-          {/*    Q:&nbsp;<p className={'text-gray-600'}>{publicQuestion.length ? publicQuestion : 'How would you rate your overall experience with Vercel?'}</p>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
           <div className={'w-full'}>
             <h1 className="text:xl mb-14 text-center font-bold md:text-2xl">
               Create New Space
@@ -93,31 +84,31 @@ const CreateSpace = ({
               <Input
                 inputName={'spaceName'}
                 inputError={errors.spaceName}
-                register={register('spaceName')}
+                register={register('spaceName', { value: 'Space Name' })}
                 publicSpaceName={publicSpaceName}
-                defaultValue={'Space Name'}
               />
               <Input
                 inputName={'websiteUrl'}
                 inputError={errors.websiteUrl}
-                register={register('websiteUrl')}
-                defaultValue={'https://localhost:3000'}
+                register={register('websiteUrl', {
+                  value: 'https://localhost:3000',
+                })}
               />
               <Input
                 inputName={'customMessage'}
                 inputError={errors.customMessage}
-                register={register('customMessage')}
-                defaultValue={
-                  'We value your feedback! Please take a moment to share your thoughts about using Testimonial.'
-                }
+                register={register('customMessage', {
+                  value:
+                    'We value your feedback! Please take a moment to share your thoughts about using Testimonial.',
+                })}
               />
               <Input
                 inputName={'question'}
                 inputError={errors.question}
-                register={register('question')}
-                defaultValue={
-                  'How would you rate your overall experience with Testimonial?'
-                }
+                register={register('question', {
+                  value:
+                    'How would you rate your overall experience with Testimonial?',
+                })}
               />
 
               <Button

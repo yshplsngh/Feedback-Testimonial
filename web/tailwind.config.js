@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         'background-dark': '#0d1117',
+        'secondary-dark': '#151b23',
         accent: '#27272a',
         whitish: '#f4f4f5',
         indigo: '#5c6ac4',

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,25 +48,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/yshpl/wd/Testimonial/web/src/space/component",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.typescriptcompiler",
-    "ts.external.directory.path": "/home/yshpl/wd/Testimonial/web/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yshpl/wd/Testimonial/web/src/space/component&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.typescriptcompiler&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/yshpl/wd/Testimonial/web/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/web/src/space/component" />
@@ -145,7 +147,8 @@
       <workItem from="1728694430276" duration="31400000" />
       <workItem from="1728752148630" duration="62000" />
       <workItem from="1728780495105" duration="11096000" />
-      <workItem from="1728824599521" duration="10565000" />
+      <workItem from="1728824599521" duration="10935000" />
+      <workItem from="1728838288265" duration="1734000" />
     </task>
     <servers />
   </component>

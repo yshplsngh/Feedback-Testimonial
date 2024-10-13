@@ -69,7 +69,7 @@ const DashboardCard = ({
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.1 }}
               className={
-                'menu border-accent absolute right-0 z-20 w-40 rounded-md border-[2px] bg-gray-950 py-1'
+                'menu border-accent bg-secondary-dark absolute right-0 z-20 rounded-lg border-[2px] p-2'
               }
             >
               <Button
@@ -78,7 +78,7 @@ const DashboardCard = ({
                 text={'Manage Space'}
                 icon={<Dock className={'h-4 w-4'} />}
                 className={
-                  'hover:bg-accent justify-start rounded-none border-none bg-transparent'
+                  'hover:bg-accent justify-start border-none bg-transparent'
                 }
                 onClick={() => navigate(`/space/${spaceName}`)}
               />
@@ -87,7 +87,7 @@ const DashboardCard = ({
                 variant={'outlineB'}
                 text={'Edit Space'}
                 icon={<SquarePen className={'h-4 w-4'} />}
-                className={`hover:bg-accent justify-start rounded-none border-none bg-transparent`}
+                className={`hover:bg-accent justify-start border-none bg-transparent`}
                 onClick={() => toast.info('feature not implemented yet!')}
               />
               <Button
@@ -95,17 +95,18 @@ const DashboardCard = ({
                 variant={'outlineB'}
                 text={'Copy link'}
                 icon={<Copy className={'h-4 w-4'} />}
-                className={`hover:bg-accent justify-start rounded-none border-none bg-transparent`}
-                onClick={() =>
-                  toast.success('Feedback page link copy to clipboard')
-                }
+                className={`hover:bg-accent justify-start border-none bg-transparent`}
+                onClick={async () => {
+                  await navigator.clipboard.writeText(feedbackUrl);
+                  toast.success('Feedback page link copy to clipboard');
+                }}
               />
               <Button
                 type={'button'}
                 variant={'danger'}
                 text={'Delete Space'}
                 icon={<TriangleAlert className={'h-4 w-4'} />}
-                className={`justify-start rounded-none border-none bg-transparent`}
+                className={`justify-start border-none bg-transparent`}
                 onClick={() => toast.info('feature not implemented yet!')}
               />
             </motion.div>
