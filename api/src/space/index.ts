@@ -2,7 +2,7 @@ import { Express, NextFunction, Response, Request } from 'express';
 import { NewSpaceScheme } from './types.ts';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
-import requireAuth from '../auth/requireAuth.ts';
+import requireAuth from '../utils/middlewares/requireAuth.ts';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 
 export default function (app: Express) {

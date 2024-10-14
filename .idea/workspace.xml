@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/auth/requireAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/utils/middlewares/requireAuth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/feedback/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/feedback/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/space/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/space/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/Testing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/Testing.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,11 +77,11 @@
       <recent name="$PROJECT_DIR$/web/src/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/utils/middlewares" />
       <recent name="$PROJECT_DIR$/web/src/feedback/components" />
       <recent name="$PROJECT_DIR$/web/src/space/component" />
       <recent name="$PROJECT_DIR$/web/src/dashboard" />
       <recent name="$PROJECT_DIR$/web/src/users" />
-      <recent name="$PROJECT_DIR$/web/src/ui/components" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -148,7 +150,8 @@
       <workItem from="1728752148630" duration="62000" />
       <workItem from="1728780495105" duration="11096000" />
       <workItem from="1728824599521" duration="10935000" />
-      <workItem from="1728838288265" duration="1734000" />
+      <workItem from="1728838288265" duration="1915000" />
+      <workItem from="1728882243933" duration="24888000" />
     </task>
     <servers />
   </component>
@@ -157,6 +160,17 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.prisma" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

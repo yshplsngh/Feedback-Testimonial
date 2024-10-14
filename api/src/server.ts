@@ -10,6 +10,7 @@ import authRoutes from './auth';
 import userRoutes from './user';
 import spaceRoutes from './space';
 import feedbackRoutes from './feedback';
+import embedFeedbacks from './embedFeedbacks';
 
 export const createServer = (): Express => {
   const app: Express = express();
@@ -52,6 +53,7 @@ export const createServer = (): Express => {
   userRoutes(app);
   spaceRoutes(app);
   feedbackRoutes(app);
+  embedFeedbacks(app);
 
   app.use(errorHandling);
   return app;

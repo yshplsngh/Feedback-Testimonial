@@ -3,7 +3,7 @@ import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import { FeedbackSchema } from './types.ts';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
-import requireAuth from '../auth/requireAuth.ts';
+import requireAuth from '../utils/middlewares/requireAuth.ts';
 
 export default function (app: Express) {
   //collect feedback from public facing endpoint, so no protection

@@ -18,10 +18,10 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
-      {/*show bg only for omitHeader arrays endpoints*/}
+      {/*show bg only for pickBG arrays endpoints*/}
       {pickBG.includes(location.pathname) && <Background />}
 
-      {/*remove header only for pickBG arrays endpoint*/}
+      {/*remove header only for omitHeader arrays endpoint*/}
       {!shouldOmitHeader() && <Header />}
       <div
         style={{ position: 'relative', zIndex: 2 }}
