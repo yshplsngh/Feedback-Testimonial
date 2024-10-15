@@ -74,14 +74,15 @@ const FeedbackCard = ({ feedbackId }: { feedbackId: number }) => {
         {feedback.customerFeedback}
       </div>
       <hr className={'border-gray-500'} />
-      <div className={'flex flex-col text-sm'}>
-        <div className={'flex w-full flex-col md:flex-row'}>
-          <div className={'flex w-fit gap-x-2 capitalize md:w-1/2'}>
+      <div className={'flex flex-col gap-y-1 text-sm text-gray-300'}>
+        <div className={'flex w-full flex-col items-start gap-x-3 md:flex-row'}>
+          <div className={'flex w-fit gap-x-2 py-1 capitalize md:w-1/2'}>
             <strong>Name:</strong> {feedback.name}
           </div>
+          <span className={'border-accent h-full rounded-full border-[1px]'} />
           <div
             className={
-              'flex w-fit items-center space-x-1 hover:cursor-pointer hover:underline md:w-1/2'
+              'flex w-fit items-center space-x-1 py-1 hover:cursor-pointer hover:underline md:w-1/2'
             }
           >
             <Link

@@ -2,7 +2,7 @@ const Testing = () => {
   return (
     <div className={'flex items-center justify-center border border-green-700'}>
       <iframe
-        height="600px"
+        height="400px"
         width="100%"
         src={'http://localhost:4000/api/feedbacks/space?theme=dark'}
       />
