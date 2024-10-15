@@ -5,6 +5,7 @@ import wrapHtml from './wrapHtml.ts';
 
 interface queryParams {
   theme?: string;
+  speed?: string;
 }
 
 export default function embedFeedbacks(app: Express) {
@@ -12,11 +13,7 @@ export default function embedFeedbacks(app: Express) {
     '/api/feedbacks/:spaceName',
     async (req: Request, res: Response, next: NextFunction) => {
       const spaceName = req.params.spaceName;
-      let { theme } = req.query as queryParams;
-      // if the theme is undefined or null, then set dark
-      theme = theme ?? 'dark';
-      // if the theme is neither dark nor light set dark
-      theme = theme !== 'dark' && theme !== 'light' ? 'dark' : theme;
+      const { theme, speed } = req.query as queryParams;
 
       if (!spaceName) {
         return next(new createError('invalid url', 400));
@@ -34,7 +31,7 @@ export default function embedFeedbacks(app: Express) {
         },
       });
 
-      const feedbackWidget = wrapHtml({ feedbacks, theme });
+      const feedbackWidget = wrapHtml({ feedbacks, theme, speed });
       return res.status(200).send(feedbackWidget);
     },
   );
