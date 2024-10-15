@@ -15,13 +15,23 @@ export default function wrapHtml({
   feedbacks: propsType[];
   theme: string;
 }) {
-  const themeColors =
+  const css =
     theme === 'dark'
       ? {
           color: '#f4f4f5',
+          backgroundColor: '#0d1117',
+          borderColor: '#27272a',
+          nameColor: '#f0f0f0',
+          messageColor: '#e2e8f0',
+          dateColor: '#a0aec0',
         }
       : {
           color: '#000000',
+          backgroundColor: '#f4f4f5',
+          borderColor: '#e5e7eb',
+          nameColor: '#000000',
+          messageColor: '#333333',
+          dateColor: '#6b7280',
         };
 
   const cLength = feedbacks.length;
@@ -109,7 +119,6 @@ export default function wrapHtml({
         max-width: 1536px;
         margin-inline: auto;
         position: relative;
-
         overflow: hidden;
         display: flex;
         flex-direction: row;
@@ -118,8 +127,8 @@ export default function wrapHtml({
         mask-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 1) 20%,
-          rgba(0, 0, 0, 1) 80%,
+          rgba(0, 0, 0, 1) 5%,
+          rgba(0, 0, 0, 1) 95%,
           rgba(0, 0, 0, 0)
         );
       }
@@ -134,9 +143,8 @@ export default function wrapHtml({
       .item {
         width: 20rem;
         height: fit-content;
-        background-color: #0d1117;
-        color: ${themeColors.color};
-        border: 1px solid #27272a;
+        background-color: ${css.backgroundColor};
+        border: 1px solid ${css.borderColor};
         border-radius: 0.6rem;
         display: flex;
         flex-direction: column;
@@ -148,6 +156,8 @@ export default function wrapHtml({
         animation-duration: ${animationDuration}s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease;
       }
       .footer{
         display: flex;
@@ -177,9 +187,9 @@ export default function wrapHtml({
       }
       .name {
         text-transform: capitalize;
+        color: ${css.nameColor};
         font-size: 1rem;
         font-weight: 500;
-        color: #f0f0f0;
         letter-spacing: 0.02em;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         white-space: nowrap;
@@ -205,13 +215,13 @@ export default function wrapHtml({
       .message {
         font-size: 0.95rem;
         line-height: 1.5;
-        color: #e2e8f0;
+        color: ${css.messageColor};
         padding-left: 0.5rem;
       }
       .date {
         font-size: 0.75rem;
-        font-weight: 400;
-        color: #a0aec0;
+        font-weight: 600;
+        color: ${css.dateColor};
         letter-spacing: 0.03em;
         text-transform: uppercase;
         opacity: 0.8;
@@ -231,10 +241,15 @@ export default function wrapHtml({
           rgba(0, 0, 0, 0)
         );
       }
+       @keyframes scrollLeft {
+        to {
+          left: -16rem;
+        }
+      }  
         .item {
-           background-color: #27272a;
            padding: 0.5rem;
           width: 16rem;
+          left: max(calc(16rem * ${cLength}), 100%);
                   row-gap: 0.6rem;
         }
         .avatar {
@@ -257,13 +272,13 @@ export default function wrapHtml({
         .starSvg{
         width: 1rem;
         height: 1rem;
-      }
+      } 
       }     
     </style/>
   </head>
   <body>
 <main>
-    <div class="wrapper">
+    <div class="bd wrapper">
       ${feedbackCards}
     </div>
 </main>

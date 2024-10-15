@@ -26,7 +26,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
       <div
         style={{ position: 'relative', zIndex: 2 }}
         // show black bg for all endpoints other than pickBG arrays one
-        className={`${!pickBG.includes(location.pathname) ? 'bg-background-dark' : ''} flex justify-center`}
+        className={`${!pickBG.includes(location.pathname) ? 'bg-whitish' : ''} flex justify-center`}
       >
         <div className={'min-h-[45rem] w-[80rem]'}>{children}</div>
       </div>
