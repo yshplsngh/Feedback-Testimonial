@@ -60,7 +60,11 @@ export default function authRoutes(app: Express): void {
     passport.authenticate('google', { failureRedirect: '/login' }),
     (_req: Request, res: Response) => {
       res.status(200);
-      res.redirect(config.WEB_LOGIN_REDIRECT_URL);
+      res.redirect(
+        config.NODE_ENV === 'development'
+          ? 'http://localhost:3000/dashboard'
+          : 'https://testimonial.yshplsngh.in/dashboard',
+      );
     },
   );
 
