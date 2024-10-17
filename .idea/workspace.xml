@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/utils/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/utils/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/pages/NotFound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pages/NotFound.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +149,7 @@
       <workItem from="1728838288265" duration="1915000" />
       <workItem from="1728882243933" duration="44095000" />
       <workItem from="1729012367179" duration="792000" />
-      <workItem from="1729152501697" duration="6289000" />
+      <workItem from="1729152501697" duration="7404000" />
     </task>
     <servers />
   </component>

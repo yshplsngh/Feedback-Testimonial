@@ -31,10 +31,10 @@ export default function authRoutes(app: Express): void {
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
          */
-        secure: 'auto',
+        secure: config.NODE_ENV === 'development' ? 'auto' : true,
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
-        // sameSite: config.NODE_ENV === 'production' ? "none": "lax",
+        // sameSite: config.NODE_ENV === 'development' ? "none": 'none',
         maxAge: 60000 * 60 * 60,
       },
     }),
@@ -60,7 +60,7 @@ export default function authRoutes(app: Express): void {
     passport.authenticate('google', { failureRedirect: '/login' }),
     (_req: Request, res: Response) => {
       res.status(200);
-      res.redirect('https://testimonial.yshplsngh.in/dashboard');
+      res.redirect(config.WEB_LOGIN_REDIRECT_URL);
     },
   );
 
