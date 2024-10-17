@@ -7,7 +7,7 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 
 export default function authRoutes(app: Express): void {
   const memoryStore = new session.MemoryStore();
-
+  console.log(config.NODE_ENV);
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
@@ -34,7 +34,7 @@ export default function authRoutes(app: Express): void {
         secure: config.NODE_ENV === 'development' ? 'auto' : true,
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
-        // sameSite: config.NODE_ENV === 'development' ? "none": 'none',
+        sameSite: config.NODE_ENV === 'development' ? 'none' : 'lax',
         maxAge: 60000 * 60 * 60,
       },
     }),
