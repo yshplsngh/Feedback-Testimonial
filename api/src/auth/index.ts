@@ -31,10 +31,10 @@ export default function authRoutes(app: Express): void {
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
          */
-        secure: config.NODE_ENV === 'development' ? 'auto' : true,
+        secure: false,
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
-        sameSite: config.NODE_ENV === 'development' ? 'none' : 'lax',
+        // sameSite: 'none',
         maxAge: 60000 * 60 * 60,
       },
     }),
