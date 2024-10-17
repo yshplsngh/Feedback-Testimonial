@@ -109,12 +109,20 @@ const ManageSpace: React.FC = () => {
                 {spaceName}
               </span>
               <Link
-                to={`http://localhost:3000/feedback/${spaceName}`}
+                to={
+                  import.meta.env.VITE_ENV === 'development'
+                    ? `http://localhost:3000/feedback/${spaceName}`
+                    : `https://testimonial.yshplsngh.in/feedback/${spaceName}`
+                }
                 target={'_blank'}
                 className={'feedback-url text-[0.8rem] text-gray-300 underline'}
               >
                 <span className="hidden items-center space-x-1 md:flex">
-                  <p>Public URL: http://localhost:3000/feedback/{spaceName}</p>
+                  <p>
+                    {import.meta.env.VITE_ENV === 'development'
+                      ? `Public URL: http://localhost:3000/feedback/${spaceName}`
+                      : `Public URL: https://testimonial.yshplsngh.in/feedback/${spaceName}`}
+                  </p>
                   <SquareArrowOutUpRight className={'h-3 w-3'} />
                 </span>
                 <span className="flex items-center space-x-1 text-[0.9rem] md:hidden">

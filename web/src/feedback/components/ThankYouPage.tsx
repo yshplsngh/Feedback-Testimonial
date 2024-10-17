@@ -38,11 +38,17 @@ const ThankYouPage = ({ startStep }: { startStep: () => void }) => {
         >
           Powered by
           <Link
-            to={'http://localhost:3000'}
+            to={
+              import.meta.env.VITE_ENV === 'development'
+                ? 'http://localhost:3000'
+                : 'https://testimonial.yshplsngh.in'
+            }
             target={'_blank'}
             className={'font-semibold text-gray-500 hover:underline'}
           >
-            Localhost:3000
+            {import.meta.env.VITE_ENV === 'development'
+              ? 'localhost:3000'
+              : 'testimonial.yshplsngh.in'}
           </Link>
         </p>
       </div>

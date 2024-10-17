@@ -34,10 +34,15 @@ export default function Login() {
               </a>
               <div className={''}>
                 <h3 className="text-xl font-semibold tracking-wide">
-                  Sign in to localhost:3000
+                  {import.meta.env.VITE_ENV === 'development'
+                    ? 'Sign in to localhost'
+                    : 'Sign in to testimonial'}
                 </h3>
                 <p className="text-sm tracking-wide text-gray-500">
-                  to continue to localhost:3000
+                  to continue to{' '}
+                  {import.meta.env.VITE_ENV === 'development'
+                    ? 'localhost:3000'
+                    : 'testimonial.yshplsngh.in'}
                 </p>
               </div>
             </div>

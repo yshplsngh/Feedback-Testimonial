@@ -91,7 +91,10 @@ const CreateSpace = ({
                 inputName={'websiteUrl'}
                 inputError={errors.websiteUrl}
                 register={register('websiteUrl', {
-                  value: 'https://localhost:3000',
+                  value:
+                    import.meta.env.VITE_ENV === 'development'
+                      ? 'http://localhost:3000'
+                      : 'https://testimonial.yshplsngh.in',
                 })}
               />
               <Input

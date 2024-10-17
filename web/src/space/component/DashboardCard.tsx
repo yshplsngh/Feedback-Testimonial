@@ -25,8 +25,10 @@ const DashboardCard = ({
   menuToggle,
 }: PropsType) => {
   const navigate = useNavigate();
-  // const [menuStatus, setMenuStatus] = useState<boolean>(false);
-  const feedbackUrl: string = `http://localhost:3000/feedback/${spaceName}`;
+  const feedbackUrl: string =
+    import.meta.env.VITE_ENV === 'development'
+      ? `http://localhost:3000/feedback/${spaceName}`
+      : `https://testimonial.yshplsngh.in/feedback/${spaceName}`;
 
   return (
     <div className="border-accent mx-auto flex w-full max-w-[22rem] flex-col gap-y-2 rounded-md border-[2px] px-4 py-3 transition-all ease-in-out">

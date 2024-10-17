@@ -21,7 +21,7 @@ export const createServer = (): Express => {
   app.use(express.json());
   app.use(
     cors({
-      origin: ['http://localhost:3000'],
+      origin: ['http://localhost:3000', 'https://testimonial.yshplsngh.in'],
       credentials: true,
     }),
   );

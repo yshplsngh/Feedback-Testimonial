@@ -53,7 +53,9 @@ let Input: React.FC<InputProps> = ({
       )}
       {publicSpaceName && (
         <p className={'text-[0.7rem] text-gray-500'}>
-          Public URL: http://localhost:3000/feedback/{publicSpaceName}
+          {import.meta.env.VITE_ENV === 'development'
+            ? `Public URL: http://localhost:3000/feedback/${publicSpaceName}`
+            : `Public URL: https://testimonial.yshplsngh.in/feedback/${publicSpaceName}`}
         </p>
       )}
     </div>

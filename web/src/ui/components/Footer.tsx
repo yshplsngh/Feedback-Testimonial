@@ -43,7 +43,7 @@ const Footer = () => {
       <p className="text-xs text-gray-600 dark:text-gray-100">
         Copyright © {new Date().getFullYear()}{' '}
         <a
-          href="http://localhost:3000"
+          href="https://testimonial.yshplsngh.in"
           target="_blank"
           className="text-zinc-500 underline hover:text-zinc-500"
         >
@@ -51,7 +51,7 @@ const Footer = () => {
         </a>
         <span className="mx-2">|</span>
         <a
-          href="http://localhost:3000/privacy-policy"
+          href="https://testimonial.yshplsngh.in/privacy-policy"
           target="_blank"
           className="text-zinc-500 underline hover:text-zinc-500"
         >
