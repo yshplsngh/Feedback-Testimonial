@@ -23,7 +23,7 @@ const NotFound = ({ message }: { message?: string }) => {
         </Link>
         <p className="mt-2 text-center font-thin text-slate-200">
           {import.meta.env.VITE_ENV === 'development'
-            ? 'localhost:3000/feedback'
+            ? 'localhost:3000'
             : 'testimonial.yshplsngh.in'}
         </p>
       </div>

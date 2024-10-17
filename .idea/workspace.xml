@@ -7,16 +7,8 @@
     <list default="true" id="7b5fbae8-523b-4ac0-b944-b6131e484674" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/utils/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/utils/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/auth/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/auth/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/feedback/components/ThankYouPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/feedback/components/ThankYouPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/pages/NotFound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/pages/NotFound.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/ManageSpace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/CreateSpace.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/space/component/DashboardCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/ui/components/Input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +150,7 @@
       <workItem from="1728838288265" duration="1915000" />
       <workItem from="1728882243933" duration="44095000" />
       <workItem from="1729012367179" duration="792000" />
-      <workItem from="1729152501697" duration="5632000" />
+      <workItem from="1729152501697" duration="6289000" />
     </task>
     <servers />
   </component>
