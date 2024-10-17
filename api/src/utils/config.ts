@@ -12,8 +12,8 @@ export default {
   CLIENT_SECRET: CLIENT_SECRET || 'HERE_GOES_YOUR_GOOGLE_CLIENT_SECRET',
   GOOGLE_CALLBACK: 'http://localhost:4000/api/auth/google/redirect',
 
-  // WEB_LOGIN_REDIRECT_URL: 'https://testimonial.yshplsngh.in/dashboard',
+  WEB_LOGIN_REDIRECT_URL: 'https://testimonial.yshplsngh.in/dashboard',
 
-  NODE_ENV: 'development',
-  WEB_LOGIN_REDIRECT_URL: 'http://localhost:3000/dashboard',
+  // NODE_ENV: 'development',
+  // WEB_LOGIN_REDIRECT_URL: 'http://localhost:3000/dashboard',
 };
