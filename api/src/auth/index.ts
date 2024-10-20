@@ -7,7 +7,6 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 
 export default function authRoutes(app: Express): void {
   const memoryStore = new session.MemoryStore();
-  console.log(config.NODE_ENV);
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
@@ -23,7 +22,7 @@ export default function authRoutes(app: Express): void {
       /**
        * when false: express-session store sessions in sessionStore only if we modified req.session object.
        * when true: express-session store sessions sessionStore even user just visit landing page.
-       * coz on visit landing page session is created and check user is logged in not.
+       * coz on visit landing page session is created, and check user is logged in or not.
        */
       saveUninitialized: false,
       cookie: {
@@ -31,7 +30,7 @@ export default function authRoutes(app: Express): void {
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
          */
-        secure: false,
+        secure: 'auto',
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
         // sameSite: 'none',

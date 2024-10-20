@@ -67,6 +67,7 @@ export default function (app: Express) {
 
   app.post(
     '/api/feedback/setFavoriteFeedback/:feedbackId',
+    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const feedbackId = req.params.feedbackId;

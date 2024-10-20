@@ -1,4 +1,5 @@
 import { PrismaClient, Feedback } from '@prisma/client';
+import config from '../utils/config.ts';
 
 const prismaClientSingleton = () => {
   return new PrismaClient();
@@ -23,4 +24,4 @@ const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
 export default prisma;
 export type { Feedback };
 
-// if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+if (config.NODE_ENV === 'development') globalForPrisma.prisma = prisma;

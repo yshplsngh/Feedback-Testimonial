@@ -1,6 +1,9 @@
 import type { NextFunction, Response, Request } from 'express';
 import { ZodError } from 'zod';
 import { zodErrorToString } from './handleZodError';
+import * as fs from 'node:fs';
+import path from 'node:path';
+import { format } from 'date-fns';
 
 export class createError extends Error {
   code: number;
@@ -10,6 +13,29 @@ export class createError extends Error {
     this.code = code;
   }
 }
+
+const logError = (error: {
+  message: string;
+  code: number;
+  uncaught?: string;
+}) => {
+  const logDir = path.join(__dirname, '..', 'logs');
+  const logFile = path.join(logDir, 'error.log');
+
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir, { recursive: true });
+  }
+  const timestamp = format(new Date(), 'yyyy-MMM-dd hh:mm:ss.SSS aaa');
+  const logEntry = `
++----------------------+------------------------------------------------------------------+
+| Timestamp            | ${timestamp}
+| Error Code           | ${error.code.toString()}
+| Error Message        | ${error.message}
+${error.uncaught ? `| Uncaught Exception   | ${error.uncaught}` : '...'}
++----------------------+------------------------------------------------------------------+
+`;
+  fs.appendFileSync(logFile, logEntry);
+};
 
 export function handleError({
   _error,
@@ -46,6 +72,7 @@ export function handleError({
     };
     console.log(error);
   }
+  logError(error);
   return error;
 }
 

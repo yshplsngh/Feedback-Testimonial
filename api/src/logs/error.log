@@ -1,0 +1,222 @@
+papapapapapa[2024-10-20T04:51:09.722Z] 500 TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:28:44)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9 uncaught exception or unhandled rejection, Node process finished !!
+[2024-10-20T04:55:25.259Z] 300 message bhaiya
+[2024-10-20T04:55:25.474Z] 300 message bhaiya
+[2024-10-20T04:55:25.520Z] 300 message bhaiya
+
++----------------------+------------------------------------------+
+| Timestamp            | 2024-10-20T05:02:10.803Z                 |
+| Error Code           | 300                                      |
+| Error Message        | message                                  |
+
+| Uncaught Exception   | bhaiya                                   |
+
++----------------------+------------------------------------------+
+
++----------------------+------------------------------------------+
+| Timestamp            | 2024-10-20T05:02:10.900Z                 |
+| Error Code           | 300                                      |
+| Error Message        | message                                  |
+
+| Uncaught Exception   | bhaiya                                   |
+
++----------------------+------------------------------------------+
+
++----------------------+------------------------------------------+
+| Timestamp            | 2024-10-20T05:02:10.930Z                 |
+| Error Code           | 300                                      |
+| Error Message        | message                                  |
+
+| Uncaught Exception   | bhaiya                                   |
+
++----------------------+------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:07.909Z                                                         |
+| Error Code           | 300                                                                              |
+| Error Message        | message                                                                          |
+| Uncaught Exception   | bhaiya                                                                           |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:08.010Z                                                         |
+| Error Code           | 300                                                                              |
+| Error Message        | message                                                                          |
+| Uncaught Exception   | bhaiya                                                                           |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:08.041Z                                                         |
+| Error Code           | 300                                                                              |
+| Error Message        | message                                                                          |
+| Uncaught Exception   | bhaiya                                                                           |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:13.184Z                                                         |
+| Error Code           | 300                                                                              |
+| Error Message        | message                                                                          |
+| Uncaught Exception   | bhaiya                                                                           |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:13.278Z                                                         |
+| Error Code           | 300                                                                              |
+| Error Message        | message                                                                          |
+| Uncaught Exception   | bhaiya                                                                           |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:13.284Z                                                         |
+| Error Code           | 300                                                                              |
+| Error Message        | message                                                                          |
+| Uncaught Exception   | bhaiya                                                                           |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:09:56.489Z                                                         |
+| Error Code           | 500                                                                              |
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')                  |
+|                        |     at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:39:34 |
+|                        | )                                                                                |
+|                        |     at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55 |
+|                        | :3)                                                                              |
+|                        |     at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authentica |
+|                        | tor.js:372:9)                                                                    |
+|                        |     at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_module |
+|                        | s/passport/lib/authenticator.js:377:5)                                           |
+|                        |     at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules |
+|                        | /passport/lib/strategies/session.js:112:10)                                      |
+|                        |     at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middlew |
+|                        | are/authenticate.js:378:16)                                                      |
+|                        |     at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/mi |
+|                        | ddleware/authenticate.js:379:7)                                                  |
+|                        |     at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_mod |
+|                        | ules/express/lib/router/layer.js:95:5)                                           |
+|                        |     at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/rout |
+|                        | er/index.js:328:13)                                                              |
+|                        |     at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:2 |
+|                        | 86:9                                                                             |
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!              |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:11:45.389Z                                                         |
+| Error Code           | 500                                                                              |
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:30:34)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9 |
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!              |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:12:27.574Z                                                        
+| Error Code           | 500                                                                             
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:30:34)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!              |
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:13:19.573Z                                                        
+| Error Code           | 500                                                                             
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:30:34)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!             
+
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:14:14.199Z                                                        
+| Error Code           | 500                                                                             
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:30:34)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!             
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-10-20T05:14:49.504Z                                                        
+| Error Code           | 500                                                                             
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:31:34)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!             
++----------------------+------------------------------------------------------------------+
+
++----------------------+------------------------------------------------------------------+
+| Timestamp            | 2024-Oct-20 10:54:08.479 am
+| Error Code           | 500
+| Error Message        | TypeError: Cannot read properties of undefined (reading 'code')
+    at logError (/home/yshpl/wd/Testimonial/api/src/utils/errorHandling.ts:33:34)
+    at <anonymous> (/home/yshpl/wd/Testimonial/api/src/auth/passportConfig.ts:55:3)
+    at pass (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:372:9)
+    at Authenticator.deserializeUser (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/authenticator.js:377:5)
+    at SessionStrategy.authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/strategies/session.js:112:10)
+    at attempt (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:378:16)
+    at authenticate (/home/yshpl/wd/Testimonial/api/node_modules/passport/lib/middleware/authenticate.js:379:7)
+    at Layer.handle [as handle_request] (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:328:13)
+    at /home/yshpl/wd/Testimonial/api/node_modules/express/lib/router/index.js:286:9
+| Uncaught Exception   | uncaught exception or unhandled rejection, Node process finished !!
++----------------------+------------------------------------------------------------------+

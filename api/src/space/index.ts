@@ -36,6 +36,9 @@ export default function (app: Express) {
     rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
       const receivedSpaceName = req.params.spaceName;
+      if (!receivedSpaceName) {
+        return next(new createError('SpaceName is not defined in url', 406));
+      }
       const data = await prisma.space.findUnique({
         where: {
           spaceName: receivedSpaceName,
