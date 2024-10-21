@@ -1,8 +1,8 @@
 import type { NextFunction, Response, Request } from 'express';
 import { ZodError } from 'zod';
 import { zodErrorToString } from './handleZodError';
-import * as fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { format } from 'date-fns';
 
 export class createError extends Error {
@@ -21,6 +21,7 @@ const logError = (error: {
 }) => {
   const logDir = path.join(__dirname, '..', 'logs');
   const logFile = path.join(logDir, 'error.log');
+  const unCaughtLog = path.join(logDir, 'unCaught.log');
 
   if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir, { recursive: true });
@@ -30,11 +31,16 @@ const logError = (error: {
 +----------------------+------------------------------------------------------------------+
 | Timestamp            | ${timestamp}
 | Error Code           | ${error.code.toString()}
-| Error Message        | ${error.message}
 ${error.uncaught ? `| Uncaught Exception   | ${error.uncaught}` : '...'}
+| Error Message        | ${error.message}
 +----------------------+------------------------------------------------------------------+
 `;
-  fs.appendFileSync(logFile, logEntry);
+
+  if (error.uncaught) {
+    fs.appendFileSync(unCaughtLog, logEntry);
+  } else {
+    fs.appendFileSync(logFile, logEntry);
+  }
 };
 
 export function handleError({

@@ -101,11 +101,11 @@ export default function (app: Express) {
       if (!spaceExist) {
         return next(new createError('Space does not exist', 404));
       }
-
-      await prisma.$transaction(async (prisma) => {
-        await prisma.feedback.deleteMany({ where: { spaceId: spaceExist.id } });
-        await prisma.space.delete({ where: { id: spaceExist.id } });
-      });
+      await prisma.space.delete({ where: { id: spaceExist.id } });
+      // await prisma.$transaction(async (prisma) => {
+      //   await prisma.feedback.deleteMany({ where: { spaceId: spaceExist.id } });
+      //   await prisma.space.delete({ where: { id: spaceExist.id } });
+      // });
 
       return res.status(200).json({ success: true });
     },
