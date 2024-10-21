@@ -10,11 +10,18 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../app/store';
+import { deleteUserSpace } from '../spaceApi';
+import { FetchResponseError } from '../../lib/manageFetch/api';
+import { deleteRSpace } from '../spaceSlice';
 
 type PropsType = {
   spaceName: string;
   feedbackCount: number;
   menuStatus: boolean;
+  spaceId: number;
   menuToggle: () => void;
 };
 
@@ -23,12 +30,32 @@ const DashboardCard = ({
   feedbackCount,
   menuStatus,
   menuToggle,
+  spaceId,
 }: PropsType) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
+  const dispatch: AppDispatch = useDispatch();
   const feedbackUrl: string =
     import.meta.env.VITE_ENV === 'development'
       ? `http://localhost:3000/feedback/${spaceName}`
       : `https://testimonial.yshplsngh.in/feedback/${spaceName}`;
+
+  const onDelete = async () => {
+    setLoading(true);
+    try {
+      await dispatch(deleteUserSpace(spaceName)).unwrap();
+      // delete space for redux store
+      dispatch(deleteRSpace({ spaceId }));
+      toast.success('space deleted successfully');
+    } catch (err) {
+      const errorMessage =
+        (err as FetchResponseError).message ||
+        'An error occurred while deleting the space.';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="border-accent mx-auto flex w-full max-w-[22rem] flex-col gap-y-2 rounded-md border-[2px] px-4 py-3 transition-all ease-in-out">
@@ -109,7 +136,8 @@ const DashboardCard = ({
                 text={'Delete Space'}
                 icon={<TriangleAlert className={'h-4 w-4'} />}
                 className={`justify-start border-none bg-transparent`}
-                onClick={() => toast.info('feature not implemented yet!')}
+                onClick={() => onDelete()}
+                loading={loading}
               />
             </motion.div>
           )}

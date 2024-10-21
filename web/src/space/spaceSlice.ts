@@ -16,7 +16,14 @@ const initialState = spacesAdapter.getInitialState();
 const spaceSlice = createSlice({
   name: 'space',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteRSpace: (state, action: { payload: { spaceId: number } }) => {
+      const spaceExist = state.entities[action.payload.spaceId];
+      if (spaceExist) {
+        spacesAdapter.removeOne(state, action.payload.spaceId);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       getUserSpaces.fulfilled,
@@ -38,4 +45,5 @@ export const selectSpaceBySpaceName = createSelector(
   (spaces, spaceName) => spaces.find((space) => space.spaceName === spaceName),
 );
 
+export const { deleteRSpace } = spaceSlice.actions;
 export default spaceSlice.reducer;

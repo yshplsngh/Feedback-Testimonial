@@ -17,3 +17,11 @@ export const getUserSpaces = createAsyncThunk(
     return await api.get<BNewSpacesType[]>(url);
   },
 );
+
+export const deleteUserSpace = createAsyncThunk(
+  'space/deleteUserSpace',
+  async (spaceName: string) => {
+    const url = `/api/space/delete/${spaceName}`;
+    return await api.delete(url);
+  },
+);

@@ -25,7 +25,7 @@ const logError = (error: {
   if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir, { recursive: true });
   }
-  const timestamp = format(new Date(), 'yyyy-MMM-dd hh:mm:ss.SSS aaa');
+  const timestamp = format(new Date(), 'dd-MMM-yyyy hh:mm:ss.SSS aaa');
   const logEntry = `
 +----------------------+------------------------------------------------------------------+
 | Timestamp            | ${timestamp}

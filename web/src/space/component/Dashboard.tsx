@@ -56,16 +56,17 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
         <hr className={'border-accent'} />
         <div className={'mt-10 flex flex-col items-center justify-center'}>
           {spaces && spaces.length > 0 ? (
-            <div className="mx-2 grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
-              {spaces.map((space, index) => (
+            <div className="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
+              {spaces.map((space) => (
                 <DashboardCard
-                  key={index}
-                  menuStatus={index === menuToggle}
+                  key={space.id}
+                  menuStatus={space.id === menuToggle}
                   spaceName={space.spaceName}
+                  spaceId={space.id}
                   feedbackCount={space.feedbackCount}
                   menuToggle={() => {
-                    if (menuToggle !== index) {
-                      setMenuToggle(index);
+                    if (menuToggle !== space.id) {
+                      setMenuToggle(space.id);
                     } else {
                       setMenuToggle(null);
                     }
@@ -75,7 +76,9 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
             </div>
           ) : (
             <div className="w-fit space-y-3">
-              <div className="w-full text-center">No projects found !</div>
+              <div className="w-full border-2 border-red-500 text-center">
+                No projects found !
+              </div>
               <Button
                 type={'button'}
                 variant={'secondary'}

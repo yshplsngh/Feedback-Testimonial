@@ -85,4 +85,29 @@ export default function (app: Express) {
       return res.status(201).json({ success: true });
     },
   );
+
+  app.delete(
+    '/api/space/delete/:spaceName',
+    async (req: Request, res: Response, next: NextFunction) => {
+      const receivedSpaceName = req.params.spaceName;
+      if (!receivedSpaceName) {
+        return next(new createError('SpaceName is not defined in url', 406));
+      }
+      const spaceExist = await prisma.space.findUnique({
+        where: {
+          spaceName: receivedSpaceName,
+        },
+      });
+      if (!spaceExist) {
+        return next(new createError('Space does not exist', 404));
+      }
+
+      await prisma.$transaction(async (prisma) => {
+        await prisma.feedback.deleteMany({ where: { spaceId: spaceExist.id } });
+        await prisma.space.delete({ where: { id: spaceExist.id } });
+      });
+
+      return res.status(200).json({ success: true });
+    },
+  );
 }
