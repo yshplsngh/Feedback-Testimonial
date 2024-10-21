@@ -20,8 +20,8 @@ export const getUserSpaces = createAsyncThunk(
 
 export const deleteUserSpace = createAsyncThunk(
   'space/deleteUserSpace',
-  async (spaceName: string) => {
-    const url = `/api/space/delete/${spaceName}`;
+  async (spaceId: number) => {
+    const url = `/api/space/delete/${spaceId}`;
     return await api.delete(url);
   },
 );
