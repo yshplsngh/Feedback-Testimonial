@@ -16,6 +16,6 @@ export const NewSpaceScheme = z.object({
   question: z.string().trim().min(1),
 });
 
-// export const EditedSpaceWithIdSchema = NewSpaceScheme.extend({
-//   id: z.number().int().positive(),
-// })
+export const EditedSpaceWithIdSchema = NewSpaceScheme.extend({
+  id: z.number().int().positive(),
+});

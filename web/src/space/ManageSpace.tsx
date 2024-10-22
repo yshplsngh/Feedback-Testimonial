@@ -21,7 +21,7 @@ import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
 import { selectFeedbacksBySpaceId } from '../feedback/feedbackSlice';
-import { getUserSpaces } from './spaceApi';
+import { getUserSpace } from './spaceApi';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
 import FeedbackCard from './component/FeedbackCard';
@@ -61,7 +61,7 @@ const ManageSpace: React.FC = () => {
       setLoading(true);
       try {
         if (space === undefined) {
-          await dispatch(getUserSpaces()).unwrap();
+          await dispatch(getUserSpace(spaceName)).unwrap();
         }
         await dispatch(getFeedbacks(spaceName)).unwrap();
       } catch (err) {

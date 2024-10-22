@@ -1,5 +1,5 @@
 import { Express, NextFunction, Response, Request } from 'express';
-import { NewSpaceScheme } from './types.ts';
+import { EditedSpaceWithIdSchema, NewSpaceScheme } from './types.ts';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import requireAuth from '../utils/middlewares/requireAuth.ts';
@@ -27,6 +27,28 @@ export default function (app: Express) {
         }),
       );
       return res.status(201).json(spaceWithFeedbackCount);
+    },
+  );
+
+  app.get(
+    '/api/space/getUserSpace/:spaceName',
+    rateLimitMiddleware,
+    requireAuth,
+    async (req: Request, res: Response, next: NextFunction) => {
+      const receivedSpaceName = req.params.spaceName;
+      if (!receivedSpaceName) {
+        return next(new createError('SpaceName is not defined in url', 406));
+      }
+
+      const spaceExist = await prisma.space.findUnique({
+        where: {
+          spaceName: receivedSpaceName,
+        },
+      });
+      if (!spaceExist) {
+        return next(new createError('Space does not exist', 409));
+      }
+      return res.status(200).json(spaceExist);
     },
   );
 
@@ -86,15 +108,50 @@ export default function (app: Express) {
     },
   );
 
-  app.put('/api/space/edit', async (req: Request, res: Response) => {
-    // const parsedResult = NewSpaceScheme.safeParse(req.body);
-    // if (!parsedResult.success) {
-    //   next(parsedResult.error);
-    //   return;
-    // }
-    console.log(req.body);
-    return res.status(200).json({ success: true });
-  });
+  app.put(
+    '/api/space/edit',
+    rateLimitMiddleware,
+    requireAuth,
+    async (req: Request, res: Response, next: NextFunction) => {
+      const parsedResult = EditedSpaceWithIdSchema.safeParse(req.body);
+      if (!parsedResult.success) {
+        next(parsedResult.error);
+        return;
+      }
+      const spaceIdExist = await prisma.space.findUnique({
+        where: {
+          id: parsedResult.data.id,
+        },
+      });
+      if (!spaceIdExist) {
+        return next(new createError('Space does not exist', 409));
+      }
+
+      if (spaceIdExist.spaceName !== parsedResult.data.spaceName) {
+        const spaceExist = await prisma.space.findUnique({
+          where: {
+            spaceName: parsedResult.data.spaceName,
+          },
+        });
+        if (spaceExist) {
+          return next(new createError('Space Name already occupied', 409));
+        }
+      }
+
+      await prisma.space.update({
+        where: {
+          id: spaceIdExist.id,
+        },
+        data: {
+          spaceName: parsedResult.data.spaceName,
+          question: parsedResult.data.question,
+          customMessage: parsedResult.data.customMessage,
+          websiteUrl: parsedResult.data.websiteUrl,
+        },
+      });
+      return res.status(200).json({ success: true });
+    },
+  );
 
   app.delete(
     '/api/space/delete/:spaceId',

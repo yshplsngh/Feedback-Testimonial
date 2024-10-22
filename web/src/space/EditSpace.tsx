@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
-import { SquarePlus } from 'lucide-react';
+import { SquarePen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { selectSpaceBySpaceName } from './spaceSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-import { editSpace, getUserSpaces } from './spaceApi';
+import { editSpace, getUserSpace } from './spaceApi';
 import NotFound from '../pages/NotFound';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
 
@@ -36,7 +36,7 @@ const EditSpace = () => {
       try {
         if (space === undefined) {
           //TODO: fetch only current space, coz anyway dashboard will fetch
-          await dispatch(getUserSpaces()).unwrap();
+          await dispatch(getUserSpace(spaceName)).unwrap();
         }
       } catch (err) {
         const errorMessage =
@@ -49,7 +49,6 @@ const EditSpace = () => {
     fetchData().then(() => setLoading(false));
   }, [dispatch, spaceName, space]);
 
-  console.log(space);
   const {
     register,
     handleSubmit,
@@ -161,21 +160,19 @@ const EditSpace = () => {
                 register={register('question')}
               />
 
-              <div className={'flex'}>
+              <div className={'flex justify-end space-x-5'}>
                 <Button
-                  type={'submit'}
-                  text={'Edit Space'}
-                  icon={<SquarePlus className={'h-4 w-4'} />}
+                  type={'button'}
+                  text={'cancel'}
                   variant={'outlineB'}
-                  className={''}
-                  loading={loading}
+                  className={'w-fit'}
                 />
                 <Button
                   type={'submit'}
                   text={'Edit Space'}
-                  icon={<SquarePlus className={'h-4 w-4'} />}
+                  icon={<SquarePen className={'h-4 w-4'} />}
                   variant={'outlineB'}
-                  className={''}
+                  className={'w-fit'}
                   loading={editLoading}
                 />
               </div>

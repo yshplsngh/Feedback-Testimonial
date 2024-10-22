@@ -7,7 +7,7 @@ import {
 import { ProcessedResponse } from '../lib/manageFetch/api';
 import { BNewSpacesType } from './types';
 import { RootState } from '../app/store';
-import { getUserSpaces } from './spaceApi';
+import { getUserSpace, getUserSpaces } from './spaceApi';
 
 const spacesAdapter = createEntityAdapter<BNewSpacesType>();
 
@@ -25,12 +25,19 @@ const spaceSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      getUserSpaces.fulfilled,
-      (state, action: PayloadAction<ProcessedResponse<BNewSpacesType[]>>) => {
-        spacesAdapter.upsertMany(state, action.payload.json);
-      },
-    );
+    builder
+      .addCase(
+        getUserSpaces.fulfilled,
+        (state, action: PayloadAction<ProcessedResponse<BNewSpacesType[]>>) => {
+          spacesAdapter.upsertMany(state, action.payload.json);
+        },
+      )
+      .addCase(
+        getUserSpace.fulfilled,
+        (state, action: PayloadAction<ProcessedResponse<BNewSpacesType>>) => {
+          spacesAdapter.upsertOne(state, action.payload.json);
+        },
+      );
   },
 });
 

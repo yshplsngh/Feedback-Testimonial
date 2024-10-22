@@ -37,7 +37,7 @@ const FeedbackCard = ({ feedbackId }: { feedbackId: number }) => {
         (err as FetchResponseError).message ||
         'An error occurred while updating the favorite status.';
       toast.error(errorMessage);
-      // if i got error from backend it will resave previous value
+      // if I got error from backend, then it will resave previous value
       dispatch(
         toggleFavorite({
           feedbackId: feedback.id,

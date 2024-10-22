@@ -21,7 +21,11 @@ export const NewSpaceScheme = z.object({
         .filter((value) => value !== '')
         .join('-'),
     ),
-  websiteUrl: z.string().trim().min(1).regex(urlPattern, 'Invalid URL format'),
+  websiteUrl: z
+    .string()
+    .trim()
+    .min(1, { message: 'Website URL cannot be empty.' })
+    .regex(urlPattern, 'Invalid URL format'),
   customMessage: z.string().trim().min(4),
   question: z.string().trim().min(1),
 });

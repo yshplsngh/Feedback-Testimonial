@@ -10,6 +10,14 @@ export const createNewSpace = createAsyncThunk(
   },
 );
 
+export const getUserSpace = createAsyncThunk(
+  'space/getUserSpace',
+  async (spaceName: string) => {
+    const url = `/api/space/getUserSpace/${spaceName}`;
+    return await api.get<BNewSpacesType>(url);
+  },
+);
+
 export const getUserSpaces = createAsyncThunk(
   'space/getUserSpaces',
   async () => {

@@ -6,7 +6,7 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 import requireAuth from '../utils/middlewares/requireAuth.ts';
 
 export default function (app: Express) {
-  //collect feedback from public facing endpoint, so no protection
+  //collect feedback from public facing endpoint, so no authorisation
   app.post(
     '/api/feedback/submitFeedback',
     rateLimitMiddleware,

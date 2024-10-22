@@ -3,6 +3,7 @@ import Button from '../../ui/components/Button';
 import {
   Copy,
   Dock,
+  SquareArrowOutUpRight,
   SquareMenu,
   SquarePen,
   TriangleAlert,
@@ -19,6 +20,7 @@ type PropsType = {
   menuToggle: () => void;
   setSpaceConfirmationId: (spaceId: number | null) => void;
   setMenuId: (dashboardCardId: number | null) => void;
+  websiteUrl: string;
 };
 
 const DashboardCard = ({
@@ -29,6 +31,7 @@ const DashboardCard = ({
   spaceId,
   setSpaceConfirmationId,
   setMenuId,
+  websiteUrl,
 }: PropsType) => {
   const navigate = useNavigate();
   const feedbackUrl: string =
@@ -37,7 +40,7 @@ const DashboardCard = ({
       : `https://testimonial.yshplsngh.in/feedback/${spaceName}`;
 
   return (
-    <div className="border-accent mx-auto flex w-full max-w-[22rem] flex-col gap-y-2 rounded-md border-[2px] px-4 py-3 transition-all ease-in-out">
+    <div className="border-accent mx-auto flex w-[23rem] flex-col rounded-md border-[2px] px-4 py-3 transition-all ease-in-out md:w-[22rem] lg:w-[21rem]">
       <div className={'flex flex-row justify-between'}>
         <div
           className="cursor-pointer text-xl font-semibold capitalize hover:text-gray-300 hover:underline"
@@ -128,19 +131,27 @@ const DashboardCard = ({
           )}
         </div>
       </div>
-      <p className={'text-sm text-gray-300'}>
-        Total Feedbacks: {feedbackCount}
-      </p>
-      <hr className={'border-gray-500'} />
-      <Link
-        to={feedbackUrl}
-        target={'_blank'}
-        className="w-fit cursor-pointer text-sm font-light text-blue-500 hover:underline"
-      >
-        {feedbackUrl.length > 45
-          ? `${feedbackUrl.substring(0, 45)}...`
-          : feedbackUrl}
-      </Link>
+      <p className={'text-sm text-gray-300'}>{websiteUrl}</p>
+      <hr className={'my-2 border-gray-500'} />
+      <div className={'flex items-center justify-between align-middle'}>
+        <p className={'text-sm text-gray-300'}>
+          Total Feedbacks: {feedbackCount}
+        </p>
+        <Link
+          to={
+            import.meta.env.VITE_ENV === 'development'
+              ? `http://localhost:3000/feedback/${spaceName}`
+              : `https://testimonial.yshplsngh.in/feedback/${spaceName}`
+          }
+          target={'_blank'}
+          className={'feedback-url text-sm font-light text-blue-400'}
+        >
+          <span className="flex items-center space-x-1">
+            <strong>Go to Feedback Page</strong>{' '}
+            <SquareArrowOutUpRight className={'h-3 w-3'} />
+          </span>
+        </Link>
+      </div>
     </div>
   );
 };
