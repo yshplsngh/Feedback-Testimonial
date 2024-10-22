@@ -27,8 +27,19 @@ const CreateSpace = ({
     handleSubmit,
     watch,
     formState: { errors, isValid },
-  } = useForm<NewSpaceType>({ resolver: zodResolver(NewSpaceScheme) });
-
+  } = useForm<NewSpaceType>({
+    resolver: zodResolver(NewSpaceScheme),
+    defaultValues: {
+      spaceName: 'Space Name',
+      websiteUrl:
+        import.meta.env.VITE_ENV === 'development'
+          ? 'http://localhost:3000'
+          : 'https://testimonial.yshplsngh.in',
+      customMessage:
+        'We value your feedback! Please take a moment to share your thoughts about using Testimonial.',
+      question: 'How would you rate your overall experience with Testimonial?',
+    },
+  });
   const getParsedValue = <T extends keyof NewSpaceType>(field: T) => {
     const watchField = watch(field);
     return watchField ? NewSpaceScheme.shape[field].parse(watchField) : '';
@@ -84,34 +95,23 @@ const CreateSpace = ({
               <Input
                 inputName={'spaceName'}
                 inputError={errors.spaceName}
-                register={register('spaceName', { value: 'Space Name' })}
+                register={register('spaceName')}
                 publicSpaceName={publicSpaceName}
               />
               <Input
                 inputName={'websiteUrl'}
                 inputError={errors.websiteUrl}
-                register={register('websiteUrl', {
-                  value:
-                    import.meta.env.VITE_ENV === 'development'
-                      ? 'http://localhost:3000'
-                      : 'https://testimonial.yshplsngh.in',
-                })}
+                register={register('websiteUrl')}
               />
               <Input
                 inputName={'customMessage'}
                 inputError={errors.customMessage}
-                register={register('customMessage', {
-                  value:
-                    'We value your feedback! Please take a moment to share your thoughts about using Testimonial.',
-                })}
+                register={register('customMessage')}
               />
               <Input
                 inputName={'question'}
                 inputError={errors.question}
-                register={register('question', {
-                  value:
-                    'How would you rate your overall experience with Testimonial?',
-                })}
+                register={register('question')}
               />
 
               <Button

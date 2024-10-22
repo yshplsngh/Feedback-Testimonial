@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { NewSpaceType, BNewSpacesType } from './types';
+import { NewSpaceType, BNewSpacesType, EditedSpaceWithIdType } from './types';
 import { api } from '../lib/manageFetch/api';
 
 export const createNewSpace = createAsyncThunk(
@@ -15,6 +15,14 @@ export const getUserSpaces = createAsyncThunk(
   async () => {
     const url = '/api/space/getUserSpaces';
     return await api.get<BNewSpacesType[]>(url);
+  },
+);
+
+export const editSpace = createAsyncThunk(
+  'space/editSpace',
+  async (data: EditedSpaceWithIdType) => {
+    const url = '/api/space/edit';
+    return await api.put(url, data);
   },
 );
 

@@ -1,5 +1,15 @@
 import { z } from 'zod';
 
+const urlPattern = new RegExp(
+  '^(https?:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$',
+  'i',
+);
+
 export const NewSpaceScheme = z.object({
   spaceName: z
     .string()
@@ -11,12 +21,18 @@ export const NewSpaceScheme = z.object({
         .filter((value) => value !== '')
         .join('-'),
     ),
-  websiteUrl: z.string().trim().min(1),
+  websiteUrl: z.string().trim().min(1).regex(urlPattern, 'Invalid URL format'),
   customMessage: z.string().trim().min(4),
   question: z.string().trim().min(1),
 });
 
 export type NewSpaceType = z.infer<typeof NewSpaceScheme>;
+
+export const EditedSpaceWithIdSchema = NewSpaceScheme.extend({
+  id: z.number().int().positive(),
+});
+
+export type EditedSpaceWithIdType = z.infer<typeof EditedSpaceWithIdSchema>;
 
 export interface BNewSpacesType {
   id: number;

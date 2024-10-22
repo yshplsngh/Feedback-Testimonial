@@ -1,6 +1,7 @@
 import Button from '../ui/components/Button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
 const NotFound = ({ message }: { message?: string }) => {
   return (
     <motion.div

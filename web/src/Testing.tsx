@@ -1,10 +1,10 @@
 const Testing = () => {
   return (
-    <div className={'flex items-center justify-center border border-green-700'}>
+    <div className={'flex items-center justify-center'}>
       <iframe
         height="400px"
         width="100%"
-        src={'http://localhost:4000/api/feedbacks/space?theme=light&speed=6'}
+        src={'http://localhost:4000/api/feedbacks/space?theme=light&speed=10'}
       />
 
       {/*<iframe height="800px" id='testimonialto-space-name4-tag-all-light-animated'*/}

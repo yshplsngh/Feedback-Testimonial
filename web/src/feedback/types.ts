@@ -14,6 +14,7 @@ export const StarAndSpaceNameSchema = z.object({
 export const CombinedSchema = FeedbackSchema.merge(StarAndSpaceNameSchema);
 
 export type FeedbackType = z.infer<typeof FeedbackSchema>;
+
 export type FeedbackTypeWSAS = z.infer<typeof CombinedSchema>;
 
 export interface ExtraFormInfo {

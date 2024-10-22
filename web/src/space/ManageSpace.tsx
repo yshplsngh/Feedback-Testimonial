@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Button from '../ui/components/Button';
 import {
@@ -30,6 +30,7 @@ import { getFeedbacks } from '../feedback/feedbackApi';
 const ManageSpace: React.FC = () => {
   type TabOption = keyof typeof tabOptions;
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
   const tabOptions = { All: GalleryVerticalEnd, Favorite: Heart };
   const [activeTab, setActiveTab] = useState<TabOption>('All');
   const [loading, setLoading] = useState<boolean>(false);
@@ -37,6 +38,7 @@ const ManageSpace: React.FC = () => {
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
   );
+
   const feedbacks = useSelector((state: RootState) =>
     selectFeedbacksBySpaceId(state, space?.id),
   );
@@ -143,7 +145,7 @@ const ManageSpace: React.FC = () => {
               text={`Edit Space`}
               icon={<SquarePen className={'h-4 w-4'} />}
               className={'max-w-fit'}
-              onClick={() => toast.info('feature not implemented yet!')}
+              onClick={() => navigate(`/space/edit/${spaceName}`)}
             />
           </div>
         </div>

@@ -16,6 +16,7 @@ const Testing = lazy(() => import('./Testing'));
 // Lazy load the Private Component
 const ManageDash = lazy(() => import('./space/ManageDash'));
 const ManageSpace = lazy(() => import('./space/ManageSpace'));
+const EditSpace = lazy(() => import('./space/EditSpace'));
 
 export default function App(): ReactElement {
   return (
@@ -30,6 +31,7 @@ export default function App(): ReactElement {
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<ManageDash />} />
             <Route path={'/space/:spaceName'} element={<ManageSpace />} />
+            <Route path={'/space/edit/:spaceName'} element={<EditSpace />} />
           </Route>
           {/*protected Routes end*/}
           <Route path={'/testing'} element={<Testing />} />

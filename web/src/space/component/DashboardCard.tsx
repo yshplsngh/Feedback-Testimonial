@@ -96,7 +96,7 @@ const DashboardCard = ({
                 text={'Edit Space'}
                 icon={<SquarePen className={'h-4 w-4'} />}
                 className={`hover:bg-accent justify-start border-none bg-transparent`}
-                onClick={() => toast.info('feature not implemented yet!')}
+                onClick={() => navigate(`/space/edit/${spaceName}`)}
               />
               <Button
                 type={'button'}

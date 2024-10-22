@@ -86,6 +86,16 @@ export default function (app: Express) {
     },
   );
 
+  app.put('/api/space/edit', async (req: Request, res: Response) => {
+    // const parsedResult = NewSpaceScheme.safeParse(req.body);
+    // if (!parsedResult.success) {
+    //   next(parsedResult.error);
+    //   return;
+    // }
+    console.log(req.body);
+    return res.status(200).json({ success: true });
+  });
+
   app.delete(
     '/api/space/delete/:spaceId',
     async (req: Request, res: Response, next: NextFunction) => {
