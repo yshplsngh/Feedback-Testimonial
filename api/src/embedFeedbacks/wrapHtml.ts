@@ -22,7 +22,7 @@ export default function wrapHtml({
   // if the theme is neither dark nor light set dark
   theme = theme !== 'dark' && theme !== 'light' ? 'dark' : theme;
   // if speed is not provided, set speed 5
-  speed = speed ?? '5';
+  speed = speed ?? '15';
 
   const css =
     theme === 'dark'

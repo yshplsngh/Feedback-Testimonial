@@ -10,7 +10,7 @@ interface queryParams {
 
 export default function embedFeedbacks(app: Express) {
   app.get(
-    '/api/feedbacks/:spaceName',
+    '/api/:spaceName',
     async (req: Request, res: Response, next: NextFunction) => {
       const spaceName = req.params.spaceName;
       const { theme, speed } = req.query as queryParams;

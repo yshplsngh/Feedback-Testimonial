@@ -6,7 +6,7 @@ echo "|     Clean Setup    |"
 echo "|-------------------|"
 echo ""
 
-BASE_DIR="/home/yshpl/wd/Testimonial"
+BASE_DIR="/home/yshplsngh/wd/Testimonial"
 
 remove_dir() {
     rm -rf "$1"

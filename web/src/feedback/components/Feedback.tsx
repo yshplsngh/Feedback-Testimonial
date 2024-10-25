@@ -21,11 +21,12 @@ const Feedback = ({ onNext }: { onNext: () => void }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [btnLoading, setBtnLoading] = useState<boolean>(false);
-  const { question, customMessage } = useSelector(getExtraFormInfo);
+  const feedbackPageInfo = useSelector(getExtraFormInfo);
   const { spaceName } = useParams<{ spaceName?: string }>();
   const [stars, setStars] = useState<number>(2);
   const dispatch: AppDispatch = useDispatch();
 
+  const { question, customMessage } = feedbackPageInfo;
   useEffect(() => {
     async function fetchFeedbackFormInfo() {
       if (spaceName === undefined) {
@@ -79,9 +80,20 @@ const Feedback = ({ onNext }: { onNext: () => void }) => {
       }
     }
   };
-
-  if (!loading && spaceName === undefined) {
-    return <NotFound message={'Error: Space Name Is Missing!'} />;
+  console.log(feedbackPageInfo);
+  if (
+    !loading &&
+    (!Object.values(feedbackPageInfo).every(Boolean) || spaceName === undefined)
+  ) {
+    return (
+      <NotFound
+        message={
+          spaceName === undefined
+            ? 'Error: Space Name Is Missing!'
+            : 'Error: Space Not Found'
+        }
+      />
+    );
   }
 
   return !loading ? (
@@ -93,7 +105,7 @@ const Feedback = ({ onNext }: { onNext: () => void }) => {
       }}
     >
       <section className="flex items-center justify-center text-black transition-all">
-        <main className="bg-whitish mx-auto my-10 w-full max-w-2xl space-y-5 rounded-lg px-12 py-12">
+        <main className="bg-whitish mx-auto my-10 w-full max-w-2xl space-y-5 rounded-lg px-3 py-10 shadow-2xl sm:px-6 md:px-12">
           <span className={'text-orange text-lg font-bold capitalize'}>
             Write text testimonial for {spaceName}
           </span>
