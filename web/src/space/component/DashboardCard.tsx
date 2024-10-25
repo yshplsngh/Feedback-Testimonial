@@ -40,7 +40,7 @@ const DashboardCard = ({
       : `https://testimonial.yshplsngh.in/feedback/${spaceName}`;
 
   return (
-    <div className="border-accent mx-auto flex w-[23rem] flex-col rounded-md border-[2px] px-4 py-3 transition-all ease-in-out md:w-[22rem] lg:w-[21rem]">
+    <div className="border-accent mx-auto flex w-[23rem] flex-col rounded-md border-[2px] px-4 py-3 transition-all md:w-[22rem] lg:w-[21rem]">
       <div className={'flex flex-row justify-between'}>
         <div
           className="cursor-pointer text-xl font-semibold capitalize hover:text-gray-300 hover:underline"

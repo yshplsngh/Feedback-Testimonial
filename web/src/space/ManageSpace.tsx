@@ -94,7 +94,7 @@ const ManageSpace: React.FC = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="w-full">
-        <div className="flex flex-row items-center justify-between px-2 py-2 md:px-5 md:py-4">
+        <div className="flex flex-row items-center justify-between px-2 py-2 transition-all md:px-5 md:py-4">
           <div className={'flex items-center space-x-5'}>
             <Avatar className="h-11 w-11 rounded-md md:h-14 md:w-14">
               <AvatarImage
@@ -107,7 +107,7 @@ const ManageSpace: React.FC = () => {
               </AvatarFallback>
             </Avatar>
             <div>
-              <span className="flex items-center text-xl font-semibold capitalize md:text-2xl">
+              <span className="flex items-center text-[1.2rem] font-semibold capitalize md:text-2xl">
                 {spaceName}
               </span>
               <Link
@@ -127,8 +127,8 @@ const ManageSpace: React.FC = () => {
                   </p>
                   <SquareArrowOutUpRight className={'h-3 w-3'} />
                 </span>
-                <span className="flex items-center space-x-1 text-[0.9rem] md:hidden">
-                  <strong>Go to Feedback Page</strong>{' '}
+                <span className="flex items-center space-x-1 align-middle text-[0.95rem] md:hidden">
+                  <small>Go to Feedback Page</small>{' '}
                   <SquareArrowOutUpRight className={'h-3 w-3'} />
                 </span>
               </Link>

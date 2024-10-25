@@ -35,7 +35,6 @@ const EditSpace = () => {
       setLoading(true);
       try {
         if (space === undefined) {
-          //TODO: fetch only current space, coz anyway dashboard will fetch
           await dispatch(getUserSpace(spaceName)).unwrap();
         }
       } catch (err) {
@@ -105,8 +104,8 @@ const EditSpace = () => {
   };
 
   /**
-   * if no data fetching is occurring but still, space is undefined,
-   * then did not receive data from backend or redux store is empty
+   * if no data fetching is happening but still space is undefined,
+   * then we did not receive data from backend or redux store is empty
    */
   if (!loading && (space === undefined || spaceName === undefined)) {
     return (
@@ -160,12 +159,13 @@ const EditSpace = () => {
                 register={register('question')}
               />
 
-              <div className={'flex justify-end space-x-5'}>
+              <div className={'flex justify-end space-x-3'}>
                 <Button
                   type={'button'}
                   text={'cancel'}
                   variant={'outlineB'}
                   className={'w-fit'}
+                  onClick={() => navigate(`/space/${spaceName}`)}
                 />
                 <Button
                   type={'submit'}

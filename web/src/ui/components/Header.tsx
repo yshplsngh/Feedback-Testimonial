@@ -72,7 +72,7 @@ function Header() {
   return (
     <div
       className={
-        'sticky top-0 z-50 mx-auto max-w-[100rem] items-center justify-between border-b-2 border-zinc-800 bg-zinc-900 bg-opacity-30 bg-clip-padding backdrop-blur-sm backdrop-filter md:px-10'
+        'sticky top-0 z-50 mx-auto max-w-[100rem] items-center justify-between border-b-2 border-zinc-800 bg-zinc-900 bg-opacity-30 bg-clip-padding backdrop-blur-sm backdrop-filter transition-all md:px-10'
       }
     >
       <div className="flex items-center justify-between px-5 py-2 md:px-9 md:py-5">

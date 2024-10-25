@@ -31,10 +31,7 @@ const CreateSpace = ({
     resolver: zodResolver(NewSpaceScheme),
     defaultValues: {
       spaceName: 'Space Name',
-      websiteUrl:
-        import.meta.env.VITE_ENV === 'development'
-          ? 'http://localhost:3000'
-          : 'https://testimonial.yshplsngh.in',
+      websiteUrl: 'https://testimonial.yshplsngh.in',
       customMessage:
         'We value your feedback! Please take a moment to share your thoughts about using Testimonial.',
       question: 'How would you rate your overall experience with Testimonial?',
@@ -85,7 +82,7 @@ const CreateSpace = ({
             />
           </span>
           <div className={'w-full'}>
-            <h1 className="text:xl mb-14 text-center font-bold md:text-2xl">
+            <h1 className="mb-14 text-center text-lg font-bold md:text-xl">
               Create New Space
             </h1>
             <form
@@ -119,7 +116,7 @@ const CreateSpace = ({
                 text={'Create New Space'}
                 icon={<SquarePlus className={'h-4 w-4'} />}
                 variant={'outlineB'}
-                className={'text-md mt-5 h-9'}
+                className={'mt-5 h-9'}
                 loading={loading}
               />
             </form>

@@ -69,9 +69,10 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
       className={'relative'}
     >
       <div className="w-full">
-        <div className="flex flex-row items-center justify-between px-2 py-3 md:px-5 md:py-6">
+        <div className="flex flex-row items-center justify-between px-3 py-4 transition-all md:px-5 md:py-6">
           <h1 className="flex items-center text-2xl font-semibold md:text-3xl">
-            Dashboard <LayoutDashboard className={'ml-3 h-6 w-6'} />
+            Dashboard{' '}
+            <LayoutDashboard className={'ml-2 h-5 w-5 md:ml-3 md:h-6 md:w-6'} />
           </h1>
           <Button
             type={'button'}
@@ -83,9 +84,13 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
           />
         </div>
         <hr className={'border-accent'} />
-        <div className={'mt-10 flex flex-col items-center justify-center'}>
+        <div
+          className={
+            'mt-10 flex flex-col items-center justify-center transition-all'
+          }
+        >
           {spaces && spaces.length > 0 ? (
-            <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-6 transition-all md:grid-cols-2 lg:grid-cols-3">
               {spaces.map((space) => (
                 <DashboardCard
                   key={space.id}
@@ -110,9 +115,7 @@ const Dashboard = ({ nextStep }: { nextStep: () => void }) => {
             </div>
           ) : (
             <div className="w-fit space-y-3">
-              <div className="w-full border-2 border-red-500 text-center">
-                No projects found !
-              </div>
+              <div className="w-full text-center">No projects found !</div>
               <Button
                 type={'button'}
                 variant={'secondary'}

@@ -2,7 +2,7 @@ const ShowStars = ({ stars }: { stars: number }) => {
   return Array.from({ length: 5 }).map((_, index) => (
     <div
       key={index}
-      className="inline-block pl-1 align-middle"
+      className="inline-block pl-1 align-middle transition-all"
       aria-label={`Set rating to ${index + 1} stars`}
     >
       <svg

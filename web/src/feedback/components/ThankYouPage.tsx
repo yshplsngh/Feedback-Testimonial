@@ -33,7 +33,7 @@ const ThankYouPage = ({ startStep }: { startStep: () => void }) => {
         </div>
         <p
           className={
-            'flex h-fit flex-row items-center justify-center gap-x-1 bg-zinc-200 py-2 text-[0.750rem] text-gray-700'
+            'flex h-fit flex-row items-center justify-center gap-x-1 bg-zinc-200 py-1 text-[0.750rem] text-gray-500'
           }
         >
           Powered by
@@ -44,7 +44,7 @@ const ThankYouPage = ({ startStep }: { startStep: () => void }) => {
                 : 'https://testimonial.yshplsngh.in'
             }
             target={'_blank'}
-            className={'font-semibold text-gray-500 hover:underline'}
+            className={'text-gray-700 hover:underline'}
           >
             {import.meta.env.VITE_ENV === 'development'
               ? 'localhost:3000'
