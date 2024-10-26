@@ -36,7 +36,7 @@ let Input: React.FC<InputProps> = ({
       <input
         type="text"
         id={inputName}
-        className={`block w-full appearance-none border-0 border-b-2 bg-transparent px-0 py-1.5 text-[0.9rem] text-gray-800 focus:outline-none focus:ring-0 ${inputError ? 'border-red-300 focus:border-red-300' : 'border-gray-300 focus:border-blue-600'} peer`}
+        className={`block w-full appearance-none border-0 border-b-2 bg-transparent px-0 py-1.5 text-[0.85rem] text-gray-800 focus:outline-none focus:ring-0 md:text-[0.95rem] ${inputError ? 'border-red-300 focus:border-red-300' : 'border-gray-300 focus:border-blue-600'} peer`}
         placeholder=" "
         required
         {...register}

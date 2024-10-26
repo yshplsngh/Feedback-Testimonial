@@ -14,6 +14,7 @@ export const NewSpaceScheme = z.object({
   spaceName: z
     .string()
     .trim()
+    .toLowerCase()
     .min(1)
     .transform((data) =>
       data

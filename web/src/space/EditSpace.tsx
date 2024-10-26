@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
 import { toast } from 'sonner';
 import { FetchResponseError } from '../lib/manageFetch/api';
-import { SquarePen } from 'lucide-react';
+import { ArrowLeft, SquarePen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { selectSpaceBySpaceName } from './spaceSlice';
@@ -129,13 +129,22 @@ const EditSpace = () => {
     >
       <section className="flex items-center justify-center transition-all">
         <div className="bg-whitish relative mx-auto my-10 w-full max-w-[40rem] rounded-lg px-3 py-10 text-gray-800 shadow-2xl sm:px-6 md:flex md:px-12">
+          <span className={'absolute left-2 top-2'}>
+            <Button
+              type={'button'}
+              variant={'secondary'}
+              className={'bg-whitish rounded-full p-1 hover:bg-gray-200'}
+              icon={<ArrowLeft className={'h-5 w-6'} />}
+              onClick={() => navigate(`/space/${spaceName}`)}
+            />
+          </span>
           <div className={'w-full'}>
-            <h1 className="text:xl mb-14 text-center font-bold md:text-2xl">
-              Edit Space
+            <h1 className="mb-14 text-center text-lg font-bold md:text-xl">
+              Edit Space Properties
             </h1>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col space-y-14"
+              className="flex flex-col gap-y-10"
             >
               <Input
                 inputName={'spaceName'}
@@ -158,24 +167,14 @@ const EditSpace = () => {
                 inputError={errors.question}
                 register={register('question')}
               />
-
-              <div className={'flex justify-end space-x-3'}>
-                <Button
-                  type={'button'}
-                  text={'cancel'}
-                  variant={'outlineB'}
-                  className={'w-fit'}
-                  onClick={() => navigate(`/space/${spaceName}`)}
-                />
-                <Button
-                  type={'submit'}
-                  text={'Edit Space'}
-                  icon={<SquarePen className={'h-4 w-4'} />}
-                  variant={'outlineB'}
-                  className={'w-fit'}
-                  loading={editLoading}
-                />
-              </div>
+              <Button
+                type={'submit'}
+                text={'Edit Space'}
+                icon={<SquarePen className={'h-4 w-4'} />}
+                variant={'outlineB'}
+                className={'mt-5 h-9'}
+                loading={editLoading}
+              />
             </form>
           </div>
         </div>

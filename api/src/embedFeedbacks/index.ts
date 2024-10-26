@@ -12,7 +12,7 @@ export default function embedFeedbacks(app: Express) {
   app.get(
     '/api/:spaceName',
     async (req: Request, res: Response, next: NextFunction) => {
-      const spaceName = req.params.spaceName;
+      const spaceName = req.params.spaceName?.toLowerCase();
       const { theme, speed } = req.query as queryParams;
 
       if (!spaceName) {

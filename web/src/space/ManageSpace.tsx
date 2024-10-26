@@ -35,13 +35,15 @@ const ManageSpace: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabOption>('All');
   const [loading, setLoading] = useState<boolean>(false);
   const { spaceName } = useParams<{ spaceName?: string }>();
+  console.log({ spaceName });
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
   );
-
+  console.log({ space });
   const feedbacks = useSelector((state: RootState) =>
     selectFeedbacksBySpaceId(state, space?.id),
   );
+
   const getFilteredFeedbacks = () => {
     switch (activeTab) {
       case 'All':
@@ -108,7 +110,7 @@ const ManageSpace: React.FC = () => {
             </Avatar>
             <div>
               <span className="flex items-center text-[1.2rem] font-semibold capitalize md:text-2xl">
-                {spaceName}
+                {spaceName?.toLowerCase()}
               </span>
               <Link
                 to={

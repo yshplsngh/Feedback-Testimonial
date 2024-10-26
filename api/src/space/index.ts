@@ -35,7 +35,7 @@ export default function (app: Express) {
     rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
-      const receivedSpaceName = req.params.spaceName;
+      const receivedSpaceName = req.params.spaceName?.toLowerCase();
       if (!receivedSpaceName) {
         return next(new createError('SpaceName is not defined in url', 406));
       }
@@ -43,6 +43,7 @@ export default function (app: Express) {
       const spaceExist = await prisma.space.findUnique({
         where: {
           spaceName: receivedSpaceName,
+          userId: req.user!.id,
         },
       });
       if (!spaceExist) {
@@ -57,13 +58,13 @@ export default function (app: Express) {
     '/api/space/spaceInfo/:spaceName',
     rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
-      const receivedSpaceName = req.params.spaceName;
+      const receivedSpaceName = req.params.spaceName?.toLowerCase();
       if (!receivedSpaceName) {
         return next(new createError('SpaceName is not defined in url', 406));
       }
       const data = await prisma.space.findUnique({
         where: {
-          spaceName: receivedSpaceName,
+          spaceName: receivedSpaceName.toLowerCase(),
         },
         select: {
           question: true,
