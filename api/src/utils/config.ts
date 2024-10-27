@@ -3,9 +3,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
-  PORT: process.env.PORT || 4001,
+  PORT: process.env.PORT || 4000,
 
   NODE_ENV: process.env.NODE_ENV,
+
+  REDIS_URL: process.env.REDIS_URL || 'redis://localhost:6379',
 
   USER_SESSION_SECRET:
     process.env.USER_SESSION_SECRET ||
