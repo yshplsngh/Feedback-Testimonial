@@ -45,15 +45,4 @@ export default function embedFeedbacks(app: Express) {
       return res.status(200).send(feedbackWidget);
     },
   );
-
-  app.get('/api/check/redis', async (req: Request, res: Response) => {
-    // await Redis.getInstance().publish(`INDIVIDUAL_1`, {
-    //   type: 'type',
-    //   payload: {
-    //     barter: 2,
-    //   },
-    // });
-
-    return res.status(200).send({ success: 'ok' });
-  });
 }

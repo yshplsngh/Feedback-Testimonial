@@ -1,9 +1,14 @@
 import { Express, NextFunction, Response, Request } from 'express';
-import { EditedSpaceWithIdSchema, NewSpaceScheme } from './types.ts';
+import {
+  BNewSpacesType,
+  EditedSpaceWithIdSchema,
+  NewSpaceScheme,
+} from './types.ts';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling.ts';
 import requireAuth from '../utils/middlewares/requireAuth.ts';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
+import { Redis } from '../Redis.ts';
 
 export default function (app: Express) {
   app.get(
@@ -16,7 +21,7 @@ export default function (app: Express) {
           userId: req.user!.id,
         },
       });
-      const spaceWithFeedbackCount = await Promise.all(
+      const spaceWithFeedbackCount: BNewSpacesType[] = await Promise.all(
         spaces.map(async (space) => {
           const feedbackCount = await prisma.feedback.count({
             where: {
@@ -26,6 +31,7 @@ export default function (app: Express) {
           return { ...space, feedbackCount };
         }),
       );
+      await Redis.getInstance().setSpace(spaceWithFeedbackCount);
       return res.status(201).json(spaceWithFeedbackCount);
     },
   );
@@ -39,6 +45,13 @@ export default function (app: Express) {
       if (!receivedSpaceName) {
         return next(new createError('SpaceName is not defined in url', 406));
       }
+      const cachedSpace = await Redis.getInstance().getSpace(
+        req.user!.id,
+        receivedSpaceName,
+      );
+      if (cachedSpace) {
+        return res.status(200).json(cachedSpace);
+      }
 
       const spaceExist = await prisma.space.findUnique({
         where: {
@@ -47,9 +60,16 @@ export default function (app: Express) {
         },
       });
       if (!spaceExist) {
-        return next(new createError('Space does not exist', 409));
+        return next(new createError('space not exist', 409));
       }
-      return res.status(200).json(spaceExist);
+      const feedbackCount = await prisma.feedback.count({
+        where: {
+          spaceId: spaceExist.id,
+        },
+      });
+      const space: BNewSpacesType = { ...spaceExist, feedbackCount };
+      await Redis.getInstance().setSpace([space]);
+      return res.status(200).json(space);
     },
   );
 
@@ -72,7 +92,7 @@ export default function (app: Express) {
         },
       });
       if (!data) {
-        return next(new createError('Space does not exist', 404));
+        return next(new createError('space not exist', 404));
       }
       return res.status(200).json(data);
     },
@@ -125,7 +145,7 @@ export default function (app: Express) {
         },
       });
       if (!spaceIdExist) {
-        return next(new createError('Space does not exist', 409));
+        return next(new createError('space not exist', 409));
       }
 
       if (spaceIdExist.spaceName !== parsedResult.data.spaceName) {
@@ -167,7 +187,7 @@ export default function (app: Express) {
         },
       });
       if (!spaceExist) {
-        return next(new createError('Space does not exist', 404));
+        return next(new createError('space not exist', 404));
       }
 
       await prisma.$transaction(async (prisma) => {

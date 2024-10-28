@@ -23,7 +23,7 @@ export default function (app: Express) {
         },
       });
       if (!spaceExist) {
-        return next(new createError('Space does not exist', 404));
+        return next(new createError('space not exist', 404));
       }
       await prisma.feedback.create({
         data: {
@@ -54,7 +54,7 @@ export default function (app: Express) {
         },
       });
       if (!spaceExist) {
-        return next(new createError('Space does not exist', 404));
+        return next(new createError('space not exist', 404));
       }
       const feedbackData = await prisma.feedback.findMany({
         where: {

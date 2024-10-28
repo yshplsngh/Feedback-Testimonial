@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { Space } from '@prisma/client';
 
 export const NewSpaceScheme = z.object({
   spaceName: z
@@ -20,3 +21,7 @@ export const NewSpaceScheme = z.object({
 export const EditedSpaceWithIdSchema = NewSpaceScheme.extend({
   id: z.number().int().positive(),
 });
+
+export interface BNewSpacesType extends Space {
+  feedbackCount: number;
+}

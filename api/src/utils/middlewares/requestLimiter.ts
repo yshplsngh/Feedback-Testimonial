@@ -2,7 +2,7 @@ import { rateLimit } from 'express-rate-limit';
 
 const rateLimitMiddleware = rateLimit({
   windowMs: 1000 * 60, // 1 min
-  limit: 60,
+  limit: 80,
   message: {
     message:
       'Too many request from this IP, please try again after a 60 second pause',
