@@ -11,29 +11,43 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 import { Redis } from '../Redis.ts';
 
 export default function (app: Express) {
-  // TODO: add
   app.get(
     '/api/space/getUserSpaces',
     rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response) => {
-      const spaces = await prisma.space.findMany({
+      const spacesWithCount = await prisma.space.findMany({
         where: {
           userId: req.user!.id,
         },
-      });
-      const spaceWithFeedbackCount: BNewSpacesType[] = await Promise.all(
-        spaces.map(async (space) => {
-          const feedbackCount = await prisma.feedback.count({
-            where: {
-              spaceId: space.id,
+        select: {
+          id: true,
+          userId: true,
+          spaceName: true,
+          websiteUrl: true,
+          customMessage: true,
+          question: true,
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              Feedback: true,
             },
-          });
-          return { ...space, feedbackCount };
+          },
+        },
+      });
+      /**
+       * replace a _count object with feedbackCount variable
+       * @return BNewSpacesType[]
+       */
+      const spacesWithFeedbackCount: BNewSpacesType[] = spacesWithCount.map(
+        ({ _count, ...space }) => ({
+          ...space,
+          feedbackCount: _count.Feedback,
         }),
       );
-      await Redis.getInstance().setSpace(spaceWithFeedbackCount);
-      return res.status(201).json(spaceWithFeedbackCount);
+
+      return res.status(201).json(spacesWithFeedbackCount);
     },
   );
 
@@ -42,39 +56,55 @@ export default function (app: Express) {
     rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
+      const userId = req.user!.id;
       const receivedSpaceName = req.params.spaceName?.toLowerCase();
       if (!receivedSpaceName) {
         return next(new createError('SpaceName is not defined in url', 406));
-      }
-      const cachedSpace = await Redis.getInstance().getSpace(
-        req.user!.id,
-        receivedSpaceName,
-      );
-      if (cachedSpace) {
-        return res.status(200).json(cachedSpace);
       }
 
       const spaceExist = await prisma.space.findUnique({
         where: {
           spaceName: receivedSpaceName,
-          userId: req.user!.id,
+          userId: userId,
+        },
+        select: {
+          id: true,
+          userId: true,
+          spaceName: true,
+          websiteUrl: true,
+          customMessage: true,
+          question: true,
+          createdAt: true,
+          updatedAt: true,
+          _count: {
+            select: {
+              Feedback: true,
+            },
+          },
         },
       });
       if (!spaceExist) {
         return next(new createError('space not exist', 409));
       }
-      const feedbackCount = await prisma.feedback.count({
-        where: {
-          spaceId: spaceExist.id,
-        },
-      });
-      const space: BNewSpacesType = { ...spaceExist, feedbackCount };
-      await Redis.getInstance().setSpace([space]);
-      return res.status(200).json(space);
+
+      /**
+       * replace a _count object with feedbackCount variable
+       * @return BNewSpacesType
+       */
+      const { _count, ...remainingSpace } = spaceExist;
+      const spaceWithFeedbackCount: BNewSpacesType = {
+        ...remainingSpace,
+        feedbackCount: _count.Feedback,
+      };
+
+      return res.status(200).json(spaceWithFeedbackCount);
     },
   );
 
-  // using in public facing endpoint, so no protection
+  /**
+   * using it in Feedback Form
+   * @return question, customMessage
+   */
   app.get(
     '/api/space/spaceInfo/:spaceName',
     rateLimitMiddleware,
@@ -83,19 +113,28 @@ export default function (app: Express) {
       if (!receivedSpaceName) {
         return next(new createError('SpaceName is not defined in url', 406));
       }
-      const data = await prisma.space.findUnique({
+      const cachedSpaceData =
+        await Redis.getInstance().getSpaceFormInfo(receivedSpaceName);
+      if (cachedSpaceData) {
+        return res.status(200).json(cachedSpaceData);
+      }
+      const spaceData = await prisma.space.findUnique({
         where: {
-          spaceName: receivedSpaceName.toLowerCase(),
+          spaceName: receivedSpaceName,
         },
         select: {
           question: true,
           customMessage: true,
         },
       });
-      if (!data) {
+      if (!spaceData) {
         return next(new createError('space not exist', 404));
       }
-      return res.status(200).json(data);
+      await Redis.getInstance().setSpaceFormInfo({
+        spaceName: receivedSpaceName,
+        spaceData,
+      });
+      return res.status(200).json(spaceData);
     },
   );
 
@@ -109,6 +148,7 @@ export default function (app: Express) {
         next(parsedResult.error);
         return;
       }
+
       const spaceExist = await prisma.space.findUnique({
         where: {
           spaceName: parsedResult.data.spaceName,
@@ -117,7 +157,7 @@ export default function (app: Express) {
       if (spaceExist) {
         return next(new createError('Space Name already exist', 409));
       }
-      const newSpace = await prisma.space.create({
+      await prisma.space.create({
         data: {
           userId: req.user!.id,
           spaceName: parsedResult.data.spaceName,
@@ -126,12 +166,6 @@ export default function (app: Express) {
           question: parsedResult.data.question,
         },
       });
-
-      const newSpaceWithFeedbackCount: BNewSpacesType = {
-        ...newSpace,
-        feedbackCount: 0,
-      };
-      await Redis.getInstance().setSpace([newSpaceWithFeedbackCount]);
 
       return res.status(201).json({ success: true });
     },
@@ -178,9 +212,8 @@ export default function (app: Express) {
           websiteUrl: parsedResult.data.websiteUrl,
         },
       });
-      console.log(updatedSpace);
-      // await Redis.getInstance().
-      return res.status(200).json({ success: true });
+
+      return res.status(200).json(updatedSpace);
     },
   );
 

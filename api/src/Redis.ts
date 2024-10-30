@@ -1,10 +1,9 @@
 import { createClient } from 'redis';
 import type { RedisClientType } from 'redis';
 import config from './utils/config.ts';
-import { BNewSpacesType } from './space/types.ts';
 
 export class Redis {
-  private client: RedisClientType;
+  private readonly client: RedisClientType;
   private static instance: Redis;
 
   constructor() {
@@ -23,27 +22,29 @@ export class Redis {
     }
     return this.instance;
   }
+
   /**
    * Can't use Redis.getInstance, coz connect-redis require a raw redis not a wrapped redis with class
+   * @returns raw redis client
    */
   getClient() {
     return this.client;
   }
 
-  async setSpace(spaceData: BNewSpacesType[]) {
-    await Promise.all(
-      spaceData.map(async (space) => {
-        await this.client.set(
-          `USER:${space.userId}:SPACE:${space.spaceName}`,
-          JSON.stringify(space),
-          { EX: 600 },
-        );
-      }),
-    );
+  async setSpaceFormInfo({
+    spaceName,
+    spaceData,
+  }: {
+    spaceName: string;
+    spaceData: { customMessage: string; question: string };
+  }) {
+    await this.client.set(`SPACE:${spaceName}`, JSON.stringify(spaceData), {
+      EX: 600,
+    });
   }
 
-  async getSpace(userId: number, spaceName: string) {
-    const space = await this.client.get(`USER:${userId}:SPACE:${spaceName}`);
+  async getSpaceFormInfo(spaceName: string) {
+    const space = await this.client.get(`SPACE:${spaceName}`);
     return space ? JSON.parse(space) : null;
   }
 }
