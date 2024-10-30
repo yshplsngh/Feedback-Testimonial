@@ -30,7 +30,7 @@ export const editSpace = createAsyncThunk(
   'space/editSpace',
   async (data: EditedSpaceWithIdType) => {
     const url = '/api/space/edit';
-    return await api.put(url, data);
+    return await api.put<BNewSpacesType>(url, data);
   },
 );
 

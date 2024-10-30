@@ -80,7 +80,7 @@ const Feedback = ({ onNext }: { onNext: () => void }) => {
       }
     }
   };
-  console.log(feedbackPageInfo);
+
   if (
     !loading &&
     (!Object.values(feedbackPageInfo).every(Boolean) || spaceName === undefined)
