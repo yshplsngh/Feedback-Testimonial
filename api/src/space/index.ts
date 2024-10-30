@@ -11,6 +11,7 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 import { Redis } from '../Redis.ts';
 
 export default function (app: Express) {
+  // TODO: add
   app.get(
     '/api/space/getUserSpaces',
     rateLimitMiddleware,
@@ -116,7 +117,7 @@ export default function (app: Express) {
       if (spaceExist) {
         return next(new createError('Space Name already exist', 409));
       }
-      await prisma.space.create({
+      const newSpace = await prisma.space.create({
         data: {
           userId: req.user!.id,
           spaceName: parsedResult.data.spaceName,
@@ -125,6 +126,13 @@ export default function (app: Express) {
           question: parsedResult.data.question,
         },
       });
+
+      const newSpaceWithFeedbackCount: BNewSpacesType = {
+        ...newSpace,
+        feedbackCount: 0,
+      };
+      await Redis.getInstance().setSpace([newSpaceWithFeedbackCount]);
+
       return res.status(201).json({ success: true });
     },
   );
@@ -159,7 +167,7 @@ export default function (app: Express) {
         }
       }
 
-      await prisma.space.update({
+      const updatedSpace = await prisma.space.update({
         where: {
           id: spaceIdExist.id,
         },
@@ -170,6 +178,8 @@ export default function (app: Express) {
           websiteUrl: parsedResult.data.websiteUrl,
         },
       });
+      console.log(updatedSpace);
+      // await Redis.getInstance().
       return res.status(200).json({ success: true });
     },
   );

@@ -44,6 +44,7 @@ export const createServer = (): Express => {
 
   app.all('/', (_req: Request, res: Response) => {
     return res.status(200).json({
+      Status: 'OK',
       RunTime: process.uptime(),
     });
   });

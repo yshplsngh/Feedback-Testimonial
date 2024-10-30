@@ -11,7 +11,10 @@ export class Redis {
     this.client = createClient({
       url: config.REDIS_URL,
     });
-    this.client.connect();
+    this.client.connect().catch(console.error);
+
+    this.client.on('error', (err) => console.error('Redis Client Error', err));
+    this.client.on('connect', () => console.log('Redis Client Connected ✅'));
   }
 
   public static getInstance(): Redis {
@@ -19,6 +22,12 @@ export class Redis {
       this.instance = new Redis();
     }
     return this.instance;
+  }
+  /**
+   * Can't use Redis.getInstance, coz connect-redis require a raw redis not a wrapped redis with class
+   */
+  getClient() {
+    return this.client;
   }
 
   async setSpace(spaceData: BNewSpacesType[]) {

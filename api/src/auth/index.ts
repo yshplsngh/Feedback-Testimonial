@@ -2,16 +2,21 @@ import type { Express, Response, Request } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config.ts';
-import './passportConfig.ts';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
+import RedisStore from 'connect-redis';
+import { Redis } from '../Redis.ts';
 
+import './passportConfig.ts';
 export default function authRoutes(app: Express): void {
-  const memoryStore = new session.MemoryStore();
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
       name: 'sid',
-      store: memoryStore,
+      store: new RedisStore({
+        client: Redis.getInstance().getClient(),
+        prefix: 'session:',
+        ttl: 60 * 60 * 24 * 7,
+      }),
       /**
        * when true: the session data is saved back to the session store on every request made,
        * regardless of whether there was any modification to the session data during the request.
@@ -33,8 +38,8 @@ export default function authRoutes(app: Express): void {
         secure: 'auto',
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
-        // sameSite: 'none',
-        maxAge: 60000 * 60 * 60,
+        sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
+        maxAge: 1000 * 60 * 60 * 24 * 7,
       },
     }),
   );
