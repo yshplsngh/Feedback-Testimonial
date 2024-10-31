@@ -5,8 +5,11 @@ import config from '../utils/config.ts';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
 import RedisStore from 'connect-redis';
 import { Redis } from '../Redis.ts';
+import { User } from '@prisma/client';
 
 import './passportConfig.ts';
+import { createError } from '../utils/errorHandling.ts';
+
 export default function authRoutes(app: Express): void {
   app.use(
     session({
@@ -61,14 +64,30 @@ export default function authRoutes(app: Express): void {
   app.get(
     '/api/auth/google/redirect',
     rateLimitMiddleware,
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    (_req: Request, res: Response) => {
-      res.status(200);
-      res.redirect(
-        config.NODE_ENV === 'development'
-          ? 'http://localhost:3000/dashboard'
-          : 'https://testimonial.yshplsngh.in/dashboard',
-      );
+    (req: Request, res: Response, next) => {
+      passport.authenticate('google', (err: unknown, user: User) => {
+        if (err || !user) {
+          const loginPageUrl = new URL(
+            config.NODE_ENV === 'development'
+              ? 'http://localhost:3000/login'
+              : 'https://testimonial.yshplsngh.in/login',
+          );
+          loginPageUrl.searchParams.append('error', 'google auth failed');
+          return res.redirect(loginPageUrl.toString());
+        }
+
+        req.logIn(user, (loginErr) => {
+          if (loginErr) {
+            return next(new createError('Session error', 500));
+          }
+          const dashboardUrl =
+            config.NODE_ENV === 'development'
+              ? 'http://localhost:3000/dashboard'
+              : 'https://testimonial.yshplsngh.in/dashboard';
+
+          return res.redirect(dashboardUrl);
+        });
+      })(req, res, next);
     },
   );
 

@@ -56,7 +56,7 @@ passport.deserializeUser(async (GID: string, done) => {
       where: { googleId: GID },
     });
     if (!userExist) {
-      return done(null, null);
+      return done(null, false);
     }
     return done(null, userExist);
   } catch (error) {
