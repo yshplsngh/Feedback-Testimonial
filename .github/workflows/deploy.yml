@@ -23,5 +23,5 @@ jobs:
           context: ./api
           file: ./api/Dockerfile
           push: true
-          tags: yshplsngh/testimonial:check2
+          tags: yshplsngh/testimonial:latest
           
