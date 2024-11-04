@@ -3,9 +3,7 @@ version: '3.8'
 services:
   app:
     container_name: backend
-    build:
-      context: .
-      dockerfile: DockerFile
+    image: yshplsngh/testimonial:check
     ports:
       - "4000:4000"
     environment:
