@@ -7,7 +7,7 @@ COPY tsconfig.json  ./
 RUN npm install
 
 COPY prisma ./prisma/
-RUN npx prisma generate
+RUN npm run db:generate
 
 COPY src ./src
 
@@ -15,4 +15,4 @@ RUN npm run build
 
 EXPOSE 4000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run start"]
+CMD ["sh", "-c", "npm run start"]
