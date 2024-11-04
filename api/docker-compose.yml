@@ -10,7 +10,6 @@ services:
       - "4000:4000"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/testimonial?schema=public
-      - NODE_ENV=development # remove it
       - CLIENT_ID=1072438711486-ngsjrbdriamtdeqme3qp7fa44p8kcp78.apps.googleusercontent.com
       - CLIENT_SECRET=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
     depends_on:
