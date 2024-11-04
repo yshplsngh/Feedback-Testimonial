@@ -1,7 +1,7 @@
 import { Express, NextFunction, Request, Response } from 'express';
-import { createError } from '../utils/errorHandling.ts';
+import { createError } from '../utils/errorHandling';
 import prisma from '../database';
-import wrapHtml from './wrapHtml.ts';
+import wrapHtml from './wrapHtml';
 
 interface queryParams {
   theme?: string;

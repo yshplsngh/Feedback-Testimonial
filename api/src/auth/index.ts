@@ -1,14 +1,14 @@
 import type { Express, Response, Request } from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import config from '../utils/config.ts';
-import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
+import config from '../utils/config';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 import RedisStore from 'connect-redis';
-import { Redis } from '../Redis.ts';
+import { Redis } from '../Redis';
 import { User } from '@prisma/client';
 
-import './passportConfig.ts';
-import { createError } from '../utils/errorHandling.ts';
+import './passportConfig';
+import { createError } from '../utils/errorHandling';
 
 export default function authRoutes(app: Express): void {
   app.use(

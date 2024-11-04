@@ -1,5 +1,5 @@
 import { PrismaClient, Feedback } from '@prisma/client';
-import config from '../utils/config.ts';
+import config from '../utils/config';
 
 const prismaClientSingleton = () => {
   return new PrismaClient();

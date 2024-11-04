@@ -1,6 +1,6 @@
 import { createClient } from 'redis';
 import type { RedisClientType } from 'redis';
-import config from './utils/config.ts';
+import config from './utils/config';
 
 export class Redis {
   private readonly client: RedisClientType;

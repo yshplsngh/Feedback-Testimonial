@@ -3,12 +3,12 @@ import {
   BNewSpacesType,
   EditedSpaceWithIdSchema,
   NewSpaceScheme,
-} from './types.ts';
+} from './types';
 import prisma from '../database';
-import { createError } from '../utils/errorHandling.ts';
-import requireAuth from '../utils/middlewares/requireAuth.ts';
-import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
-import { Redis } from '../Redis.ts';
+import { createError } from '../utils/errorHandling';
+import requireAuth from '../utils/middlewares/requireAuth';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
+import { Redis } from '../Redis';
 
 export default function (app: Express) {
   app.get(

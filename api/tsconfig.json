@@ -12,12 +12,10 @@
     "noImplicitOverride": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "noEmit": true,
+    "noEmit": false,
     "checkJs": true,
     "lib": ["es2022"],
-    "allowImportingTsExtensions": true,
-    "typeRoots": ["./src/types.d.ts", "./node_modules/@types"],
-    "types": ["node", "express"]
+    "outDir": "./dist"
   },
   "exclude": ["node_modules", "dist"],
   "include": ["src/**/*.ts", "src/types.d.ts"]

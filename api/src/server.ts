@@ -3,9 +3,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-import { errorHandling, handleError } from './utils/errorHandling.ts';
+import { errorHandling, handleError } from './utils/errorHandling';
 
-// routes imports
+// routes import
 import authRoutes from './auth';
 import userRoutes from './user';
 import spaceRoutes from './space';

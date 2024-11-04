@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import config from '../utils/config.ts';
+import config from '../utils/config';
 import { User } from '@prisma/client';
 import prisma from '../database';
 
@@ -9,7 +9,7 @@ passport.use(
     {
       clientID: config.CLIENT_ID,
       clientSecret: config.CLIENT_SECRET,
-      callbackURL: config.GOOGLE_CALLBACK,
+      callbackURL: config.DEV_GOOGLE_CALLBACK,
       scope: ['profile'],
     },
     async (_accessToken, _refreshToken, profile, done) => {

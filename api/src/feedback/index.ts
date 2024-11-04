@@ -1,9 +1,9 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import prisma from '../database';
-import { createError } from '../utils/errorHandling.ts';
-import { FeedbackSchema } from './types.ts';
-import rateLimitMiddleware from '../utils/middlewares/requestLimiter.ts';
-import requireAuth from '../utils/middlewares/requireAuth.ts';
+import { createError } from '../utils/errorHandling';
+import { FeedbackSchema } from './types';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
+import requireAuth from '../utils/middlewares/requireAuth';
 
 export default function (app: Express) {
   //collect feedback from public facing endpoint, so no authorisation

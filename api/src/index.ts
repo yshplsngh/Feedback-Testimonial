@@ -1,5 +1,5 @@
-import { createServer } from './server.ts';
-import config from './utils/config.ts';
+import { createServer } from './server';
+import config from './utils/config';
 
 const server = createServer();
 

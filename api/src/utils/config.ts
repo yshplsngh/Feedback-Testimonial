@@ -7,16 +7,15 @@ export default {
 
   NODE_ENV: process.env.NODE_ENV,
 
-  REDIS_URL: process.env.REDIS_URL || 'redis://localhost:6379',
+  REDIS_URL: process.env.REDIS_URL || 'redis://redis:6379',
 
   USER_SESSION_SECRET:
     process.env.USER_SESSION_SECRET ||
     'MicXqgdng5pXTHLvzHiYv8HssdivNNmgcwGcUVeEDEs=',
 
-  CLIENT_ID: process.env.CLIENT_ID || 'HERE_GOES_YOUR_GOOGLE_CLIENT_ID',
+  CLIENT_ID: process.env.CLIENT_ID || '',
 
-  CLIENT_SECRET:
-    process.env.CLIENT_SECRET || 'HERE_GOES_YOUR_GOOGLE_CLIENT_SECRET',
+  CLIENT_SECRET: process.env.CLIENT_SECRET || '',
 
-  GOOGLE_CALLBACK: 'http://localhost:4000/api/auth/google/redirect',
+  DEV_GOOGLE_CALLBACK: 'http://localhost:4000/api/auth/google/redirect',
 };
