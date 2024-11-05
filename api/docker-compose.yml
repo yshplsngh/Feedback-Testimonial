@@ -12,7 +12,7 @@ services:
       redis:
         condition: service_healthy
       db:
-        condition: service_started
+        condition: service_healthy
     networks:
       - testimonial_network
 
