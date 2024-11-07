@@ -3,7 +3,7 @@ name: Linting and formatting on commit
 on:
   push:
     branches:
-      - main
+      - prod
 
 jobs:
   Continuous-Integration:
@@ -14,10 +14,10 @@ jobs:
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
-      
+
       - name: Run Linting check
         run: npm run lint
-      
+
       - name: Check formatting
         run: npm run format:check
 

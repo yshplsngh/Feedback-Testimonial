@@ -34,6 +34,7 @@ export default function authRoutes(app: Express): void {
        * coz on visit landing page session is created, and check user is logged in or not.
        */
       saveUninitialized: false,
+      proxy: true,
       cookie: {
         sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
         /**
