@@ -12,10 +12,10 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function authRoutes(app: Express): void {
   app.use(rateLimitMiddleware);
+  app.set('trust proxy', 1);
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
-      name: 'sid',
       store: new RedisStore({
         client: Redis.getInstance().getClient(),
         prefix: 'session:',
@@ -36,6 +36,7 @@ export default function authRoutes(app: Express): void {
       saveUninitialized: false,
       proxy: true,
       cookie: {
+        domain: '.yshplsngh.in',
         sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
         /**
          * when true: cookie set over a secure channel like HTTPS only.
