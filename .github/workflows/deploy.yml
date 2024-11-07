@@ -35,6 +35,7 @@ jobs:
           script: |
             sudo docker stop backend || true
             sudo docker rm backend || true
+            sudo docker rmi yshplsngh/testimonial:latest --force || true
             sudo docker compose up -d
             
           
