@@ -16,7 +16,11 @@ export default function Login() {
   function handleGoogle() {
     setLoading(true);
     console.log('google login start');
-    window.location.assign('http://localhost:4000/api/auth/google');
+    window.location.assign(
+      import.meta.env.VITE_ENV === 'development'
+        ? 'http://localhost:4000/api/auth/google'
+        : 'https://testimonialserver.yshplsngh.in/api/auth/google',
+    );
   }
 
   return (
