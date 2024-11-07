@@ -19,6 +19,7 @@ export const createServer = (): Express => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.json());
+  app.set('trust proxy', 1);
   app.use(
     cors({
       origin: [
