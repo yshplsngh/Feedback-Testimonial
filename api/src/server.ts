@@ -16,12 +16,17 @@ export const createServer = (): Express => {
   const app: Express = express();
   app.disable('x-powered-by');
   app.use(morgan('dev'));
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.json());
   app.use(
     cors({
-      origin: ['https://testimonial.yshplsngh.in'],
+      origin: [
+        'http://localhost:3000',
+        'https://testimonial.yshplsngh.in',
+        'https://feedback-testimonial.vercel.app',
+        'https://vercel.com',
+      ],
       credentials: true,
     }),
   );

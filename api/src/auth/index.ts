@@ -35,6 +35,7 @@ export default function authRoutes(app: Express): void {
        */
       saveUninitialized: false,
       cookie: {
+        sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
         /**
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
@@ -42,7 +43,6 @@ export default function authRoutes(app: Express): void {
         secure: config.NODE_ENV === 'development' ? 'auto' : true,
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
-        sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
         maxAge: 1000 * 60 * 60 * 24 * 7,
       },
     }),
