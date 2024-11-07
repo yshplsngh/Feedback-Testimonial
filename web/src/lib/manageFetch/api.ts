@@ -5,8 +5,6 @@ export const API_URL =
     ? 'http://localhost:4000'
     : 'https://testimonialserver.yshplsngh.in';
 
-// export const API_URL = 'https://testimonialserver.yshplsngh.in';
-
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
 
 export type RequestData = Record<string, unknown>;

@@ -40,7 +40,11 @@ export default function embedFeedbacks(app: Express) {
           createdAt: true,
         },
       });
-
+      if (feedbacks.length === 0) {
+        return next(
+          new createError('please add some feedback into favorite', 200),
+        );
+      }
       const feedbackWidget = wrapHtml({ feedbacks, theme, speed });
       return res.status(200).send(feedbackWidget);
     },

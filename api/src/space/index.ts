@@ -7,13 +7,13 @@ import {
 import prisma from '../database';
 import { createError } from '../utils/errorHandling';
 import requireAuth from '../utils/middlewares/requireAuth';
-import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 import { Redis } from '../Redis';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function (app: Express) {
+  app.use(rateLimitMiddleware);
   app.get(
     '/api/space/getUserSpaces',
-    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response) => {
       const spacesWithCount = await prisma.space.findMany({
@@ -53,7 +53,6 @@ export default function (app: Express) {
 
   app.get(
     '/api/space/getUserSpace/:spaceName',
-    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const userId = req.user!.id;
@@ -107,7 +106,6 @@ export default function (app: Express) {
    */
   app.get(
     '/api/space/spaceInfo/:spaceName',
-    rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
       const receivedSpaceName = req.params.spaceName?.toLowerCase();
       if (!receivedSpaceName) {
@@ -140,7 +138,6 @@ export default function (app: Express) {
 
   app.post(
     '/api/space/new',
-    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = NewSpaceScheme.safeParse(req.body);
@@ -173,7 +170,6 @@ export default function (app: Express) {
 
   app.put(
     '/api/space/edit',
-    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = EditedSpaceWithIdSchema.safeParse(req.body);

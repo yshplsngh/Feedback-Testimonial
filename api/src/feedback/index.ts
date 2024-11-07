@@ -2,14 +2,15 @@ import { Express, Response, Request, NextFunction } from 'express';
 import prisma from '../database';
 import { createError } from '../utils/errorHandling';
 import { FeedbackSchema } from './types';
-import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 import requireAuth from '../utils/middlewares/requireAuth';
+import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function (app: Express) {
+  app.use(rateLimitMiddleware);
+
   //collect feedback from public facing endpoint, so no authorisation
   app.post(
     '/api/feedback/submitFeedback',
-    rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
       const parsedResult = FeedbackSchema.safeParse(req.body);
       if (!parsedResult.success) {
@@ -41,7 +42,6 @@ export default function (app: Express) {
   app.get(
     '/api/feedback/getFeedbacks/:spaceName',
     requireAuth,
-    rateLimitMiddleware,
     async (req: Request, res: Response, next: NextFunction) => {
       const spaceName = req.params.spaceName?.toLowerCase();
       if (!spaceName) {
@@ -67,7 +67,6 @@ export default function (app: Express) {
 
   app.post(
     '/api/feedback/setFavoriteFeedback/:feedbackId',
-    rateLimitMiddleware,
     requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const feedbackId = req.params.feedbackId;

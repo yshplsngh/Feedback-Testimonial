@@ -21,9 +21,6 @@ export default function Login() {
         ? 'http://localhost:4000/api/auth/google'
         : 'https://testimonialserver.yshplsngh.in/api/auth/google',
     );
-    // window.location.assign(
-    //   'https://testimonialserver.yshplsngh.in/api/auth/google',
-    // );
   }
 
   return (
