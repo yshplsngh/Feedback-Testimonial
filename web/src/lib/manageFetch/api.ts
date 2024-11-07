@@ -1,6 +1,9 @@
 import { getResponseType, HTTPResponseType } from './httpResponses';
 
-export const API_URL = 'http://localhost:4000';
+export const API_URL =
+  import.meta.env.VITE_ENV === 'development'
+    ? 'http://localhost:4000'
+    : 'https://testimonialserver.yshplsngh.in';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
 

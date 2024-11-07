@@ -15,7 +15,9 @@ import embedFeedbacks from './embedFeedbacks';
 export const createServer = (): Express => {
   const app: Express = express();
   app.disable('x-powered-by');
+
   app.use(morgan('dev'));
+
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(express.json());
