@@ -15,6 +15,7 @@ import embedFeedbacks from './embedFeedbacks';
 export const createServer = (): Express => {
   const app: Express = express();
   app.disable('x-powered-by');
+  app.set('trust proxy', 1);
   app.use(morgan('dev'));
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());

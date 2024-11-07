@@ -12,7 +12,6 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function authRoutes(app: Express): void {
   app.use(rateLimitMiddleware);
-  app.set('trust proxy', 1);
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
@@ -34,7 +33,6 @@ export default function authRoutes(app: Express): void {
        * coz on visit landing page session is created, and check user is logged in or not.
        */
       saveUninitialized: false,
-      proxy: true,
       cookie: {
         domain: '.yshplsngh.in',
         sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
