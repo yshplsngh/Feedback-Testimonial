@@ -1,11 +1,11 @@
 import { getResponseType, HTTPResponseType } from './httpResponses';
 
-// export const API_URL =
-//   import.meta.env.VITE_ENV === 'development'
-//     ? 'http://localhost:4000'
-//     : 'https://testimonialserver.yshplsngh.in';
+export const API_URL =
+  import.meta.env.VITE_ENV === 'development'
+    ? 'http://localhost:4000'
+    : 'https://testimonialserver.yshplsngh.in';
 
-export const API_URL = 'https://testimonialserver.yshplsngh.in';
+// export const API_URL = 'https://testimonialserver.yshplsngh.in';
 
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
 
