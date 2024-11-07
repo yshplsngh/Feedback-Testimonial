@@ -4,12 +4,6 @@ import config from '../utils/config';
 import { User } from '@prisma/client';
 import prisma from '../database';
 
-console.log(
-  config.NODE_ENV === 'development'
-    ? config.DEV_GOOGLE_CALLBACK
-    : config.PROD_GOOGLE_CALLBACK,
-);
-
 passport.use(
   new GoogleStrategy(
     {
