@@ -13,6 +13,7 @@ passport.use(
         config.NODE_ENV === 'development'
           ? config.DEV_GOOGLE_CALLBACK
           : config.PROD_GOOGLE_CALLBACK,
+      // callbackURL: config.PROD_GOOGLE_CALLBACK,
       scope: ['profile'],
     },
     async (_accessToken, _refreshToken, profile, done) => {

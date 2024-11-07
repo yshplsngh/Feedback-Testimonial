@@ -18,6 +18,7 @@ export default {
   CLIENT_SECRET: process.env.CLIENT_SECRET || '',
 
   DEV_GOOGLE_CALLBACK: 'http://localhost:4000/api/auth/google/redirect',
+
   PROD_GOOGLE_CALLBACK:
     'https://testimonialserver.yshplsngh.in/api/auth/google/redirect',
 };
