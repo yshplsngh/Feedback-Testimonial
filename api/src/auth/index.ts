@@ -2,8 +2,8 @@ import type { Express, Response, Request } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config';
-import RedisStore from 'connect-redis';
-import { Redis } from '../Redis';
+// import RedisStore from 'connect-redis';
+// import { Redis } from '../Redis';
 import { User } from '@prisma/client';
 
 import './passportConfig';
@@ -15,10 +15,10 @@ export default function authRoutes(app: Express): void {
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
-      store: new RedisStore({
-        client: Redis.getInstance().getClient(),
-        ttl: 60 * 60 * 24 * 7,
-      }),
+      // store: new RedisStore({
+      //   client: Redis.getInstance().getClient(),
+      //   ttl: 60 * 60 * 24 * 7,
+      // }),
       /**
        * when true: the session data is saved back to the session store on every request made,
        * regardless of whether there was any modification to the session data during the request.
@@ -38,10 +38,9 @@ export default function authRoutes(app: Express): void {
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
          */
-        sameSite: 'none',
-        secure: config.NODE_ENV === 'development' ? 'auto' : true,
-        /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
+        sameSite: 'none',
+        secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
       },
     }),
