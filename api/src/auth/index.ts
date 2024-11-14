@@ -20,7 +20,7 @@ export default function authRoutes(app: Express): void {
         ttl: 60 * 60 * 24 * 7,
       }),
       resave: false,
-      saveUninitialized: true,
+      saveUninitialized: false,
       proxy: true,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,

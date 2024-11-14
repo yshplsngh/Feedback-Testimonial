@@ -2,7 +2,6 @@ import express, { Express, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
 import { errorHandling, handleError } from './utils/errorHandling';
 
 // routes import
@@ -11,6 +10,7 @@ import userRoutes from './user';
 import spaceRoutes from './space';
 import feedbackRoutes from './feedback';
 import embedFeedbacks from './embedFeedbacks';
+import config from './utils/config';
 
 export const createServer = (): Express => {
   const app: Express = express();
@@ -22,9 +22,9 @@ export const createServer = (): Express => {
   app.use(
     cors({
       origin: [
-        'http://localhost:3000',
-        'https://testimonial.yshplsngh.in',
-        'https://feedback-testimonial.vercel.app',
+        config.NODE_ENV === 'development'
+          ? 'http://localhost:3000'
+          : 'https://testimonial.yshplsngh.in',
       ],
       credentials: true,
     }),

@@ -4,7 +4,12 @@ const Testing = () => {
       <iframe
         height="400px"
         width="100%"
-        src={'http://localhost:4000/api/sigma'}
+        src={'http://localhost:4000/api/space'}
+      />
+      <iframe
+        height="400px"
+        width="100%"
+        src={'http://testimonialserver.yshplsngh.in/api/space-name'}
       />
 
       {/*<iframe height="800px" id='testimonialto-space-name4-tag-all-light-animated'*/}
