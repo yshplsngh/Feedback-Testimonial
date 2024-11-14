@@ -17,7 +17,6 @@ export default function authRoutes(app: Express): void {
       secret: config.USER_SESSION_SECRET,
       store: new RedisStore({
         client: Redis.getInstance().getClient(),
-        prefix: 'session:',
         ttl: 60 * 60 * 24 * 7,
       }),
       /**
@@ -34,8 +33,7 @@ export default function authRoutes(app: Express): void {
        */
       saveUninitialized: false,
       cookie: {
-        domain: '.yshplsngh.in',
-        sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
+        // sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
         /**
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
