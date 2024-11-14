@@ -2,8 +2,8 @@ import type { Express, Response, Request } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config';
-// import RedisStore from 'connect-redis';
-// import { Redis } from '../Redis';
+import RedisStore from 'connect-redis';
+import { Redis } from '../Redis';
 import { User } from '@prisma/client';
 
 import './passportConfig';
@@ -15,33 +15,19 @@ export default function authRoutes(app: Express): void {
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
-      // store: new RedisStore({
-      //   client: Redis.getInstance().getClient(),
-      //   ttl: 60 * 60 * 24 * 7,
-      // }),
-      /**
-       * when true: the session data is saved back to the session store on every request made,
-       * regardless of whether there was any modification to the session data during the request.
-       * when false: the session data is only saved back to the session store
-       * if something within the session data was actually modified during the request
-       */
+      store: new RedisStore({
+        client: Redis.getInstance().getClient(),
+        ttl: 60 * 60 * 24 * 7,
+      }),
       resave: false,
-      /**
-       * when false: express-session store sessions in sessionStore only if we modified req.session object.
-       * when true: express-session store sessions sessionStore even user just visit landing page.
-       * coz on visit landing page session is created, and check user is logged in or not.
-       */
       saveUninitialized: false,
       cookie: {
-        // sameSite: config.NODE_ENV === 'development' ? 'lax' : 'none',
-        /**
-         * when true: cookie set over a secure channel like HTTPS only.
-         * when auto: cookie set over an HTTP also.
-         */
+        domain: '.yshplsngh.in',
         httpOnly: true,
         sameSite: 'none',
         secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
+        path: '/',
       },
     }),
   );
