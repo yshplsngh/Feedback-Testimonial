@@ -21,16 +21,7 @@ export const createServer = (): Express => {
   app.use(express.json());
   app.use(
     cors({
-      origin: [
-        'http://localhost:3000',
-        'https://testimonial.yshplsngh.in',
-        'https://feedback-testimonial.vercel.app',
-        'https://vercel.com',
-        'https://feedback-testimonial-git-main-yshplsnghs-projects.vercel.app',
-        'https://feedback-testimonial-yshplsnghs-projects.vercel.app',
-        'https://feedback-testimonial-piz3nfora-yshplsnghs-projects.vercel.app',
-        'https://accounts.google.com',
-      ],
+      origin: ['http://localhost:3000'],
       credentials: true,
     }),
   );
