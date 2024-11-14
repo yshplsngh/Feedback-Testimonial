@@ -12,6 +12,7 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function authRoutes(app: Express): void {
   app.use(rateLimitMiddleware);
+  app.set('trust proxy', 1);
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
@@ -20,7 +21,8 @@ export default function authRoutes(app: Express): void {
         ttl: 60 * 60 * 24 * 7,
       }),
       resave: false,
-      saveUninitialized: false,
+      saveUninitialized: true,
+      proxy: true,
       cookie: {
         domain: '.yshplsngh.in',
         httpOnly: true,
