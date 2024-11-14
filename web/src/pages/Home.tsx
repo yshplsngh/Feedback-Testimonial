@@ -1,25 +1,25 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Home = () => {
-  useEffect(() => {
-    const fetchFeedbacks = async () => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/posts',
-        );
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-      }
-    };
-
-    fetchFeedbacks();
-  }, []);
+  // useEffect(() => {
+  //   const fetchFeedbacks = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         '',
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       const data = await response.json();
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error('There was a problem with the fetch operation:', error);
+  //     }
+  //   };
+  //
+  //   fetchFeedbacks();
+  // }, []);
 
   return (
     <motion.div
@@ -43,7 +43,7 @@ const Home = () => {
         {/*<iframe*/}
         {/*  height="400px"*/}
         {/*  width="100%"*/}
-        {/*  src={'https://testimonialserver.yshplsngh.in/api/space/spaceInfo/space-name'}*/}
+        {/*  src={'https://testimonial.yshplsngh.in/'}*/}
         {/*/>*/}
       </div>
     </motion.div>
