@@ -10,7 +10,6 @@ import userRoutes from './user';
 import spaceRoutes from './space';
 import feedbackRoutes from './feedback';
 import embedFeedbacks from './embedFeedbacks';
-import config from './utils/config';
 
 export const createServer = (): Express => {
   const app: Express = express();
@@ -21,13 +20,7 @@ export const createServer = (): Express => {
   app.use(express.json());
   app.use(
     cors({
-      origin:
-        config.NODE_ENV === 'development'
-          ? ['http://localhost:3000']
-          : [
-              'https://testimonial.yshplsngh.in',
-              'https://yshplsngh.github.io/widget-demo/',
-            ],
+      origin: ['*'],
       credentials: true,
     }),
   );
