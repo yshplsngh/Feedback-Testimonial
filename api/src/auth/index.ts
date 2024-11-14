@@ -22,6 +22,9 @@ export default function authRoutes(app: Express): void {
       resave: false,
       saveUninitialized: true,
       proxy: true,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      },
     }),
   );
 
