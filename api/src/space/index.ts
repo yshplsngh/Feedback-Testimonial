@@ -12,6 +12,7 @@ import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function (app: Express) {
   app.use(rateLimitMiddleware);
+
   app.get(
     '/api/space/getUserSpaces',
     requireAuth,
@@ -215,6 +216,7 @@ export default function (app: Express) {
 
   app.delete(
     '/api/space/delete/:spaceId',
+    requireAuth,
     async (req: Request, res: Response, next: NextFunction) => {
       const receivedSpaceId = req.params.spaceId;
       if (!receivedSpaceId) {

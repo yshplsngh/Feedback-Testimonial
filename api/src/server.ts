@@ -21,11 +21,13 @@ export const createServer = (): Express => {
   app.use(express.json());
   app.use(
     cors({
-      origin: [
+      origin:
         config.NODE_ENV === 'development'
-          ? 'http://localhost:3000'
-          : 'https://testimonial.yshplsngh.in',
-      ],
+          ? ['http://localhost:3000']
+          : [
+              'https://testimonial.yshplsngh.in',
+              'https://yshplsngh.github.io/widget-demo/',
+            ],
       credentials: true,
     }),
   );
