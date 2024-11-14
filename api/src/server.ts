@@ -22,6 +22,7 @@ export const createServer = (): Express => {
   app.use(
     cors({
       origin: [
+        'http://localhost:3000',
         'https://testimonial.yshplsngh.in',
         'https://feedback-testimonial.vercel.app',
       ],
