@@ -20,7 +20,7 @@ export const createServer = (): Express => {
   app.use(express.json());
   app.use(
     cors({
-      origin: ['*'],
+      origin: true,
       credentials: true,
     }),
   );
