@@ -38,6 +38,7 @@ export default function authRoutes(app: Express): void {
          * when true: cookie set over a secure channel like HTTPS only.
          * when auto: cookie set over an HTTP also.
          */
+        sameSite: 'none',
         secure: config.NODE_ENV === 'development' ? 'auto' : true,
         /** when true, cookie can't be accessed through client-side JavaScript.*/
         httpOnly: true,
