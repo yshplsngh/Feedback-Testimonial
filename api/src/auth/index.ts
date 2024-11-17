@@ -8,10 +8,8 @@ import { User } from '@prisma/client';
 
 import './passportConfig';
 import { createError } from '../utils/errorHandling';
-import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function authRoutes(app: Express): void {
-  app.use(rateLimitMiddleware);
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,

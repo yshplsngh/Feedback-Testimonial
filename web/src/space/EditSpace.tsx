@@ -21,7 +21,10 @@ const EditSpace = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [editLoading, setEditLoading] = useState<boolean>(false);
-  const { spaceName } = useParams<{ spaceName?: string }>();
+
+  const { spaceName: rawSpaceName } = useParams<{ spaceName?: string }>();
+  const spaceName = rawSpaceName?.toLowerCase();
+
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
   );

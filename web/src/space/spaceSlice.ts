@@ -58,8 +58,7 @@ export const {
 
 export const selectSpaceBySpaceName = createSelector(
   [selectAllSpaces, (_state: RootState, spaceName) => spaceName],
-  (spaces, spaceName) =>
-    spaces.find((space) => space.spaceName === spaceName.toLowerCase()),
+  (spaces, spaceName) => spaces.find((space) => space.spaceName === spaceName),
 );
 
 export const { deleteRSpace } = spaceSlice.actions;

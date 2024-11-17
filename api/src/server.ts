@@ -9,7 +9,7 @@ import authRoutes from './auth';
 import userRoutes from './user';
 import spaceRoutes from './space';
 import feedbackRoutes from './feedback';
-import embedFeedbacks from './embedFeedbacks';
+import embedWidget from './embedWidget';
 import config from './utils/config';
 
 export const createServer = (): Express => {
@@ -57,7 +57,7 @@ export const createServer = (): Express => {
   userRoutes(app);
   spaceRoutes(app);
   feedbackRoutes(app);
-  embedFeedbacks(app);
+  embedWidget(app);
 
   app.use(errorHandling);
   return app;

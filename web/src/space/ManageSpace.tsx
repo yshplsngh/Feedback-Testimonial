@@ -34,7 +34,10 @@ const ManageSpace: React.FC = () => {
   const tabOptions = { All: GalleryVerticalEnd, Favorite: Heart };
   const [activeTab, setActiveTab] = useState<TabOption>('All');
   const [loading, setLoading] = useState<boolean>(false);
-  const { spaceName } = useParams<{ spaceName?: string }>();
+
+  const { spaceName: rawSpaceName } = useParams<{ spaceName?: string }>();
+  const spaceName = rawSpaceName?.toLowerCase();
+
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
   );

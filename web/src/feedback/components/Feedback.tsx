@@ -22,7 +22,10 @@ const Feedback = ({ onNext }: { onNext: () => void }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [btnLoading, setBtnLoading] = useState<boolean>(false);
   const feedbackPageInfo = useSelector(getExtraFormInfo);
-  const { spaceName } = useParams<{ spaceName?: string }>();
+
+  const { spaceName: rawSpaceName } = useParams<{ spaceName?: string }>();
+  const spaceName = rawSpaceName?.toLowerCase();
+
   const [stars, setStars] = useState<number>(2);
   const dispatch: AppDispatch = useDispatch();
 
