@@ -7,6 +7,7 @@ import {
   SquareArrowOutUpRight,
   GalleryVerticalEnd,
   Heart,
+  SquareCode,
   LucideIcon,
 } from 'lucide-react';
 import LoLoadingSpinner from '../ui/components/LoLoadingSpinner';
@@ -24,20 +25,25 @@ import { selectFeedbacksBySpaceId } from '../feedback/feedbackSlice';
 import { getUserSpace } from './spaceApi';
 import { FetchResponseError } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
-import FeedbackCard from './component/FeedbackCard';
 import { getFeedbacks } from '../feedback/feedbackApi';
+import FeedbackBox from './component/FeedbackBox';
 
 const ManageSpace: React.FC = () => {
-  type TabOption = keyof typeof tabOptions;
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const tabOptions = { All: GalleryVerticalEnd, Favorite: Heart };
+
+  const tabOptions = {
+    All: GalleryVerticalEnd,
+    Favorite: Heart,
+    'Feedback Widget': SquareCode,
+  };
+  type TabOption = keyof typeof tabOptions;
+
   const [activeTab, setActiveTab] = useState<TabOption>('All');
   const [loading, setLoading] = useState<boolean>(false);
 
   const { spaceName: rawSpaceName } = useParams<{ spaceName?: string }>();
   const spaceName = rawSpaceName?.toLowerCase();
-
   const space = useSelector((state: RootState) =>
     selectSpaceBySpaceName(state, spaceName),
   );
@@ -45,15 +51,19 @@ const ManageSpace: React.FC = () => {
     selectFeedbacksBySpaceId(state, space?.id),
   );
 
-  const getFilteredFeedbacks = () => {
+  const RenderActiveWindow = () => {
+    const favoriteFeedback = feedbacks.filter((feedback) => feedback.favorite);
     switch (activeTab) {
       case 'All':
-        return feedbacks;
+        return <FeedbackBox feedbacks={feedbacks} />;
       case 'Favorite':
-        return feedbacks.filter((feedback) => feedback.favorite);
+        return <FeedbackBox feedbacks={favoriteFeedback} />;
+      case 'Feedback Widget':
+        return <h1>Feedback Widget</h1>;
     }
   };
-  const filteredFeedbacks = getFilteredFeedbacks();
+
+  const activeWindow = RenderActiveWindow();
 
   useEffect(() => {
     async function fetchData() {
@@ -120,13 +130,14 @@ const ManageSpace: React.FC = () => {
                     : `https://testimonial.yshplsngh.in/feedback/${spaceName}`
                 }
                 target={'_blank'}
-                className={'feedback-url text-[0.8rem] text-gray-300 underline'}
+                className={'feedback-url text-[0.8rem] text-gray-300'}
               >
                 <span className="hidden items-center space-x-1 md:flex">
-                  <p>
+                  Public URL :
+                  <p className={'underline'}>
                     {import.meta.env.VITE_ENV === 'development'
-                      ? `Public URL: http://localhost:3000/feedback/${spaceName}`
-                      : `Public URL: https://testimonial.yshplsngh.in/feedback/${spaceName}`}
+                      ? `http://localhost:3000/feedback/${spaceName}`
+                      : `https://testimonial.yshplsngh.in/feedback/${spaceName}`}
                   </p>
                   <SquareArrowOutUpRight className={'h-3 w-3'} />
                 </span>
@@ -160,7 +171,7 @@ const ManageSpace: React.FC = () => {
         >
           <div className={'sidebar flex w-full flex-col gap-y-2 md:w-3/12'}>
             <span className={'text-lg font-semibold text-gray-300'}>Inbox</span>
-            <div className={'pl1 flex flex-col gap-y-1'}>
+            <div className={'pl1 flex flex-col gap-y-2'}>
               {(Object.entries(tabOptions) as [TabOption, LucideIcon][]).map(
                 ([tabOption, Icon]) => (
                   <Button
@@ -179,20 +190,7 @@ const ManageSpace: React.FC = () => {
           <div
             className={'feedbacks grid w-full grid-cols-1 gap-y-5 md:w-9/12'}
           >
-            {filteredFeedbacks && filteredFeedbacks.length > 0 ? (
-              filteredFeedbacks.map((filteredFeedback) => (
-                <FeedbackCard
-                  key={filteredFeedback.id}
-                  feedbackId={filteredFeedback.id}
-                />
-              ))
-            ) : (
-              <div className="mx-auto flex flex-col justify-center gap-y-3">
-                <div className="mt-3 w-full text-center">
-                  No Feedback found!
-                </div>
-              </div>
-            )}
+            {activeWindow}
           </div>
         </div>
       </div>
