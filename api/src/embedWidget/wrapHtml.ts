@@ -120,11 +120,11 @@ export default function wrapHtml({
               font-family: 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', sans-serif;
           }
            .bd{
-                border: 1px solid red;
+                border: 1px solid green;
               }
           .wrapper {
           background-color: transparent;
-            width: 90%;
+            width: 95%;
             height: 100%;
             max-width: 1536px;
             margin-inline: auto;
@@ -287,11 +287,9 @@ export default function wrapHtml({
         </style/>
       </head>
       <body>
-        <main>
-          <div class="wrapper">
+         <div class="slow wrapper">
             ${feedbackCards}
-          </div>
-        </main>
+         </div>
       </body>
     </html>
   `;

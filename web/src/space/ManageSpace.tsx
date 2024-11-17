@@ -27,6 +27,7 @@ import { FetchResponseError } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
 import { getFeedbacks } from '../feedback/feedbackApi';
 import FeedbackBox from './component/FeedbackBox';
+import EditWidgetBox from './component/EditWidgetBox';
 
 const ManageSpace: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -51,20 +52,6 @@ const ManageSpace: React.FC = () => {
     selectFeedbacksBySpaceId(state, space?.id),
   );
 
-  const RenderActiveWindow = () => {
-    const favoriteFeedback = feedbacks.filter((feedback) => feedback.favorite);
-    switch (activeTab) {
-      case 'All':
-        return <FeedbackBox feedbacks={feedbacks} />;
-      case 'Favorite':
-        return <FeedbackBox feedbacks={favoriteFeedback} />;
-      case 'Feedback Widget':
-        return <h1>Feedback Widget</h1>;
-    }
-  };
-
-  const activeWindow = RenderActiveWindow();
-
   useEffect(() => {
     async function fetchData() {
       if (spaceName === undefined) {
@@ -87,6 +74,20 @@ const ManageSpace: React.FC = () => {
 
     fetchData().then(() => setLoading(false));
   }, [dispatch, spaceName, space]);
+
+  const RenderActiveWindow = () => {
+    const favoriteFeedback = feedbacks.filter((feedback) => feedback.favorite);
+    switch (activeTab) {
+      case 'All':
+        return <FeedbackBox feedbacks={feedbacks} />;
+      case 'Favorite':
+        return <FeedbackBox feedbacks={favoriteFeedback} />;
+      case 'Feedback Widget':
+        return <EditWidgetBox spaceName={spaceName} />;
+    }
+  };
+
+  const activeWindow = RenderActiveWindow();
 
   if (!loading && (space === undefined || spaceName === undefined)) {
     return (
@@ -134,7 +135,7 @@ const ManageSpace: React.FC = () => {
               >
                 <span className="hidden items-center space-x-1 md:flex">
                   Public URL :
-                  <p className={'underline'}>
+                  <p className={'border-b-[1px] border-white'}>
                     {import.meta.env.VITE_ENV === 'development'
                       ? `http://localhost:3000/feedback/${spaceName}`
                       : `https://testimonial.yshplsngh.in/feedback/${spaceName}`}
@@ -170,7 +171,7 @@ const ManageSpace: React.FC = () => {
           }
         >
           <div className={'sidebar flex w-full flex-col gap-y-2 md:w-3/12'}>
-            <span className={'text-lg font-semibold text-gray-300'}>Inbox</span>
+            {/*<span className={'text-lg font-semibold text-gray-300'}>Manage</span>*/}
             <div className={'pl1 flex flex-col gap-y-2'}>
               {(Object.entries(tabOptions) as [TabOption, LucideIcon][]).map(
                 ([tabOption, Icon]) => (
