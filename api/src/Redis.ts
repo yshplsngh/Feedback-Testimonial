@@ -8,7 +8,10 @@ export class Redis {
 
   constructor() {
     this.client = createClient({
-      url: config.REDIS_URL,
+      url:
+        config.NODE_ENV === 'development'
+          ? config.REDIS_LOCAL_URL
+          : config.REDIS_PROD_URL,
     });
     this.client.connect().catch(console.error);
 

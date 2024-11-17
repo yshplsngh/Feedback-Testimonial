@@ -1,12 +1,6 @@
 node_modules
 package-lock.json
-.pnp
-.pnp.js
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 coverage
 .turbo
 .vercel
