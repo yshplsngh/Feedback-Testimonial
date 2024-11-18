@@ -5,6 +5,7 @@ import Button from '../../ui/components/Button';
 import { CircleAlert, Copy, Eye } from 'lucide-react';
 import { toast } from 'sonner';
 import Checkbox from '../../ui/components/Checkbox';
+import { API_URL } from '../../lib/manageFetch/api';
 
 const EditWidgetBox = ({ spaceName }: { spaceName: string | undefined }) => {
   const [lightMode, setLightMode] = useState<boolean>(false);
@@ -24,7 +25,7 @@ const EditWidgetBox = ({ spaceName }: { spaceName: string | undefined }) => {
               borderRadius: 'inherit',
             }}
           >
-            {`<iframe id="${spaceName}" height="300px" src="http://localhost:4000/api/${spaceName}?theme=${lightMode ? 'light' : 'dark'}${speed ? `&speed=${speed}` : ''}" width="100%"></iframe>`}
+            {`<iframe id="${spaceName}" height="300px" src="${API_URL}/api/${spaceName}?theme=${lightMode ? 'light' : 'dark'}${speed ? `&speed=${speed}` : ''}" width="100%"></iframe>`}
           </SyntaxHighlighter>
           <Button
             type={'button'}
@@ -33,7 +34,7 @@ const EditWidgetBox = ({ spaceName }: { spaceName: string | undefined }) => {
             className={`hover:bg-accent h-11 w-fit rounded-none border-none bg-zinc-900`}
             onClick={async () => {
               await navigator.clipboard.writeText(
-                `<iframe id="${spaceName}" height="300px" src="http://localhost:4000/api/${spaceName}?theme=${lightMode ? 'light' : 'dark'}${speed ? `&speed=${speed}` : ''}" width="100%"></iframe>`,
+                `<iframe id="${spaceName}" height="300px" src="${API_URL}/api/${spaceName}?theme=${lightMode ? 'light' : 'dark'}${speed ? `&speed=${speed}` : ''}" width="100%"></iframe>`,
               );
               toast.success('Copied');
             }}
@@ -76,7 +77,7 @@ const EditWidgetBox = ({ spaceName }: { spaceName: string | undefined }) => {
           id={spaceName}
           height="300px"
           className={'border-accent rounded-lg border-2'}
-          src={`http://localhost:4000/api/${spaceName}?theme=${lightMode ? 'light' : 'dark'}${speed ? `&speed=${speed}` : ''}`}
+          src={`${API_URL}/api/${spaceName}?theme=${lightMode ? 'light' : 'dark'}${speed ? `&speed=${speed}` : ''}`}
           width="100%"
         ></iframe>
       </div>

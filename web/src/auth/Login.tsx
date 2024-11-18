@@ -4,6 +4,7 @@ import Button from '../ui/components/Button';
 import AppLogo from '../ui/logo/AppLogo';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { API_URL, WEB_NAME } from '../lib/manageFetch/api';
 
 export default function Login() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,11 +17,7 @@ export default function Login() {
   function handleGoogle() {
     setLoading(true);
     console.log('google login start');
-    window.location.assign(
-      import.meta.env.VITE_ENV === 'development'
-        ? 'http://localhost:4000/api/auth/google'
-        : 'https://testimonialserver.yshplsngh.in/api/auth/google',
-    );
+    window.location.assign(`${API_URL}/api/auth/google`);
   }
 
   return (
@@ -43,10 +40,7 @@ export default function Login() {
                     : 'Sign in to testimonial'}
                 </h3>
                 <p className="text-sm tracking-wide text-gray-500">
-                  to continue to{' '}
-                  {import.meta.env.VITE_ENV === 'development'
-                    ? 'localhost:3000'
-                    : 'testimonial.yshplsngh.in'}
+                  to continue to {WEB_NAME}
                 </p>
               </div>
             </div>

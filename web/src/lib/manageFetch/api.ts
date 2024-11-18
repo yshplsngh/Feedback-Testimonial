@@ -5,6 +5,21 @@ export const API_URL =
     ? 'http://localhost:4000'
     : 'https://testimonialserver.yshplsngh.in';
 
+export const WEB_URL =
+  import.meta.env.VITE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://testimonial.yshplsngh.in';
+
+export const API_NAME =
+  import.meta.env.VITE_ENV === 'development'
+    ? 'localhost:4000'
+    : 'testimonialserver.yshplsngh.in';
+
+export const WEB_NAME =
+  import.meta.env.VITE_ENV === 'development'
+    ? 'localhost:3000'
+    : 'testimonial.yshplsngh.in';
+
 type HttpMethod = 'get' | 'post' | 'put' | 'delete';
 
 export type RequestData = Record<string, unknown>;

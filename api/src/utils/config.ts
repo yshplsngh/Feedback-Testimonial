@@ -15,4 +15,7 @@ export default {
   DEV_GOOGLE_CALLBACK: 'http://localhost:4000/api/auth/google/redirect',
   PROD_GOOGLE_CALLBACK:
     'https://testimonialserver.yshplsngh.in/api/auth/google/redirect',
+
+  DEV_WEB_URL: 'http://localhost:3000',
+  PROD_WEB_URL: 'https://testimonial.yshplsngh.in',
 };

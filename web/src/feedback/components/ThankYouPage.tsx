@@ -1,6 +1,7 @@
 import Button from '../../ui/components/Button';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { WEB_NAME, WEB_URL } from '../../lib/manageFetch/api';
 
 const ThankYouPage = ({ startStep }: { startStep: () => void }) => {
   return (
@@ -38,17 +39,11 @@ const ThankYouPage = ({ startStep }: { startStep: () => void }) => {
         >
           Powered by
           <Link
-            to={
-              import.meta.env.VITE_ENV === 'development'
-                ? 'http://localhost:3000'
-                : 'https://testimonial.yshplsngh.in'
-            }
+            to={WEB_URL}
             target={'_blank'}
             className={'text-gray-700 hover:underline'}
           >
-            {import.meta.env.VITE_ENV === 'development'
-              ? 'localhost:3000'
-              : 'testimonial.yshplsngh.in'}
+            {WEB_NAME}
           </Link>
         </p>
       </div>

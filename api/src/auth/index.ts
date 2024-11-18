@@ -41,8 +41,8 @@ export default function authRoutes(app: Express): void {
       if (err || !user) {
         const loginPageUrl = new URL(
           config.NODE_ENV === 'development'
-            ? 'http://localhost:3000/login'
-            : 'https://testimonial.yshplsngh.in/login',
+            ? `${config.DEV_WEB_URL}/login`
+            : `${config.PROD_WEB_URL}/login`,
         );
         loginPageUrl.searchParams.append('error', 'google auth failed');
         return res.redirect(loginPageUrl.toString());
@@ -54,8 +54,8 @@ export default function authRoutes(app: Express): void {
         }
         const dashboardUrl =
           config.NODE_ENV === 'development'
-            ? 'http://localhost:3000/dashboard'
-            : 'https://testimonial.yshplsngh.in/dashboard';
+            ? `${config.DEV_WEB_URL}/dashboard`
+            : `${config.PROD_WEB_URL}/dashboard`;
 
         return res.redirect(dashboardUrl);
       });

@@ -23,8 +23,8 @@ export const createServer = (): Express => {
     cors({
       origin:
         config.NODE_ENV === 'development'
-          ? ['http://localhost:3000']
-          : ['https://testimonial.yshplsngh.in'],
+          ? [config.DEV_WEB_URL]
+          : [config.PROD_WEB_URL],
       credentials: true,
     }),
   );

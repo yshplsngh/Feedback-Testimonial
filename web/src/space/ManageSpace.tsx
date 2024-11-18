@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
 import { selectFeedbacksBySpaceId } from '../feedback/feedbackSlice';
 import { getUserSpace } from './spaceApi';
-import { FetchResponseError } from '../lib/manageFetch/api';
+import { FetchResponseError, WEB_URL } from '../lib/manageFetch/api';
 import { selectSpaceBySpaceName } from './spaceSlice';
 import { getFeedbacks } from '../feedback/feedbackApi';
 import FeedbackBox from './component/FeedbackBox';
@@ -124,21 +124,16 @@ const ManageSpace: React.FC = () => {
               <span className="flex items-center text-[1.2rem] font-semibold capitalize md:text-2xl">
                 {spaceName?.toLowerCase()}
               </span>
+
               <Link
-                to={
-                  import.meta.env.VITE_ENV === 'development'
-                    ? `http://localhost:3000/feedback/${spaceName}`
-                    : `https://testimonial.yshplsngh.in/feedback/${spaceName}`
-                }
+                to={`${WEB_URL}/feedback/${spaceName}`}
                 target={'_blank'}
                 className={'feedback-url text-[0.8rem] text-gray-300'}
               >
                 <span className="hidden items-center space-x-1 md:flex">
-                  Public URL :
-                  <p className={'border-b-[1px] border-white'}>
-                    {import.meta.env.VITE_ENV === 'development'
-                      ? `http://localhost:3000/feedback/${spaceName}`
-                      : `https://testimonial.yshplsngh.in/feedback/${spaceName}`}
+                  Feedback Page URL : &nbsp;
+                  <p className={'border-white underline'}>
+                    {`${WEB_URL}/feedback/${spaceName}`}
                   </p>
                   <SquareArrowOutUpRight className={'h-3 w-3'} />
                 </span>

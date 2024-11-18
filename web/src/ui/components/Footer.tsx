@@ -1,4 +1,5 @@
 import React from 'react';
+import { WEB_URL } from '../../lib/manageFetch/api';
 
 const GitHubIcon = (props: React.ComponentPropsWithoutRef<'svg'>) => {
   return (
@@ -43,7 +44,7 @@ const Footer = () => {
       <p className="text-xs text-gray-600 dark:text-gray-100">
         Copyright © {new Date().getFullYear()}{' '}
         <a
-          href="https://testimonial.yshplsngh.in"
+          href={WEB_URL}
           target="_blank"
           className="text-zinc-500 underline hover:text-zinc-500"
         >
@@ -51,7 +52,7 @@ const Footer = () => {
         </a>
         <span className="mx-2">|</span>
         <a
-          href="https://testimonial.yshplsngh.in/privacy-policy"
+          href={`${WEB_URL}/privacy-policy`}
           target="_blank"
           className="text-zinc-500 underline hover:text-zinc-500"
         >

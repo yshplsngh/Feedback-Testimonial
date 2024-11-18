@@ -1,6 +1,7 @@
 import Button from '../ui/components/Button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { WEB_NAME } from '../lib/manageFetch/api';
 
 const NotFound = ({ message }: { message?: string }) => {
   return (
@@ -22,11 +23,7 @@ const NotFound = ({ message }: { message?: string }) => {
             text={'Go Home Page 🏡'}
           />
         </Link>
-        <p className="mt-2 text-center font-thin text-slate-200">
-          {import.meta.env.VITE_ENV === 'development'
-            ? 'localhost:3000'
-            : 'testimonial.yshplsngh.in'}
-        </p>
+        <p className="mt-2 text-center font-thin text-slate-200">{WEB_NAME}</p>
       </div>
     </motion.div>
   );

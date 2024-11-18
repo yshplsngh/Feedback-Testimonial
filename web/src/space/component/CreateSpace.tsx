@@ -6,7 +6,7 @@ import Input from '../../ui/components/Input';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../app/store';
 import { toast } from 'sonner';
-import { FetchResponseError } from '../../lib/manageFetch/api';
+import { FetchResponseError, WEB_URL } from '../../lib/manageFetch/api';
 import { SquarePlus, ArrowLeft } from 'lucide-react';
 import { createNewSpace } from '../spaceApi';
 import { motion } from 'framer-motion';
@@ -31,7 +31,7 @@ const CreateSpace = ({
     resolver: zodResolver(NewSpaceScheme),
     defaultValues: {
       spaceName: 'Space Name',
-      websiteUrl: 'https://testimonial.yshplsngh.in',
+      websiteUrl: WEB_URL,
       customMessage:
         'We value your feedback! Please take a moment to share your thoughts about using Testimonial.',
       question: 'How would you rate your overall experience with Testimonial?',

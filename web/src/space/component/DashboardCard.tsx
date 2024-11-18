@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
+import { WEB_URL } from '../../lib/manageFetch/api';
 
 type PropsType = {
   spaceName: string;
@@ -34,10 +35,7 @@ const DashboardCard = ({
   websiteUrl,
 }: PropsType) => {
   const navigate = useNavigate();
-  const feedbackUrl: string =
-    import.meta.env.VITE_ENV === 'development'
-      ? `http://localhost:3000/feedback/${spaceName}`
-      : `https://testimonial.yshplsngh.in/feedback/${spaceName}`;
+  const feedbackUrl: string = `${WEB_URL}/feedback/${spaceName}`;
 
   return (
     <div className="border-accent mx-auto flex w-[23rem] flex-col rounded-md border-[2px] px-4 py-3 transition-all md:w-[22rem] lg:w-[21rem]">
@@ -138,11 +136,7 @@ const DashboardCard = ({
           Total Feedbacks: {feedbackCount}
         </p>
         <Link
-          to={
-            import.meta.env.VITE_ENV === 'development'
-              ? `http://localhost:3000/feedback/${spaceName}`
-              : `https://testimonial.yshplsngh.in/feedback/${spaceName}`
-          }
+          to={`${WEB_URL}/feedback/${spaceName}`}
           target={'_blank'}
           className={'feedback-url text-sm font-light text-blue-400'}
         >

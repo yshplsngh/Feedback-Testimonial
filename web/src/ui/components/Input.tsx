@@ -2,6 +2,7 @@ import React from 'react';
 import type { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 import { NewSpaceType } from '../../space/types';
 import { FeedbackType } from '../../feedback/types';
+import { WEB_URL } from '../../lib/manageFetch/api';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   inputName: keyof NewSpaceType | keyof FeedbackType;
@@ -53,9 +54,7 @@ let Input: React.FC<InputProps> = ({
       )}
       {publicSpaceName && (
         <p className={'text-[0.7rem] text-gray-500'}>
-          {import.meta.env.VITE_ENV === 'development'
-            ? `Public URL: http://localhost:3000/feedback/${publicSpaceName}`
-            : `Public URL: https://testimonial.yshplsngh.in/feedback/${publicSpaceName}`}
+          {`Public URL: ${WEB_URL}/feedback/${publicSpaceName}`}
         </p>
       )}
     </div>
