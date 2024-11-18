@@ -55,9 +55,9 @@ export const createServer = (): Express => {
   // require('./auth').default(app);
   authRoutes(app);
   userRoutes(app);
+  embedWidget(app);
   spaceRoutes(app);
   feedbackRoutes(app);
-  embedWidget(app);
 
   app.use(errorHandling);
   return app;
