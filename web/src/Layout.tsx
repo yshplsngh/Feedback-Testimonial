@@ -7,13 +7,10 @@ import { useLocation } from 'react-router-dom';
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation();
   const omitHeader = ['/login'];
-  const pickBG = ['/', '/login'];
+  const pickBG = ['/', '/login', '/privacy-policy', '/terms-condition'];
 
   const shouldOmitHeader = () => {
-    return omitHeader.some(
-      (path) =>
-        location.pathname === path || location.pathname.startsWith(`${path}/`),
-    );
+    return omitHeader.some((path) => location.pathname === path);
   };
 
   return (

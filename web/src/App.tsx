@@ -12,6 +12,7 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Login = lazy(() => import('./auth/Login'));
 const ManageFeedback = lazy(() => import('./feedback/ManageFeedback'));
 const Testing = lazy(() => import('./Testing'));
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'));
 
 // Lazy load the Private Component
 const ManageDash = lazy(() => import('./space/ManageDash'));
@@ -25,8 +26,8 @@ export default function App(): ReactElement {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path={'/privacy-policy'} element={<PrivacyPolicy />} />
           <Route path="/feedback/:spaceName" element={<ManageFeedback />} />
+
           {/*protected Routes start*/}
           <Route element={<ProtectedRoute />}>
             <Route path={'/dashboard'} element={<ManageDash />} />
@@ -34,6 +35,10 @@ export default function App(): ReactElement {
             <Route path={'/space/edit/:spaceName'} element={<EditSpace />} />
           </Route>
           {/*protected Routes end*/}
+
+          <Route path={'/privacy-policy'} element={<PrivacyPolicy />} />
+          <Route path={'/terms-condition'} element={<TermsAndConditions />} />
+
           <Route path={'/testing'} element={<Testing />} />
           <Route path={'*'} element={<NotFound />} />
           <Route path={'/error'} element={<NotFound />} />

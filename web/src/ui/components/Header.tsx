@@ -78,7 +78,7 @@ function Header() {
       <div className="flex items-center justify-between px-5 py-2 md:px-9 md:py-5">
         <div className="text-xl md:text-3xl">
           <Link to={'/'} className="flex items-center space-x-1">
-            <span className="text-orange font-bold">Chuck</span>
+            <span className="text-orange font-bold">Testimonial</span>
             <Activity className="h-6 w-6" />
           </Link>
         </div>
