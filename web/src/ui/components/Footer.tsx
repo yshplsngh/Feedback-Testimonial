@@ -40,7 +40,7 @@ const SocialLink = ({
 
 const Footer = () => {
   return (
-    <div className="relative z-[1000] mx-auto flex h-screen w-full flex-col items-center justify-between gap-5 border-t border-gray-900/5 px-10 py-8 backdrop-blur-md backdrop-filter sm:flex-row dark:border-white/5">
+    <div className="flex w-full flex-col items-center justify-between gap-5 border-t border-gray-900/5 px-10 py-8 backdrop-blur-md backdrop-filter sm:flex-row dark:border-white/5">
       <p className="text-xs text-gray-600 dark:text-gray-100">
         Copyright © {new Date().getFullYear()}{' '}
         <a
