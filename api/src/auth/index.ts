@@ -2,8 +2,6 @@ import type { Express, Response, Request } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import config from '../utils/config';
-import RedisStore from 'connect-redis';
-import { Redis } from '../Redis';
 import { User } from '@prisma/client';
 
 import './passportConfig';
@@ -13,10 +11,6 @@ export default function authRoutes(app: Express): void {
   app.use(
     session({
       secret: config.USER_SESSION_SECRET,
-      store: new RedisStore({
-        client: Redis.getInstance().getClient(),
-        ttl: 60 * 60 * 24 * 7,
-      }),
       resave: false,
       saveUninitialized: true,
       proxy: true,

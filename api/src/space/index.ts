@@ -7,7 +7,6 @@ import {
 import prisma from '../database';
 import { createError } from '../utils/errorHandling';
 import requireAuth from '../utils/middlewares/requireAuth';
-import { Redis } from '../Redis';
 import rateLimitMiddleware from '../utils/middlewares/requestLimiter';
 
 export default function (app: Express) {
@@ -112,11 +111,6 @@ export default function (app: Express) {
       if (!receivedSpaceName) {
         return next(new createError('SpaceName is not defined in url', 406));
       }
-      const cachedSpaceData =
-        await Redis.getInstance().getSpaceFormInfo(receivedSpaceName);
-      if (cachedSpaceData) {
-        return res.status(200).json(cachedSpaceData);
-      }
       const spaceData = await prisma.space.findUnique({
         where: {
           spaceName: receivedSpaceName,
@@ -129,10 +123,6 @@ export default function (app: Express) {
       if (!spaceData) {
         return next(new createError('space not exist', 404));
       }
-      await Redis.getInstance().setSpaceFormInfo({
-        spaceName: receivedSpaceName,
-        spaceData,
-      });
       return res.status(200).json(spaceData);
     },
   );

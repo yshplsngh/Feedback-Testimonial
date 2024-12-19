@@ -5,8 +5,6 @@ dotenv.config();
 export default {
   NODE_ENV: process.env.NODE_ENV,
   PORT: 4000,
-  REDIS_LOCAL_URL: 'redis://localhost:6379',
-  REDIS_PROD_URL: 'redis://redis:6379',
 
   USER_SESSION_SECRET: 'MicXqgdng5pXTHLvzHiYv8HssdivNNmgcwGcUVeEDEs=',
   CLIENT_ID: process.env.CLIENT_ID || '',
