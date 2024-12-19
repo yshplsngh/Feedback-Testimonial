@@ -3,7 +3,7 @@ name: Linting and formatting on commit
 on:
   push:
     branches:
-      - main
+      - prod
 
 jobs:
   Continuous-Integration:
