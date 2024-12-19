@@ -7,7 +7,7 @@ COPY tsconfig.json  ./
 RUN npm install
 
 COPY prisma ./prisma/
-RUN npm run db:generate
+RUN npm run db:gen
 
 COPY src ./src
 
