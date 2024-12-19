@@ -2,6 +2,8 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache openssl openssl-dev
+
 COPY package*.json  ./
 COPY tsconfig.json  ./
 RUN npm install
