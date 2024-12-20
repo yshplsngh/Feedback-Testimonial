@@ -36,6 +36,4 @@ jobs:
             sudo docker stop backend || true
             sudo docker rm backend || true
             sudo docker rmi yshplsngh/testimonial:latest --force || true
-            sudo docker compose up -d
-            
-          
+            sudo docker run --name testimonial -d -p 4000:4000 -e DATABASE_URL=${{secrets.DB_URL}} -e CLIENT_ID=${{secrets.GOOGLE_CLIENT_ID}} -e CLIENT_SECRET=${{secrets.GOOGLE_CLIENT_SECRET}} yshplsngh/testimonial:latest
