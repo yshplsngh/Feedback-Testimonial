@@ -1,20 +1,33 @@
-FROM node:20-alpine
+# Stage 1: Building Environment
+
+FROM node:20 AS builder
 
 WORKDIR /app
 
-RUN apk add --no-cache openssl openssl-dev
+COPY package*.json ./
+RUN npm ci
 
-COPY package*.json  ./
-COPY tsconfig.json  ./
-RUN npm install
-
-COPY prisma ./prisma/
+COPY prisma ./prisma
 RUN npm run db:gen
 
+COPY tsconfig.json ./
 COPY src ./src
-
 RUN npm run build
+
+RUN npm prune --production
+
+
+# Stage 2: Production Environment
+
+FROM node:20-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+
+COPY prisma ./prisma
 
 EXPOSE 4000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/index.js"]
