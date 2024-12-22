@@ -19,11 +19,11 @@ RUN npm prune --production
 
 # Stage 2: Production Environment
 
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
-RUN apk add --no-cache openssl openssl-dev
+RUN apt-get update && apt-get install -y openssl
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
