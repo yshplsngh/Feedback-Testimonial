@@ -5,7 +5,7 @@ FROM node:20 AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --omit=dev
 
 COPY prisma ./prisma
 RUN npm run db:gen
@@ -13,8 +13,6 @@ RUN npm run db:gen
 COPY tsconfig.json ./
 COPY src ./src
 RUN npm run build
-
-RUN npm prune --production
 
 
 # Stage 2: Production Environment
